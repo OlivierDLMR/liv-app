@@ -43,10 +43,10 @@ export class SerieService {
           .map(
             serie => new SerieModel(
               serie.id,
-              serie.title,
+              serie.name,
               serie.overview,
               serie.backdrop_path,
-              serie.release_date,
+              serie.first_air_date,
               serie.vote_average,
               serie.key
             )
@@ -85,10 +85,10 @@ export class SerieService {
           .map(
             serie => new SerieModel(
               serie.id,
-              serie.title,
+              serie.name,
               serie.overview,
               serie.backdrop_path,
-              serie.release_date,
+              serie.first_air_date,
               serie.vote_average,
               serie.key
             )

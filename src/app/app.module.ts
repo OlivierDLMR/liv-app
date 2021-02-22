@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CuttextPipe } from './pipes/cuttext.pipes';
+
 // import { RatingsComponent } from './shared/ratings/ratings.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CuttextPipe } from './pipes/cuttext.pipes';
     ListComponent,
     DetailComponent,
     CuttextPipe,
+    
     // RatingsComponent
   ],
   imports: [
