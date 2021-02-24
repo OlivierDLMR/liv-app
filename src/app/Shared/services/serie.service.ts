@@ -2,31 +2,31 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MovieModel } from './models/movie.model';
-import { environment } from '../environments/environment';
+import { SerieModel } from '../../models/serie.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class SerieService {
 
   private API_URL = environment.TMDB_API_URL;
   private API_KEY = environment.TMDB_API_KEY;
   /*
-   on créer un Subject movies$
+   on créer un Subject series$
    la particularité des objets de type Subject
       > On peut observer le changement avec .subscribe()
       > On peut pousser une nouvelle data avec .next()
   */
-  movies$ = new BehaviorSubject([]);
+  series$ = new BehaviorSubject([]);
   search$ = new BehaviorSubject([]);
   currentPage: number = 1;
 
   constructor(private http: HttpClient) { }
   /*
-   Load 20 movies from API
+   Load 20 serie from API
   */
-  getMoviesFromApi() {
+  getSeriesFromApi() {
     const params = new HttpParams({
       fromObject: {
         api_key: this.API_KEY,
@@ -37,38 +37,38 @@ export class MovieService {
     console.log(params);
 
     this.http
-      .get(this.API_URL + '/discover/movie', { params })
+      .get(this.API_URL + '/discover/tv', { params })
       .pipe(map(
-        (data: any) => data.results
+        (data: any) => data.result2s
           .map(
-            movie => new MovieModel(
-              movie.id,
-              movie.title,
-              movie.overview,
-              movie.backdrop_path,
-              movie.release_date,
-              movie.vote_average,
-              movie.key
+            serie => new SerieModel(
+              serie.id,
+              serie.name,
+              serie.overview,
+              serie.backdrop_path,
+              serie.first_air_date,
+              serie.vote_average,
+              serie.key
             )
           )
       )
       )
       .subscribe(response => {
         console.log(response);
-        //this.movies$.next(response);
-        let movies = this.movies$.getValue();
-        this.movies$.next([...movies, ...response]);
+        //this.series$.next(response);
+        let series = this.series$.getValue();
+        this.series$.next([...series, ...response]);
       })
   }
 
-  /* getNextMoviesFromApi */
-  getNextMoviesFromApi() {
+  /* getNextSeriesFromApi */
+  getNextSeriesFromApi() {
     this.currentPage++;
-    this.getMoviesFromApi();
+    this.getSeriesFromApi();
   }
 
-  /* searchMoviesFromApi(searchText)*/
-  searchMoviesFromApi(searchText: string) {
+  /* searchSeriesFromApi(searchText)*/
+  searchSeriesFromApi(searchText: string) {
     const params = new HttpParams({
       fromObject: {
         api_key: this.API_KEY,
@@ -79,18 +79,18 @@ export class MovieService {
     console.log(params);
 
     this.http
-      .get(this.API_URL + '/search/movie', { params })
+      .get(this.API_URL + '/search/tv', { params })
       .pipe(map(
         (data: any) => data.results
           .map(
-            movie => new MovieModel(
-              movie.id,
-              movie.title,
-              movie.overview,
-              movie.backdrop_path,
-              movie.release_date,
-              movie.vote_average,
-              movie.key
+            serie => new SerieModel(
+              serie.id,
+              serie.name,
+              serie.overview,
+              serie.backdrop_path,
+              serie.first_air_date,
+              serie.vote_average,
+              serie.key
             )
           )
       )
@@ -106,7 +106,7 @@ export class MovieService {
 
 
 
-  getMovieInfo(movieId){
+  getSerieInfo(serieId){
     //on peut setter HttpHeader pour mettre les paramètres
      const params = new HttpParams({fromObject: {
        api_key : this.API_KEY,
@@ -114,8 +114,8 @@ export class MovieService {
         }});
       
      return this.http
-     ///discover/movie est le EndPoint de l'API
-     .get(this.API_URL+'/movie/'+movieId+'/videos', {params}); //renvoie un observable
+     ///discover/tv est le EndPoint de l'API
+     .get(this.API_URL+'/tv/'+serieId+'/videos', {params}); //renvoie un observable
    
    }
 
@@ -126,4 +126,4 @@ export class MovieService {
 
 
 
-} // fin de la class MovieService
+} // fin de la class SerieService

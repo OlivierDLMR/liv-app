@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MovieModel } from '../models/movie.model';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../Shared/services/movie.service';
+import { UserService } from '../Shared/services/user.service';
 
 
 
@@ -19,7 +20,7 @@ export class ListComponent implements OnInit {
   isLoading: boolean;
   
 
-  constructor(private movieService: MovieService ) { 
+  constructor(private movieService: MovieService , public userService: UserService) { 
     console.log('Je suis le constructor');
   }
 

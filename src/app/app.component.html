@@ -1,7 +1,36 @@
-<div class="container-fluid">
 
-  <!--COMPONENT <app-list></app-list> -->
-  <!-- <app-list></app-list> -->
-  <router-outlet></router-outlet>
+<mat-toolbar class="d-flex justify-content-between" color="primary">
+  <span>Ma Videothèque</span>
+  <div>
+    <span *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'" routerLink="/login">Login</span>
+    <span *ngIf="userService.isLogged()" class="ms-2">Hello 😎</span>
+    <span *ngIf="userService.isLogged()" class="ms-2" [style.cursor]="'pointer'" (click)="logoutAction()">Logout</span>
+  </div>
+</mat-toolbar>
 
+<div class="d-flex">
+  <!-- side bar -->
+  <div class="sidebar">
+    <ul class="list-group">
+      <a class="list-group-item list-group-item-action" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}" href="">Home</a>
+
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}" class="list-group-item list-group-item-action" href="">Catalogue films</a>
+
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}" class="list-group-item list-group-item-action" href="">Catalogue videos</a>
+  
+    </ul>
+  </div>
+   
+
+
+  <div class="container-fluid">
+
+    <!--COMPONENT <app-list></app-list> -->
+    <!-- <app-list></app-list> -->
+    <router-outlet></router-outlet>
+
+  </div>
 </div>

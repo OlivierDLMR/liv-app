@@ -14,7 +14,7 @@
 
 <h2>{{inputElt.value}}</h2>
 <!-- LIST DES FILMS-->
-<div [style.opacity]="getListOpacity()" class="row content col-sm-6">
+<div [style.opacity]="getListOpacity()" class="row content col-sm-3">
     <h1>Catalogue de films</h1>
    <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"
       class="form-control sticky-top">
