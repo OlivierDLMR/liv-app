@@ -1,0 +1,19 @@
+<h1>Connectez-vous</h1>
+
+<form (submit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
+   <div class="mt-2">
+      <label class="form-label">Identifiant</label>
+      <input name="user" ngModel type="text" class="form-control">
+   </div>
+   <div class="mt-2">
+      <label class="form-label">Mot de passe</label>
+      <input name="password" ngModel type="password" class="form-control">
+   </div>
+   <div class="d-flex action">
+      <button mat-flat-button color="primary">Envoyer</button>
+      <a class="link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}" href="createAccount">Créer compte</a>
+   </div>
+
+</form>
+
