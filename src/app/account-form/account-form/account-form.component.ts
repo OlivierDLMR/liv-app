@@ -15,21 +15,22 @@ export class AccountFormComponent implements OnInit {
   constructor(private fb: FormBuilder,private alertService:AlertService) { }
 
   ngOnInit(): void {
+    console.log("==> accountForm.component.ts ngOnInit debut")
     this.accountForm = this.fb.group({
-      firstname:['',Validators.minLength(2)],
-      lastname:['',Validators.minLength(2)],
-      email: ['', Validators.email],
-      user:['',Validators.minLength(2)],
+      firstname:['',Validators.minLength(1)],
+      lastname:['',Validators.minLength(1)],
+      email: ['', [Validators.email,Validators.required]],
+      user:['',[Validators.minLength(5),Validators.required]],
       password:['',Validators.minLength(8)]
     });
-    console.log("accountForm.component.ts ngOnInit" , this.accountForm)
+    console.log("==> accountForm.component.ts ngOnInit" , this.accountForm)
   }
 
 
   onSubmit(form) {
-    console.log(form)
-    console.log(form.get('first').hasError('minlength'));
-    console.log(form.value);
+    console.log(" ===> accout-form.component.ts - onSubmit(form) / form : " ,form)
+    console.log(form.get('firstname').hasError('minlength'));
+    console.log("form group : " ,form.value);
     if (form.status === 'VALID') {
       console.log('Ok valid');
    

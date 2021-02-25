@@ -1,6 +1,6 @@
-<p>account-form works!</p>
+
 <div class="subnav">
-    <button color="primary" routerLink="/login" mat-icon-button aria-label="retunr to login">
+    <button color="primary" routerLink="/login" mat-icon-button aria-label="return to login">
        <mat-icon>navigate_before</mat-icon>
     </button>
     <h1>Creer un compte</h1>
@@ -9,9 +9,9 @@
     <div class="mb-2">
        <label class="form-label">Prénom</label>
        <input formControlName="firstname" type="text" class="form-control">
-       <p *ngIf="accountForm.get('firstname').hasError('minlength') && accountForm.get('firstname').touched" class="form-error">
-          Min. 2 caractères
-       </p>
+       <p *ngIf="accountForm.get('firstname').hasError('minlength') &&(accountForm.get('firstname').touched)" class="form-error">
+         Min. 2 caractères
+      </p>
     </div>
     <div class="mb-2">
        <label class="form-label">Nom</label>
@@ -24,25 +24,29 @@
     <div class="mb-2">
        <label class="form-label">Email</label>
        <input formControlName="email" type="text" class="form-control">
-       <p *ngIf="(accountForm.get('email').hasError('minlength') && accountForm.get('email').touched)" class="form-error">
-        Min. 2 caractères
-       </p>
+       <p *ngIf="(accountForm.get('email').hasError('email') && accountForm.get('email').touched)" class="form-error">
+         adresse mail invalide. 
+      </p>
+      <p *ngIf="accountForm.get('email').hasError('required') && accountForm.get('email').touched" class="form-error">
+            email obligatoire
+      </p>
+           
     </div>
 
     <div class="mb-2">
         <label class="form-label">User de connexion</label>
         <input formControlName="user" type="text" class="form-control">
-        <p *ngIf="accountForm.get('user').hasError('user') && accountForm.get('user').touched" class="form-error">
-           Renseignez un user valide
-        </p>
+        <p *ngIf="accountForm.get('user').hasError('minlength') && accountForm.get('user').touched" class="form-error">
+         Renseignez un user valide
+      </p>
      </div>
 
      <div class="mb-2">
         <label class="form-label">Mot de passe</label>
         <input formControlName="password" type="text" class="form-control">
-        <p *ngIf="accountForm.get('password').hasError('password') && accountForm.get('password').touched" class="form-error">
-           Renseignez un mot de passe valide svp
-        </p>
+        <p *ngIf="accountForm.get('password').hasError('minlength') && accountForm.get('password').touched" class="form-error">
+         Renseignez un mot de passe valide svp
+      </p>
      </div>
 
     <div class="mt-3">
