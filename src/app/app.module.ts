@@ -17,6 +17,11 @@ import { CuttextPipe } from './pipes/cuttext.pipes';
 import { LoginFormComponent } from './loging-form/login-form/login-form.component';
 import { AccountFormComponent } from './account-form/account-form/account-form.component';
 
+// les interceptors
+import { LoaderInterceptor } from './Shared/interceptors/loader.interceptor';
+import { ApiInterceptor } from './Shared/interceptors/api.interceptor';
+import { ErrorsInterceptor } from './Shared/interceptors/errors.interceptor';
+
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { AccountFormComponent } from './account-form/account-form/account-form.c
     MatIconModule,
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:LoaderInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ApiInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorsInterceptor,multi:true},
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'src/app/Shared/services/alert.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { cpuUsage } from 'process';
+import { UserService } from 'src/app/Shared/services/user.service';
 
 @Component({
   selector: 'app-account-form',
@@ -12,7 +13,7 @@ export class AccountFormComponent implements OnInit {
 
   accountForm:FormGroup;
 
-  constructor(private fb: FormBuilder,private alertService:AlertService) { }
+  constructor(private fb: FormBuilder,private alertService:AlertService,private userService:UserService) { }
 
   ngOnInit(): void {
     console.log("==> accountForm.component.ts ngOnInit debut")
@@ -32,8 +33,8 @@ export class AccountFormComponent implements OnInit {
     console.log(form.get('firstname').hasError('minlength'));
     console.log("form group : " ,form.value);
     if (form.status === 'VALID') {
-      console.log('Ok valid');
-   
+      console.log('Ok valid : on essaie de partir ...');
+      this.userService.postCreationCompte(form.value);
     }
     else {
       this.alertService.show('Oups...Corrigez vos erreurs !');
