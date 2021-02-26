@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ratings', // on peut le changer, par défaut il il ajoute app-
+  selector: 'rating', // on peut le changer, par défaut il il ajoute app-
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.scss']
 })

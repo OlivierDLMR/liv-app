@@ -14,7 +14,7 @@
 
 <h2>{{inputElt.value}}</h2>
 <!-- LIST DES FILMS-->
-<div [style.opacity]="getListOpacity()" class="row content pb-5 container-fluid">
+<div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
     <h1>Catalogue de films</h1>
    <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"
       class="form-control sticky-top">
@@ -34,7 +34,7 @@
   -->
   <!--   <div *ngFor="let movie of movieService.movies$ | async" class="col-6">-->
 
-  <div *ngFor="let movie of movieObs | async" class="col-4">
+  <div *ngFor="let movie of movieObs | async" class="col-6">
 
 <!--    <div *ngFor="let movie of movies" class="col-6">-->
 
@@ -42,7 +42,7 @@
          <img [src]="printImageSrc(movie)">
          <div class="card-body">
            <h2>{{ movie.title }}</h2>
-            <ratings [score]="movie.score/2"></ratings>
+            <rating [score]="movie.score/2"></rating>
            <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>
            <p><em>Résumé : </em>{{ movie.desc | cuttext }}</p>
       </div>
