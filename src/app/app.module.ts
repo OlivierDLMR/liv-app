@@ -49,9 +49,9 @@ import { ErrorsInterceptor } from './Shared/interceptors/errors.interceptor';
 
   ],
   providers: [
-    // {provide: HTTP_INTERCEPTORS, useClass:LoaderInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:LoaderInterceptor, multi:true},
     // {provide: HTTP_INTERCEPTORS, useClass:ApiInterceptor,multi:true},
-    // {provide: HTTP_INTERCEPTORS, useClass:ErrorsInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorsInterceptor,multi:true},
 
   ],
   bootstrap: [AppComponent]

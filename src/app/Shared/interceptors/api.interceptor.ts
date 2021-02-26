@@ -17,8 +17,12 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
     console.log("==> api.interceptor - intercept() ");
     console.log("     request : " , request);
+    
+    // =================> gestiion de l'url du backend <==================
+
     if (request.url.includes(this.urlBackEnd)) {
       if (request.url.includes("/auth/local")) {
         this.cloneReq = request;
@@ -27,7 +31,11 @@ export class ApiInterceptor implements HttpInterceptor {
         // this.cloneReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token')) });
         this.cloneReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' ) }); 
       }
+      return next.handle(this.cloneReq);
     }
-    return next.handle(this.cloneReq);
+
+    // =================> gestiion des urls autres que backend <================== 
+    
+    return next.handle(request); 
   }
 }
