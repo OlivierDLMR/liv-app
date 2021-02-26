@@ -29,7 +29,7 @@ export class DetailComponent implements OnInit {
     // 1 recuperer l'ID du film ET le type ('movies', ou 'results')
     this.movieId = this.route.snapshot.params.id;
     this.type = this.route.snapshot.params.type;
-    
+
 
     if (this.type == 'movies') {
       // 2 récupérer les informations du film
@@ -43,7 +43,7 @@ export class DetailComponent implements OnInit {
     }
 
 
-    this.movieService   
+    this.movieService
           .getMovieInfo(this.movieId)
           .subscribe( (data:any)=> {
                       this.urlYTMovie =
@@ -59,7 +59,7 @@ export class DetailComponent implements OnInit {
 
   goToRootPage() {
     this.movieService.search$.next([]);
-    this.router.navigate(['/']);
+    this.router.navigate(['/films']);
   }
 
 }

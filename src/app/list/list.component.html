@@ -14,7 +14,7 @@
 
 <h2>{{inputElt.value}}</h2>
 <!-- LIST DES FILMS-->
-<div [style.opacity]="getListOpacity()" class="row content col-sm-3">
+<div [style.opacity]="getListOpacity()" class="row content pb-5 container-fluid">
     <h1>Catalogue de films</h1>
    <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"
       class="form-control sticky-top">
@@ -27,12 +27,24 @@
 
    </ul>
 
-   <div *ngFor="let movie of movies" class="col-6">
-      <div [routerLink]="['/detail', movie.id, 'movies']" class="card">
+  <!--on peut mettre le movieService en public et non private dans le construteur de component
+  dans le HTML, on met un pipe pour dire async
+  => on rappelle pas un appel dejà fait
+  => méthode avec private et susbcribe réexécute les appels quand on fait un back
+  -->
+  <!--   <div *ngFor="let movie of movieService.movies$ | async" class="col-6">-->
+
+  <div *ngFor="let movie of movieObs | async" class="col-4">
+
+<!--    <div *ngFor="let movie of movies" class="col-6">-->
+
+      <div [routerLink]="['/detail', movie.id, 'movies']" class="card bg-dark text-white">
          <img [src]="printImageSrc(movie)">
          <div class="card-body">
+           <h2>{{ movie.title }}</h2>
             <ratings [score]="movie.score/2"></ratings>
-         </div>
+           <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>
+           <p><em>Résumé : </em>{{ movie.desc | cuttext }}</p>
       </div>
    </div>
 </div>

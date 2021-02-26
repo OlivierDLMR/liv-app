@@ -1,4 +1,9 @@
-export interface Liste {
+export interface ListesNavBar extends Array<ListeSuivis>{
+
+
+}
+
+export interface ListeSuivis {
   id: number;
   titre: string;
   dateCreation: Date;
