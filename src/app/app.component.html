@@ -1,10 +1,10 @@
 
-<mat-toolbar class="d-flex justify-content-between" color="primary">
-  <span>Ma Videothèque</span>
+<mat-toolbar class="d-flex justify-content-between NavbarHorizontale" color="primary">
+  <h1>Ma Videothèque</h1>
   <div>
     <span *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'" routerLink="/login">Login</span>
-    <span *ngIf="userService.isLogged()" class="ms-2">Hello 😎</span>
-    <span *ngIf="userService.isLogged()" class="ms-2" [style.cursor]="'pointer'" (click)="logoutAction()">Logout</span>
+    <span *ngIf="userService.isLogged()" class="ms-2 ">Hello {{utilisateur.firstname | titlecase}} 😎 </span>
+    <span *ngIf="userService.isLogged()" class="ms-2 " [style.cursor]="'pointer'" (click)="logoutAction()">Logout</span>
   </div>
 </mat-toolbar>
 

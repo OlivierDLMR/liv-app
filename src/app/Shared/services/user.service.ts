@@ -29,7 +29,8 @@ export class UserService {
 
 
   login(credentials){
-    console.log("==> user.service.ts login(credentieals) - credentials : " ,credentials)
+    console.log("==> user.service.ts login(credentieals) - credentials : " ,credentials);
+    console.log("supprimer la gestion du token dans getCompteUtilisateur(user:string)");
 
 }
 
@@ -54,6 +55,9 @@ export class UserService {
                         console.log(" ==> user.service.ts - getCompteutilisateur(: " + user + ")");
                         console.log("     response : " , response); 
                         console.log("     utilisateur$ " , this.utilisateur$);
+                        if (this.isLogged()==false){
+                        localStorage.setItem('token', "temporaire !!");
+                      }
 
       })
   }

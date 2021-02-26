@@ -16,9 +16,11 @@ export class LoginFormComponent implements OnInit {
     console.log(loginForm.value);
     // this.userService.login(loginForm.value);
     console.log (" ===> login-form-component.ts - onLoginSubmit");
-    console.log (      "loginForm.value : ", loginForm.value);
-    console.log (      "loginForm.user : ", loginForm.value.user);
     this.userService.getCompteUtilisateur(loginForm.value.user);
-    console.log("       ==> retour "  );
+    
+  }
+
+  logoutAction(){
+    this.userService.logout();
   }
 }

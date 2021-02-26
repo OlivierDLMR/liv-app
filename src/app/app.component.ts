@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utilisateur } from './models/utilisateur.model';
 import { UserService } from './Shared/services/user.service';
 
 @Component({
@@ -7,8 +8,11 @@ import { UserService } from './Shared/services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+
+  // variables d'affichage 
   title = 'liv-app';
   loader:boolean = false;
+  utilisateur:Utilisateur;
 
 
   constructor(public userService: UserService) {
@@ -17,5 +21,12 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     console.log('==> appComonent ngOnInit !!!');
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur=data;
+    })
+  }
+
+  logoutAction(){
+    this.userService.logout();
   }
 }
