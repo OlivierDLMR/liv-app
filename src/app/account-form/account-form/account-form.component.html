@@ -43,7 +43,7 @@
 
      <div class="mb-2">
         <label class="form-label">Mot de passe</label>
-        <input formControlName="password" type="text" class="form-control">
+        <input formControlName="password" ngModel type="password" class="form-control">
         <p *ngIf="accountForm.get('password').hasError('minlength') && accountForm.get('password').touched" class="form-error">
          Renseignez un mot de passe valide svp
       </p>
