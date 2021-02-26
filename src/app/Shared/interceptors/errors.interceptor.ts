@@ -44,6 +44,9 @@ export class ErrorsInterceptor implements HttpInterceptor {
             case 404:
               this.alertService.show('Ressource inconnue');
               break;
+              case 409:
+                this.alertService.show('Le user est déjà référencé. merci de le modifier');
+                break;
             case 501:
             case 502:
             case 503:
