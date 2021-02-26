@@ -21,6 +21,11 @@ import { AccountFormComponent } from './account-form/account-form/account-form.c
 import { LoaderInterceptor } from './Shared/interceptors/loader.interceptor';
 import { ApiInterceptor } from './Shared/interceptors/api.interceptor';
 import { ErrorsInterceptor } from './Shared/interceptors/errors.interceptor';
+import { ListesnavbarComponent } from './listesnavbar/listesnavbar.component';
+import { ListesuivisComponent } from './listesuivis/listesuivis.component';
+import { SuiviComponent } from './suivi/suivi.component';
+import { BoardComponent } from './board/board.component';
+import {MaterialModule} from "./Shared/Material/material.module";
 
 
 
@@ -32,7 +37,11 @@ import { ErrorsInterceptor } from './Shared/interceptors/errors.interceptor';
     CuttextPipe,
     LoginFormComponent,
     AccountFormComponent,
-    
+    ListesnavbarComponent,
+    ListesuivisComponent,
+    SuiviComponent,
+    BoardComponent,
+
     // RatingsComponent
   ],
   imports: [
@@ -46,6 +55,7 @@ import { ErrorsInterceptor } from './Shared/interceptors/errors.interceptor';
     MatToolbarModule,
     MatSnackBarModule,
     MatIconModule,
+    MaterialModule,
 
   ],
   providers: [

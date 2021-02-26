@@ -7,6 +7,8 @@
     <span *ngIf="userService.isLogged()" class="ms-2 " [style.cursor]="'pointer'" (click)="logoutAction()">Logout</span>
   </div>
 </mat-toolbar>
+<mat-progress-bar color="accent" [style.opacity]="(loaderService.isLoadingObs | async)?'1':'0'" mode="indeterminate">
+</mat-progress-bar>
 
 <div class="d-flex">
   <!-- side bar -->
@@ -20,10 +22,15 @@
 
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href="">Catalogue videos</a>
-  
     </ul>
+    <Div *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'">Mes Listes
+    <ul>
+      <a routerLink="/suivi">liste 1</a>
+    </ul>
+    </Div>
+
   </div>
-   
+
 
 
   <div class="container-fluid">

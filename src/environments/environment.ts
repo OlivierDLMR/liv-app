@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   TMDB_API_URL : 'https://api.themoviedb.org/3',
-  TMDB_API_KEY : '03ff8dea5f45164c23521d42e141ea6d'
+  TMDB_API_KEY : '03ff8dea5f45164c23521d42e141ea6d',
+  BE_API_URL : 'http://localhost:8080',
+
 };
 
 /*
