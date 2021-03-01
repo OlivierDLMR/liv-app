@@ -22,6 +22,7 @@ import { SuiviComponent } from './suivi/suivi.component';
 import { BoardComponent } from './board/board.component';
 import {MaterialModule} from './Shared/Material/material.module';
 import { RatingComponent } from './Shared/Ratings/ratings/rating.component';
+import { ListSerieComponent } from './list-serie/list-serie.component';
 
 
 
@@ -39,6 +40,7 @@ import { RatingComponent } from './Shared/Ratings/ratings/rating.component';
     SuiviComponent,
     BoardComponent,
     RatingComponent,
+    ListSerieComponent,
 
   ],
   imports: [
