@@ -2,13 +2,25 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
+import {AlertService} from './alert.service';
+import {Utilisateur} from '../../models/utilisateur.model';
+import {ListesNavBar} from "../../models/liste.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuivisService {
 
-  public user$ = new BehaviorSubject([]);
+  public utilisateur$ = new BehaviorSubject<Utilisateur>({
+    id: 0,
+    user: '',
+    password: '',
+    email: '',
+    firstname: '',
+    lastname: ''
+  });
+
   public listes$ = new BehaviorSubject([]);
   public listesuivis$ = new BehaviorSubject([]);
   public suivi$ = new BehaviorSubject([]);
@@ -16,24 +28,21 @@ export class SuivisService {
   public filmRef$ = new BehaviorSubject([]);
   public serieRef$ = new BehaviorSubject([]);
 
-  private BE_API_URL_BASE = environment.BE_API_URL;
 
+  private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
   }
 
-  ngOnInit(): void{}
-
-  // getListesSuivis(users$) : {
-  //   this.http.get(this.BE_API_URL_BASE + "liv/utilisateurs/" + this.user$ + "/videolists").subscribe(
-  //   (response: any) => {
-  //   this.listes$.next(response);
-  //   console.log(" ==> suivi.service.ts - getlistes(: " + this.user$ + ")");
-  //   console.log("     response : ", response);
-  //   console.log("     listes$ ", this.listes$);
-  // });
-
- // }
-
+  // ==> obtenir un utilisateur par son user
+  getListesUtilisateur (userId: number) {
+    this.http.get(this.urlBackEnd + userId + '/videolists').subscribe(
+      (response: any) => {
+        this.listes$.next(response);
+        console.log(' ==> suivis.service.ts - getListesutilisateur(: ' + userId + ')');
+        console.log('     response : ', response);
+        console.log('     utilisateur$ ', this.utilisateur$);
+      })
+  }
 }

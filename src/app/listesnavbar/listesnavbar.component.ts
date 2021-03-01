@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SuivisService} from '../Shared/services/suivis.service';
+import {Utilisateur} from "../models/utilisateur.model";
+import {UserService} from "../Shared/services/user.service";
+import {LoaderService} from "../Shared/services/loader.service";
+import {ListesNavBar} from "../models/liste.model";
 
 // import {SuivisService} from "../Shared/services/suivis.service";
 
@@ -10,11 +14,20 @@ import {SuivisService} from '../Shared/services/suivis.service';
 })
 export class ListesnavbarComponent implements OnInit {
 
-  constructor(private suivisService: SuivisService) {
+  utilisateur: Utilisateur;
+  listes: ListesNavBar;
+
+  constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
   }
 
   ngOnInit(): void {
-    // this.suivisService.getListesSuivis();
+    console.log('==> navbarcomponent ngOnInit !!!');
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur = data;
+    });
+
+    this.suivisService.getListesUtilisateur(this.utilisateur.id);
+    this.suivisService.listes$.subscribe(data => this.listes = data);
 
   }
 

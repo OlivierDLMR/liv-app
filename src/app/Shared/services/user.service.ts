@@ -4,12 +4,14 @@ import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 import {Utilisateur} from 'src/app/models/utilisateur.model';
 import {AlertService} from './alert.service';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   public utilisateur$ = new BehaviorSubject<Utilisateur>({
+    id: 0,
     user: '',
     password: '',
     email: '',
@@ -17,7 +19,8 @@ export class UserService {
     lastname: ''
   });
 
-  private urlBackEnd: string = "http://localhost:8080/liv/utilisateurs";
+
+  private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
   }

@@ -1,6 +1,4 @@
 
-
-
 export class SerieModel {
     id: number;
     title: string;

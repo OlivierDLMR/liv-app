@@ -1,3 +1,13 @@
+<h4>Listes de {{utilisateur.user}} {{utilisateur.id}}</h4>
+
 <ul>
-  <a routerLink="/suivi">liste 1</a>
+<!--  <a routerLink="/suivi">liste 1</a>-->
+
+
+  <div *ngFor="let liste of listes" class="col-6">
+
+    <!--    <div *ngFor="let movie of movies" class="col-6">-->
+        <h3>{{ liste.titre }}</h3>
+
+  </div>
 </ul>

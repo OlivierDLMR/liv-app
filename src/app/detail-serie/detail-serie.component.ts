@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SerieService } from '../Shared/services/serie.service';
+import {Component, OnInit} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SerieService} from '../Shared/services/serie.service';
 
 @Component({
   selector: 'app-detail',
@@ -17,13 +17,15 @@ export class DetailSerieComponent implements OnInit {
   serieId: number;
   type: string;
   serie;
-  urlYTSerie:any;
+  urlYTSerie: any;
+
   constructor(
     private route: ActivatedRoute,
     private serieService: SerieService,
     private router: Router,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     // 1 recuperer l'ID du film ET le type ('serie', ou 'results')
@@ -35,8 +37,7 @@ export class DetailSerieComponent implements OnInit {
       // 2 récupérer les informations de la serie
       this.serie = this.serieService.series$.getValue()
         .find(serie => serie.id == this.serieId);
-    }
-    else {
+    } else {
       // 2 récupérer les informations de la serie
       this.serie = this.serieService.search$.getValue()
         .find(serie => serie.id == this.serieId);
@@ -45,13 +46,10 @@ export class DetailSerieComponent implements OnInit {
 
     this.serieService
       .getSerieInfo(this.serieId)
-      .subscribe( (data: any ) => {
+      .subscribe((data: any) => {
         this.urlYTSerie =
           this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + data.results[0].key);
       });
-
-
-
 
 
   } // fin ngOnInit()
