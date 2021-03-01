@@ -1,0 +1,35 @@
+.card .card-body h2{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  padding: 0.3em;
+  color: #ffffff;
+}
+
+.card{
+  margin:5px;
+  transition-duration:.2s;
+}
+.card .card-body{
+  background: black;
+}
+.card:hover {
+  transform: scale(1.1);
+  cursor:pointer
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+}
+
+
+/* mettre du flou sur l'image pendant le hover
+.card:hover img {
+    filter: blur(2px);
+} */
