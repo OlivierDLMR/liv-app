@@ -23,6 +23,7 @@ import { BoardComponent } from './board/board.component';
 import {MaterialModule} from './Shared/Material/material.module';
 import { RatingComponent } from './Shared/Ratings/ratings/rating.component';
 import { ListSerieComponent } from './list-serie/list-serie.component';
+import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 
 
 
@@ -41,6 +42,7 @@ import { ListSerieComponent } from './list-serie/list-serie.component';
     BoardComponent,
     RatingComponent,
     ListSerieComponent,
+    DetailSerieComponent,
 
   ],
   imports: [
