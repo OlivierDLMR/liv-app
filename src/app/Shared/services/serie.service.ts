@@ -116,7 +116,7 @@ export class SerieService {
 
      return this.http
      ///discover/tv est le EndPoint de l'API
-     .get(this.API_URL+'/tv/'+serieId+'/videos', {params}); //renvoie un observable
+     .get(this.API_URL + '/tv/' + serieId + '/videos', {params}); //renvoie un observable
 
    }
 
