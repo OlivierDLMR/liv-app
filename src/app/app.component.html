@@ -1,4 +1,3 @@
-
 <mat-toolbar class="d-flex justify-content-between" color="primary">
   <h1>Ma Videothèque</h1>
   <div>
@@ -27,13 +26,12 @@
           true}" class="list-group-item list-group-item-action" href="">Catalogue series</a>
 
     </ul>
-    <Div *ngIf="userService.isLogged()" class="me-2" [style.cursor]="'pointer'">Mes Listes
-    <app-listesnavbar></app-listesnavbar>
+    <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">Mes Listes
+      <app-listesnavbar></app-listesnavbar>
 
-    </Div>
+    </div>
 
   </div>
-
 
 
   <div class="container-fluid">

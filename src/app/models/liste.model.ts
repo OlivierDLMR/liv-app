@@ -1,6 +1,12 @@
-export interface ListesNavBar extends Array<ListeSuivis>{
+export interface ListesNavBar extends Array<Videolist> {
 
+}
 
+export interface Videolist {
+  id: number;
+  name: string;
+  dateCreation: Date;
+  dateModif: Date;
 }
 
 export interface ListeSuivis {

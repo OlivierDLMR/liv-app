@@ -21,14 +21,18 @@ export class ListesnavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('==> navbarcomponent ngOnInit !!!');
+    // console.log('==> navbarcomponent ngOnInit !!!');
     this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
 
-    console.log("je suis dans la navbar");
-    // this.suivisService.getListesUtilisateur(this.utilisateur.id);
-    this.suivisService.listes$.subscribe(data => this.listes = data);
+    this.userService.listes$.subscribe(data => {
+      this.listes = data;
+      console.log('les listes' + this.listes);
+    });
+    // console.log("je suis dans la navbar");
+    // // this.suivisService.getListesUtilisateur(this.utilisateur.id);
+    // this.suivisService.listes$.subscribe(data => this.listes = data);
 
   }
 

@@ -41,8 +41,8 @@ export class UserService {
 
 
   login(credentials) {
-    console.log("==> user.service.ts login(credentieals) - credentials : ", credentials);
-    console.log("supprimer la gestion du token dans getCompteUtilisateur(user:string)");
+    console.log('==> user.service.ts login(credentieals) - credentials : ', credentials);
+    console.log('supprimer la gestion du token dans getCompteUtilisateur(user:string)');
 
   }
 
@@ -56,9 +56,9 @@ export class UserService {
     this.http.post(this.urlBackEnd, utilisateurObj).subscribe(
       (responseApi: any) => {
         this.utilisateur$.next(responseApi);
-        console.log(" ==> user.service.ts - postCreationComptepostCreationCompte : ");
-        console.log("   ", responseApi);
-      })
+        console.log(' ==> user.service.ts - postCreationComptepostCreationCompte : ');
+        console.log('   ', responseApi);
+      });
   }
 
   // ==> obtenir un utilisateur par son user
@@ -71,16 +71,16 @@ export class UserService {
         console.log('     utilisateur$ ', this.utilisateur$);
         if (this.isLogged() == false) {
           localStorage.setItem('token', 'temporaire !!');
+          this.http.get(this.urlBackEnd + '/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
+            (data: any) => {
+              this.listes$.next(data);
+              console.log(' ==> listes .service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
+              console.log('     response : ', response);
+              console.log('     listes ', this.listes$);
+            });
         }
       });
 
-    this.http.get(this.urlBackEnd +'/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
-      (response: any) => {
-        this.listes$.next(response);
-        console.log(' ==> listes .service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
-        console.log('     response : ', response);
-        console.log('     listes ', this.listes$);
-      });
   }
 
 }
