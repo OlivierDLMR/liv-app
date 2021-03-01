@@ -74,12 +74,12 @@ export class UserService {
         }
       });
 
-    this.http.get(this.urlBackEnd + this.utilisateur$.getValue().id + '/videolists').subscribe(
+    this.http.get(this.urlBackEnd +'/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
       (response: any) => {
         this.listes$.next(response);
-        console.log(' ==> suivis.service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
+        console.log(' ==> listes .service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
         console.log('     response : ', response);
-        console.log('     utilisateur$ ', this.utilisateur$);
+        console.log('     listes ', this.listes$);
       });
   }
 
