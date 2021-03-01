@@ -1,0 +1,61 @@
+
+<h1>SERIES</h1>
+<input #inputElt (keyup)="searchSeries(inputElt.value)" placeholder="Rechercher..." type="text"
+       class="form-control sticky-top">
+<ul class="list-group">
+
+  <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
+      class="list-group-item">
+    {{result.title}}
+  </li>
+
+</ul>
+
+
+<h2>{{inputElt.value}}</h2>
+<!-- LIST DES SERIES-->
+<div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
+
+  <ul class="list-group">
+
+    <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
+        class="list-group-item">
+      {{result.title}}
+    </li>
+
+  </ul>
+
+  <!--on peut mettre le serieService en public et non private dans le construteur de component
+  dans le HTML, on met un pipe pour dire async
+  => on rappelle pas un appel dejà fait
+  => méthode avec private et susbcribe réexécute les appels quand on fait un back
+  -->
+  <!--   <div *ngFor="let movie of movieService.movies$ | async" class="col-6">-->
+
+  <div *ngFor="let serie of serieObs | async" class="col-6">
+
+    <!--    <div *ngFor="let movie of movies" class="col-6">-->
+
+    <div [routerLink]="['/detail', serie.id, 'serie']" class="card bg-dark text-white">
+      <img [src]="printImageSrc(serie)">
+      <div class="card-body">
+        <h2>{{ serie.title }}</h2>
+        <rating [score]="serie.score/2"></rating>
+        <p>Date de sortie : {{ serie.date | date: "dd/MM/YYYY" }}</p>
+        <p><em>Résumé : </em>{{ serie.desc | cuttext }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADER-->
+  <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center loader">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+
+  <!-- Navigation bottom bar -->
+  <div class="fixed-bottom bg-info text-center p-2">
+    <button (click)="loadNextSeries()" class="btn btn-light">Series suivantes</button>
+  </div>

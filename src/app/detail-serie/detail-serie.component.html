@@ -1,0 +1,21 @@
+<p>detail-serie works!</p>
+
+<div class="d-flex">
+  <button (click)="goToRootPage()" class="btn">
+    <i class="fas fa-arrow-left"> Back</i>
+  </button>
+
+</div>
+<div class="card">
+  <iframe *ngIf="urlYTSerie != null" width="560" height="315" [src]="urlYTSerie"
+          frameborder="1" allow="accelerometer;
+  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+  <div class="card-body">
+    <!--  -->
+    <h1>{{serie.title | uppercase}}</h1>
+
+    <p>Date de sortie : {{serie.date | date:'dd/MM/YYYY'}}</p>
+    <p class = "lh-lg text-justify"><em>Résumé : </em>{{serie.desc}}</p>
+  </div>
+</div>
