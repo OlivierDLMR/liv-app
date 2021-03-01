@@ -1,4 +1,4 @@
-<p>list works!</p>
+
 <h1>Les films à l'affiche</h1>
 <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"
    class="form-control sticky-top">
@@ -15,9 +15,9 @@
 <h2>{{inputElt.value}}</h2>
 <!-- LIST DES FILMS-->
 <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
-    <h1>Catalogue de films</h1>
-   <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"
-      class="form-control sticky-top">
+<!--    <h1>Catalogue de films</h1>-->
+<!--   <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"-->
+<!--      class="form-control sticky-top">-->
    <ul class="list-group">
 
       <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
@@ -58,6 +58,6 @@
 
 
 <!-- Navigation bottom bar -->
-<!-- <div class="fixed-bottom bg-info text-center p-2">
+<div class="fixed-bottom bg-info text-center p-2">
    <button (click)="loadNextMovies()" class="btn btn-light">Films suivants</button>
-</div> -->
+</div>

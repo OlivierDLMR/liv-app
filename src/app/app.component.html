@@ -22,6 +22,10 @@
 
       <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href="">Catalogue videos</a>
+
+      <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}" class="list-group-item list-group-item-action" href="">Catalogue series</a>
+
     </ul>
     <Div *ngIf="userService.isLogged()" class="me-2" [style.cursor]="'pointer'">Mes Listes
     <app-listesnavbar></app-listesnavbar>

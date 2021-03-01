@@ -8,10 +8,14 @@ import {ListesnavbarComponent} from './listesnavbar/listesnavbar.component';
 import {SuiviComponent} from './suivi/suivi.component';
 import {ListesuivisComponent} from './listesuivis/listesuivis.component';
 import {BoardComponent} from './board/board.component';
+import {ListSerieComponent} from "./list-serie/list-serie.component";
 
 const routes: Routes = [
   {path: '', component: BoardComponent},
   {path: 'films', component: ListComponent},
+
+  {path: 'series', component: ListSerieComponent},
+
   {path: 'detail/:id/:type', component: DetailComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'createAccount', component: AccountFormComponent},
