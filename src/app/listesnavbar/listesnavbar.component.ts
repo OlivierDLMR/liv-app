@@ -26,7 +26,8 @@ export class ListesnavbarComponent implements OnInit {
       this.utilisateur = data;
     });
 
-    this.suivisService.getListesUtilisateur(this.utilisateur.id);
+    console.log("je suis dans la navbar");
+    // this.suivisService.getListesUtilisateur(this.utilisateur.id);
     this.suivisService.listes$.subscribe(data => this.listes = data);
 
   }

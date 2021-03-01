@@ -43,6 +43,6 @@ export class SuivisService {
         console.log(' ==> suivis.service.ts - getListesutilisateur(: ' + userId + ')');
         console.log('     response : ', response);
         console.log('     utilisateur$ ', this.utilisateur$);
-      })
+      });
   }
 }

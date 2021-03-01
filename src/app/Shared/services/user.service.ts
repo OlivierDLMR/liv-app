@@ -19,6 +19,7 @@ export class UserService {
     lastname: ''
   });
 
+  public listes$ = new BehaviorSubject([]);
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs';
 
@@ -62,17 +63,24 @@ export class UserService {
 
   // ==> obtenir un utilisateur par son user
   getCompteUtilisateur(user: string) {
-    this.http.get(this.urlBackEnd + "?user=" + user).subscribe(
+    this.http.get(this.urlBackEnd + '?user=' + user).subscribe(
       (response: any) => {
         this.utilisateur$.next(response);
-        console.log(" ==> user.service.ts - getCompteutilisateur(: " + user + ")");
-        console.log("     response : ", response);
-        console.log("     utilisateur$ ", this.utilisateur$);
+        console.log(' ==> user.service.ts - getCompteutilisateur(: ' + user + ')');
+        console.log('     response : ', response);
+        console.log('     utilisateur$ ', this.utilisateur$);
         if (this.isLogged() == false) {
-          localStorage.setItem('token', "temporaire !!");
+          localStorage.setItem('token', 'temporaire !!');
         }
+      });
 
-      })
+    this.http.get(this.urlBackEnd + this.utilisateur$.getValue().id + '/videolists').subscribe(
+      (response: any) => {
+        this.listes$.next(response);
+        console.log(' ==> suivis.service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
+        console.log('     response : ', response);
+        console.log('     utilisateur$ ', this.utilisateur$);
+      });
   }
 
 }
