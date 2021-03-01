@@ -27,6 +27,7 @@ export class SerieService {
    Load 20 serie from API
   */
   getSeriesFromApi() {
+    console.log("getseriefromapi !!!");
     const params = new HttpParams({
       fromObject: {
         api_key: this.API_KEY,
@@ -34,12 +35,12 @@ export class SerieService {
         page: this.currentPage.toString()
       }
     });
-    console.log(params);
+
 
     this.http
       .get(this.API_URL + '/discover/tv', { params })
       .pipe(map(
-        (data: any) => data.result2s
+        (data: any) => data.results
           .map(
             serie => new SerieModel(
               serie.id,
@@ -112,11 +113,11 @@ export class SerieService {
        api_key : this.API_KEY,
        language: 'fr'
         }});
-      
+
      return this.http
      ///discover/tv est le EndPoint de l'API
      .get(this.API_URL+'/tv/'+serieId+'/videos', {params}); //renvoie un observable
-   
+
    }
 
 

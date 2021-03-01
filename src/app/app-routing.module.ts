@@ -10,6 +10,8 @@ import {ListesuivisComponent} from './listesuivis/listesuivis.component';
 import {BoardComponent} from './board/board.component';
 
 import {ListSerieComponent} from './list-serie/list-serie.component';
+import {DetailSerieComponent} from './detail-serie/detail-serie.component';
+
 
 const routes: Routes = [
   {path: '', component: BoardComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'series', component: ListSerieComponent},
 
   {path: 'detail/:id/:type', component: DetailComponent},
+  {path: 'detailserie/:id', component: DetailSerieComponent},
+
   {path: 'login', component: LoginFormComponent},
   {path: 'createAccount', component: AccountFormComponent},
   {path: 'listesNavBar', component: ListesnavbarComponent},

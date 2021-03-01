@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SerieService} from '../Shared/services/serie.service';
+import {SerieModel} from '../models/serie.model';
 
 @Component({
   selector: 'app-detail',
@@ -16,8 +17,9 @@ export class DetailSerieComponent implements OnInit {
   */
   serieId: number;
   type: string;
-  serie;
+  serie: SerieModel;
   urlYTSerie: any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class DetailSerieComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     // 1 recuperer l'ID du film ET le type ('serie', ou 'results')
     this.serieId = this.route.snapshot.params.id;
     this.type = this.route.snapshot.params.type;
@@ -42,7 +45,7 @@ export class DetailSerieComponent implements OnInit {
       this.serie = this.serieService.search$.getValue()
         .find(serie => serie.id == this.serieId);
     }
-
+    console.log(this);
 
     this.serieService
       .getSerieInfo(this.serieId)

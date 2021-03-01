@@ -53,15 +53,18 @@ export class ListSerieComponent implements OnInit {
   }
 
 
+  // tslint:disable-next-line:typedef
   loadNextSeries() {
     this.isLoading = true;
     this.serieService.getNextSeriesFromApi();
   }
 
+  // tslint:disable-next-line:typedef
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
   }
 
+  // tslint:disable-next-line:typedef
   searchSeries(searchText: string) {
     console.log(searchText);
     if (searchText.trim().length < 3) {

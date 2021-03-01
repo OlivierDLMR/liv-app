@@ -4,7 +4,7 @@
        class="form-control sticky-top">
 <ul class="list-group">
 
-  <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
+  <li [routerLink]="['/detailserie', result.id, 'results']" *ngFor="let result of results"
       class="list-group-item">
     {{result.title}}
   </li>
@@ -18,7 +18,7 @@
 
   <ul class="list-group">
 
-    <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
+    <li [routerLink]="['/detailserie', result.id, 'series']" *ngFor="let result of results"
         class="list-group-item">
       {{result.title}}
     </li>
@@ -36,7 +36,7 @@
 
     <!--    <div *ngFor="let movie of movies" class="col-6">-->
 
-    <div [routerLink]="['/detail', serie.id, 'serie']" class="card bg-dark text-white">
+    <div [routerLink]="['/detailserie', serie.id]" class="card bg-dark text-white">
       <img [src]="printImageSrc(serie)">
       <div class="card-body">
         <h2>{{ serie.title }}</h2>
