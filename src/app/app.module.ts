@@ -4,11 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-/* Import des components MaterialAngular*/
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
-
 
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
@@ -54,9 +49,7 @@ import { RatingComponent } from './Shared/Ratings/ratings/rating.component';
     FormsModule,
     ReactiveFormsModule,
       /* Import des components MaterialAngular*/
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatIconModule,
+    
     MaterialModule,
 
 
