@@ -35,14 +35,4 @@ export class SuivisService {
 
   }
 
-  // ==> obtenir un utilisateur par son user
-  getListesUtilisateur (userId: number) {
-    this.http.get(this.urlBackEnd + userId + '/videolists').subscribe(
-      (response: any) => {
-        this.listes$.next(response);
-        console.log(' ==> suivis.service.ts - getListesutilisateur(: ' + userId + ')');
-        console.log('     response : ', response);
-        console.log('     utilisateur$ ', this.utilisateur$);
-      });
-  }
 }

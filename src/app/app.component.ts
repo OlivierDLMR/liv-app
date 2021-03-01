@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   title = 'liv-app';
   loader: boolean = false;
   utilisateur: Utilisateur;
-  listes: ListesNavBar;
 
 
   constructor(public userService: UserService, public loaderService: LoaderService) {
@@ -27,9 +26,7 @@ export class AppComponent implements OnInit {
     this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
-    this.userService.listes$.subscribe(data => {
-      this.listes = data;
-    });
+
   }
 
   logoutAction() {

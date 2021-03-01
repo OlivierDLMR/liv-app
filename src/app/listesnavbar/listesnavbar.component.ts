@@ -21,7 +21,7 @@ export class ListesnavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('==> navbarcomponent ngOnInit !!!');
+    // yohohoho on en a besoin pour le isLogged :D
     this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
@@ -30,10 +30,6 @@ export class ListesnavbarComponent implements OnInit {
       this.listes = data;
       console.log('les listes' + this.listes);
     });
-    // console.log("je suis dans la navbar");
-    // // this.suivisService.getListesUtilisateur(this.utilisateur.id);
-    // this.suivisService.listes$.subscribe(data => this.listes = data);
-
   }
 
 }
