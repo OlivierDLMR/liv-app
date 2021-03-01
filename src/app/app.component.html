@@ -24,9 +24,8 @@
           true}" class="list-group-item list-group-item-action" href="">Catalogue videos</a>
     </ul>
     <Div *ngIf="userService.isLogged()" class="me-2" [style.cursor]="'pointer'">Mes Listes
-    <ul>
-      <a routerLink="/suivi">liste 1</a>
-    </ul>
+    <app-listesnavbar></app-listesnavbar>
+
     </Div>
 
   </div>

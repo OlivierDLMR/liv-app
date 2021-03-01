@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SuivisService} from '../Shared/services/suivis.service';
+
+// import {SuivisService} from "../Shared/services/suivis.service";
 
 @Component({
   selector: 'app-listesnavbar',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListesnavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private suivisService: SuivisService) {
+  }
 
   ngOnInit(): void {
+    // this.suivisService.getListesSuivis();
+
   }
 
 }

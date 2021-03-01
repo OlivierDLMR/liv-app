@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
@@ -23,5 +23,17 @@ export class SuivisService {
 
   }
 
+  ngOnInit(): void{}
+
+  // getListesSuivis(users$) : {
+  //   this.http.get(this.BE_API_URL_BASE + "liv/utilisateurs/" + this.user$ + "/videolists").subscribe(
+  //   (response: any) => {
+  //   this.listes$.next(response);
+  //   console.log(" ==> suivi.service.ts - getlistes(: " + this.user$ + ")");
+  //   console.log("     response : ", response);
+  //   console.log("     listes$ ", this.listes$);
+  // });
+
+ // }
 
 }
