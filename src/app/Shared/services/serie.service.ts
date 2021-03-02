@@ -1,9 +1,9 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {SerieModel} from '../../models/serie.model';
-import {environment} from '../../../environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SerieModel } from '../../models/serie.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,7 @@ export class SerieService {
   search$ = new BehaviorSubject([]);
   currentPage: number = 1;
 
-  constructor(private http: HttpClient) {
-  }
-
+  constructor(private http: HttpClient) { }
   /*
    Load 20 serie from API
   */
@@ -40,7 +38,7 @@ export class SerieService {
 
 
     this.http
-      .get(this.API_URL + '/discover/tv', {params})
+      .get(this.API_URL + '/discover/tv', { params })
       .pipe(map(
         (data: any) => data.results
           .map(
@@ -54,7 +52,7 @@ export class SerieService {
               serie.key
             )
           )
-        )
+      )
       )
       .subscribe(response => {
         console.log(response);
@@ -82,7 +80,7 @@ export class SerieService {
     console.log(params);
 
     this.http
-      .get(this.API_URL + '/search/tv', {params})
+      .get(this.API_URL + '/search/tv', { params })
       .pipe(map(
         (data: any) => data.results
           .map(
@@ -96,7 +94,7 @@ export class SerieService {
               serie.key
             )
           )
-        )
+      )
       )
       .subscribe(response => {
         console.log(response);
@@ -105,20 +103,28 @@ export class SerieService {
   }
 
 
-  getSerieInfo(serieId) {
-    //on peut setter HttpHeader pour mettre les paramètres
-    const params = new HttpParams({
-      fromObject: {
-        api_key: this.API_KEY,
-        language: 'fr'
-      }
-    });
-    console.log(params);
-    return this.http
-      ///discover/tv est le EndPoint de l'API
-      .get(this.API_URL + '/tv/' + serieId + '/videos', {params}); //renvoie un observable
 
-  }
+
+
+
+  getSerieInfo(serieId){
+    //on peut setter HttpHeader pour mettre les paramètres
+     const params = new HttpParams({fromObject: {
+       api_key : this.API_KEY,
+       language: 'fr'
+        }});
+
+     return this.http
+     ///discover/tv est le EndPoint de l'API
+     .get(this.API_URL + '/tv/' + serieId + '/videos', {params}); //renvoie un observable
+
+   }
+
+
+
+
+
+
 
 
 } // fin de la class SerieService

@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'series', component: ListSerieComponent},
 
   {path: 'detail/:id/:type', component: DetailComponent},
-  {path: 'detailserie/:id', component: DetailSerieComponent},
+  {path: 'detailserie/:id/:type', component: DetailSerieComponent},
 
   {path: 'login', component: LoginFormComponent},
   {path: 'createAccount', component: AccountFormComponent},
