@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SuivisService} from "../Shared/services/suivis.service";
-import {UserService} from "../Shared/services/user.service";
-import {BehaviorSubject} from "rxjs";
-import {Utilisateur} from "../models/utilisateur.model";
+import {SuivisService} from '../Shared/services/suivis.service';
+import {UserService} from '../Shared/services/user.service';
+import {Utilisateur} from '../models/utilisateur.model';
 
 @Component({
   selector: 'app-board',
