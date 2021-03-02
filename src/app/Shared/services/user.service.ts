@@ -25,9 +25,11 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
   }
-
+clearStorage(){
+localStorage.clear();
+}
   logout() {
-    localStorage.clear();
+    this.clearStorage();
     this.router.navigate(['login']);
     this.alertService.show('Vous êtes déconnecté');
   }
