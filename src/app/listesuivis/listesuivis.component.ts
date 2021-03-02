@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SerieService} from "../Shared/services/serie.service";
+import {UserService} from "../Shared/services/user.service";
+import {LoaderService} from "../Shared/services/loader.service";
+import {Utilisateur} from "../models/utilisateur.model";
+import {ListesNavBar, ListeSuivis} from "../models/liste.model";
+import {SuivisService} from "../Shared/services/suivis.service";
 
 @Component({
   selector: 'app-listesuivis',
@@ -7,9 +13,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListesuivisComponent implements OnInit {
 
-  constructor() { }
+  utilisateur: Utilisateur;
+  listes: ListesNavBar;
+  listeSuivis: any[];
+
+  constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
+  }
 
   ngOnInit(): void {
+
+    // yohohoho on en a besoin pour le isLogged :D
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur = data;
+    });
+
+    this.userService.listes$.subscribe(data => {
+      this.listes = data;
+      console.log('les listes' + this.listes);
+    });
+
+    this.suivisService.listesuivis$.subscribe(data => {
+        this.listeSuivis = data;
+      }
+    );
   }
 
 }
