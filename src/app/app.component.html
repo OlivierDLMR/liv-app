@@ -13,34 +13,36 @@
   <!-- side bar -->
   <div class="sidebar">
     <ul class="list-group">
-      <a class="list-group-item list-group-item-action" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-        true}" href="">Home</a>
+      <!-- <a class="list-group-item list-group-item-action" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}" href="">Home</a> -->
+      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}" class="list-group-item list-group-item-action" href="">home</a>
 
       <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
         true}" class="list-group-item list-group-item-action" href="">Catalogue films</a>
-
-      <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href="">Catalogue videos</a>
 
       <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href="">Catalogue series</a>
 
     </ul>
-    <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">Mes Listes
-      <app-listesnavbar></app-listesnavbar>
+    <nav class="nav flex-column">
+      <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
+        <!--      <span>Mes Listes</span>-->
+        <app-listesnavbar></app-listesnavbar>
+      </div>
+    </nav>
 
-    </div>
 
-  </div>
+</div>
 
 
-  <div class="container-fluid">
+<div class="container-fluid">
 
-    <!--COMPONENT <app-list></app-list> -->
-    <!-- <app-list></app-list> -->
-    <router-outlet></router-outlet>
+  <!--COMPONENT <app-list></app-list> -->
+  <!-- <app-list></app-list> -->
+  <router-outlet></router-outlet>
 
-  </div>
+</div>
 </div>
 
 

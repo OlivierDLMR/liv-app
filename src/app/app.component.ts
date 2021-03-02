@@ -23,10 +23,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log('==> appComonent ngOnInit !!!');
+    console.log("      utilisateur : " , this.utilisateur);
     this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
+      
     });
-
+    this.userService.clearStorage();
   }
 
   logoutAction() {

@@ -35,7 +35,7 @@ export class DetailSerieComponent implements OnInit {
     this.serieId = this.route.snapshot.params.id;
     this.type = this.route.snapshot.params.type;
 
-
+    console.log('ids : ' + this.serieId);
     if (this.type == 'series') {
       // 2 récupérer les informations de la serie
       this.serie = this.serieService.series$.getValue()
@@ -45,7 +45,7 @@ export class DetailSerieComponent implements OnInit {
       this.serie = this.serieService.search$.getValue()
         .find(serie => serie.id == this.serieId);
     }
-    console.log(this);
+    console.log('detail serie .'+ this.serie);
 
     this.serieService
       .getSerieInfo(this.serieId)
