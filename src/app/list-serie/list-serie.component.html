@@ -12,29 +12,13 @@
 </ul>
 
 
-<h2>{{inputElt.value}}</h2>
+
 <!-- LIST DES SERIES-->
 <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
 
-  <ul class="list-group">
-
-    <li [routerLink]="['/detailserie', result.id, 'series']" *ngFor="let result of results"
-        class="list-group-item">
-      {{result.title}}
-    </li>
-
-  </ul>
-
-  <!--on peut mettre le serieService en public et non private dans le construteur de component
-  dans le HTML, on met un pipe pour dire async
-  => on rappelle pas un appel dejà fait
-  => méthode avec private et susbcribe réexécute les appels quand on fait un back
-  -->
-  <!--   <div *ngFor="let movie of movieService.movies$ | async" class="col-6">-->
 
   <div *ngFor="let serie of serieObs | async" class="col-6">
 
-    <!--    <div *ngFor="let movie of movies" class="col-6">-->
 
     <div [routerLink]="['/detailserie', serie.id, 'series']" class="card bg-dark text-white">
       <img [src]="printImageSrc(serie)">

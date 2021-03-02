@@ -12,20 +12,8 @@
 </ul>
 
 
-<h2>{{inputElt.value}}</h2>
 <!-- LIST DES FILMS-->
 <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
-<!--    <h1>Catalogue de films</h1>-->
-<!--   <input #inputElt (keyup)="searchMovies(inputElt.value)" placeholder="Rechercher..." type="text"-->
-<!--      class="form-control sticky-top">-->
-   <ul class="list-group">
-
-      <li [routerLink]="['/detail', result.id, 'results']" *ngFor="let result of results"
-         class="list-group-item">
-         {{result.title}}
-      </li>
-
-   </ul>
 
   <!--on peut mettre le movieService en public et non private dans le construteur de component
   dans le HTML, on met un pipe pour dire async
