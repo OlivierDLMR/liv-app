@@ -52,7 +52,6 @@ export class UserService {
 
     // le header ci-dessous est renigné dans apiInterceptor, du moins normalement !!! :)
     // let headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
-
     this.http.post(this.urlBackEnd, utilisateurObj).subscribe(
       (responseApi: any) => {
         this.utilisateur$.next(responseApi);
@@ -60,7 +59,6 @@ export class UserService {
         console.log('   ', responseApi);
       });
   }
-
   // ==> obtenir un utilisateur par son user
   getCompteUtilisateur(user: string) {
     this.http.get(this.urlBackEnd + '?user=' + user).subscribe(
@@ -80,7 +78,5 @@ export class UserService {
             });
         }
       });
-
   }
-
 }
