@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
     this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
-
   }
 
   logoutAction() {
