@@ -26,19 +26,22 @@
           true}" class="list-group-item list-group-item-action" href="">Catalogue series</a>
 
     </ul>
-    <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
-<!--      <span>Mes Listes</span>-->
-      <app-listesnavbar></app-listesnavbar>
-    </div>
+    <nav class="nav flex-column">
+      <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
+        <!--      <span>Mes Listes</span>-->
+        <app-listesnavbar></app-listesnavbar>
+      </div>
+    </nav>
 
-  </div>
+
+</div>
 
 
-  <div class="container-fluid">
+<div class="container-fluid">
 
-    <!--COMPONENT <app-list></app-list> -->
-    <!-- <app-list></app-list> -->
-    <router-outlet></router-outlet>
+  <!--COMPONENT <app-list></app-list> -->
+  <!-- <app-list></app-list> -->
+  <router-outlet></router-outlet>
 
-  </div>
+</div>
 </div>

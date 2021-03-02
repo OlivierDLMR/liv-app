@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {SuivisService} from "../Shared/services/suivis.service";
+import {UserService} from "../Shared/services/user.service";
+import {BehaviorSubject} from "rxjs";
+import {Utilisateur} from "../models/utilisateur.model";
 
 @Component({
   selector: 'app-board',
@@ -6,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-
-  constructor() { }
+  utilisateur: Utilisateur;
+  constructor(public suivisService: SuivisService, public userService: UserService) { }
 
   ngOnInit(): void {
+
+    // yohohoho on en a besoin pour le isLogged :D
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur = data;
+    });
   }
 
 }

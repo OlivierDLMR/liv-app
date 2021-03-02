@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
 import {Utilisateur} from '../../models/utilisateur.model';
-import {ListesNavBar} from "../../models/liste.model";
+import {ListesNavBar} from '../../models/liste.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,7 @@ export class SuivisService {
   });
 
   public listes$ = new BehaviorSubject([]);
+  public videoList$ = new BehaviorSubject([]);
   public listesuivis$ = new BehaviorSubject([]);
   public suivi$ = new BehaviorSubject([]);
   public preview$ = new BehaviorSubject([]);
