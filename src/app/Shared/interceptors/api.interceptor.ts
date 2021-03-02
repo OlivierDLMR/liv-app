@@ -20,13 +20,13 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    console.log("==> api.interceptor - intercept() ");
-    console.log("     request : ", request);
+    console.log('==> api.interceptor - intercept() ');
+    console.log('     request : ', request);
 
     // =================> gestiion de l'url du backend <==================
 
     if (request.url.includes(this.urlBackEnd)) {
-      if (request.url.includes("/auth/local")) {
+      if (request.url.includes('/auth/local')) {
         this.cloneReq = request;
       } else {
         // this.cloneReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token')) });

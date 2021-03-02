@@ -1,13 +1,15 @@
-<h4>Listes de {{utilisateur.user}} {{utilisateur.id}}</h4>
 
-<ul>
+
 <!--  <a routerLink="/suivi">liste 1</a>-->
 
+<div>
+  <span>Listes de {{utilisateur.user}} {{utilisateur.id}}</span>
 
-  <div *ngFor="let liste of listes" class="col-6">
+  <a *ngFor="let liste of listes" class="col-6">
 
-    <!--    <div *ngFor="let movie of movies" class="col-6">-->
-        <h4>{{ liste.name }}</h4>
+    <a routerLink="/listesuivis" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}" class="list-group-item list-group-item-action" href="">{{ liste.name }}</a>
+  </a>
 
-  </div>
-</ul>
+  <button class="primary">Ajouter une liste</button>
+</div>
