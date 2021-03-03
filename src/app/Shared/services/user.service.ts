@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 import {Utilisateur} from 'src/app/models/utilisateur.model';
 import {AlertService} from './alert.service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class UserService {
   });
 
   public listes$ = new BehaviorSubject([]);
+  public listeSuivis$ = new BehaviorSubject([]);
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs';
 

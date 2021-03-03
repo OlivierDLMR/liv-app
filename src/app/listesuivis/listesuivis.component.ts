@@ -3,7 +3,7 @@ import {SerieService} from "../Shared/services/serie.service";
 import {UserService} from "../Shared/services/user.service";
 import {LoaderService} from "../Shared/services/loader.service";
 import {Utilisateur} from "../models/utilisateur.model";
-import {ListesNavBar, ListeSuivis} from "../models/liste.model";
+import {ListesNavBar, ListeSuivis, Suivi} from "../models/liste.model";
 import {SuivisService} from "../Shared/services/suivis.service";
 
 @Component({
@@ -16,6 +16,7 @@ export class ListesuivisComponent implements OnInit {
   utilisateur: Utilisateur;
   listes: ListesNavBar;
   listeSuivis: any[];
+  suivi: Suivi;
 
   constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
   }
@@ -29,7 +30,7 @@ export class ListesuivisComponent implements OnInit {
 
     this.userService.listes$.subscribe(data => {
       this.listes = data;
-      console.log('les listes' + this.listes);
+      console.log('les suivis' + this.listes);
     });
 
     this.suivisService.listesuivis$.subscribe(data => {
