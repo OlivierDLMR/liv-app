@@ -4,7 +4,7 @@
 
   <a *ngFor="let liste of listes" class="col-6">
 
-    <a [routerLink]="['/listesuivis',liste.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+    <a (click)="onClickList(liste.id)" [routerLink]="['/listesuivis',liste.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href="">{{ liste.name }} - {{liste.id}}</a>
   </a>
   <button class="primary">Ajouter une liste</button>

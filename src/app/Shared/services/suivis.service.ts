@@ -30,19 +30,19 @@ export class SuivisService {
   public serieRef$ = new BehaviorSubject([]);
 
 
-  private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs/';
+  private urlBackEnd: string = environment.BE_API_URL + 'liv/videolists';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
   }
 
   getSuivis(suiviId: number) {
-    this.http.get(this.urlBackEnd + '/' + suiviId + '/suivis').subscribe(
+    this.http.get(this.urlBackEnd + suiviId + '/suivis').subscribe(
       (data: any) => {
         this.listesuivis$.next(data);
         console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
         console.log('     response : ', data);
-        console.log('     listes ', this.listesuivis$);
+        console.log('     suivis ', this.listesuivis$);
       });
 
   }

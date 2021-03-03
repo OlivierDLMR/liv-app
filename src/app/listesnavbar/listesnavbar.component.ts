@@ -4,6 +4,7 @@ import {Utilisateur} from '../models/utilisateur.model';
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {ListesNavBar, ListeSuivis, Videolist} from '../models/liste.model';
+import {Router} from "@angular/router";
 
 // import {SuivisService} from "../Shared/services/suivis.service";
 
@@ -16,9 +17,13 @@ export class ListesnavbarComponent implements OnInit {
 
   utilisateur: Utilisateur;
   listes: ListesNavBar;
-  listsuivis: any[];
 
-  constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
+  // listsuivis: any[];
+
+  constructor(public suivisService: SuivisService
+             , public userService: UserService
+             , public loaderService: LoaderService
+             , private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,10 +37,14 @@ export class ListesnavbarComponent implements OnInit {
       console.log('les listes' + this.listes);
     });
 
-    this.suivisService.listesuivis$.subscribe(data => {
-        this.listsuivis = data;
-      }
-    );
+    // this.suivisService.listesuivis$.subscribe(data => {
+    //     this.listsuivis = data;
+    //   }
+    // );
   }
 
+  onClickList(listeid) {
+    this.suivisService.getSuivis(listeid);
+
+  }
 }

@@ -34,11 +34,11 @@ export class ListesuivisComponent implements OnInit {
       console.log('les suivis' + this.listes);
     });
 
-    // this.suivisService.getSuivis(this.suiviId);
-    // this.suivisService.listesuivis$.subscribe((data : ListeSuivis) => {
-    //     this.listeSuivis = data;
-    //   }
-    // );
+    this.suivisService.listesuivis$.subscribe(data => {
+        this.listeSuivis = data;
+        console.log('on est dans le liste suivis :' + data);
+      }
+    );
   }
 
 }
