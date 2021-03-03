@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {Utilisateur} from '../models/utilisateur.model';
-import {ListesNavBar, ListeSuivis, Suivi} from '../models/liste.model';
+import {ListesNavBar, ListeSuivis, Preview, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 
 @Component({
@@ -16,7 +16,6 @@ export class ListesuivisComponent implements OnInit {
   utilisateur: Utilisateur;
   listes: ListesNavBar;
   listeSuivis: ListeSuivis;
-  listeSuiviss: any[];
   suivi: Suivi;
   suiviId: number;
 
@@ -35,11 +34,24 @@ export class ListesuivisComponent implements OnInit {
       console.log('les suivis' + this.listes);
     });
 
-    this.suivisService.listesuivis$.subscribe(data => {
-        this.listeSuiviss = data;
+    this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+        this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
+        console.log(this.listeSuivis);
       }
     );
   }
 
+  printImageSrc(preview: Preview): string {
+    return 'https://image.tmdb.org/t/p/w500/' + preview.image;
+  }
+
+  isSerie(preview: Preview): boolean {
+    if (preview.typePreview = TypePreview.SERIE){
+      return true;
+    }
+    if (preview.typePreview = TypePreview.FILM){
+      return false;
+    }
+  }
 }
