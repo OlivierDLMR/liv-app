@@ -36,15 +36,10 @@ export class ListesnavbarComponent implements OnInit {
       this.listes = data;
       console.log('les listes' + this.listes);
     });
-
-    // this.suivisService.listesuivis$.subscribe(data => {
-    //     this.listsuivis = data;
-    //   }
-    // );
   }
 
   onClickList(listeid) {
+    console.log('dans le onclick');
     this.suivisService.getSuivis(listeid);
-
   }
 }

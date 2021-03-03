@@ -16,7 +16,6 @@ export class ListesuivisComponent implements OnInit {
   utilisateur: Utilisateur;
   listes: ListesNavBar;
   listeSuivis: ListeSuivis;
-  listeSuiviss: any[];
   suivi: Suivi;
   suiviId: number;
 
@@ -35,9 +34,10 @@ export class ListesuivisComponent implements OnInit {
       console.log('les suivis' + this.listes);
     });
 
-    this.suivisService.listesuivis$.subscribe(data => {
-        this.listeSuiviss = data;
+    this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+        this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
+        console.log(this.listeSuivis);
       }
     );
   }

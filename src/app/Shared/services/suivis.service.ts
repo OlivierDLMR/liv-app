@@ -5,12 +5,14 @@ import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
 import {Utilisateur} from '../../models/utilisateur.model';
-import {ListesNavBar} from '../../models/liste.model';
+import {ListeSuivis} from '../../models/liste.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuivisService {
+
+  private dateInit = new Date();
 
   public utilisateur$ = new BehaviorSubject<Utilisateur>({
     id: 0,
@@ -23,14 +25,36 @@ export class SuivisService {
 
   public listes$ = new BehaviorSubject([]);
   public videoList$ = new BehaviorSubject([]);
-  public listesuivis$ = new BehaviorSubject([]);
-  public suivi$ = new BehaviorSubject([]);
-  public preview$ = new BehaviorSubject([]);
+  public listesuivis$ = new BehaviorSubject<ListeSuivis>({
+    id: 0,
+    titre: '',
+    dateCreation: this.dateInit,
+    dateModification: this.dateInit,
+    suivis: [],
+  });
+
+  public preview$ = new BehaviorSubject({
+    id: 0,
+    idMovieDB: '',
+    titre: '',
+    image: '',
+    dateCreation: this.dateInit,
+    overview: '',
+    typePreview: 'FILM',
+  });
+  public suivi$ = new BehaviorSubject({
+    preview: this.preview$,
+    statut: 'EN_COURS',
+    noteUser: 0,
+    saisonEncours: 0,
+    dernierEpisodeVu: 0,
+  });
+
   public filmRef$ = new BehaviorSubject([]);
   public serieRef$ = new BehaviorSubject([]);
 
 
-  private urlBackEnd: string = environment.BE_API_URL + 'liv/videolists';
+  private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
