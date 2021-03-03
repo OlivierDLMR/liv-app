@@ -1,1 +1,11 @@
 <p>listesuivis works!</p>
+
+<div>
+  <span>Listes de {{utilisateur.user}} - {{listeSuivis.titre}}</span>
+
+  <a *ngFor="let suivi of listeSuivis" class="col-6">
+
+    <a> {{ suivi.preview.titre }} </a>
+  </a>
+
+</div>
