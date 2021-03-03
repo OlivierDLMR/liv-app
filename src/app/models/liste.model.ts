@@ -18,7 +18,7 @@ export interface ListeSuivis {
 }
 
 export interface Suivi {
-  id: number;
+  // id: number;
   preview: Preview;
   statut: Statut;
   noteUser: number;

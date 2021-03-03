@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {SerieService} from "../Shared/services/serie.service";
-import {UserService} from "../Shared/services/user.service";
-import {LoaderService} from "../Shared/services/loader.service";
-import {Utilisateur} from "../models/utilisateur.model";
-import {ListesNavBar, ListeSuivis, Suivi} from "../models/liste.model";
-import {SuivisService} from "../Shared/services/suivis.service";
+
+import {UserService} from '../Shared/services/user.service';
+import {LoaderService} from '../Shared/services/loader.service';
+import {Utilisateur} from '../models/utilisateur.model';
+import {ListesNavBar, ListeSuivis, Suivi} from '../models/liste.model';
+import {SuivisService} from '../Shared/services/suivis.service';
 
 @Component({
   selector: 'app-listesuivis',
@@ -15,8 +15,9 @@ export class ListesuivisComponent implements OnInit {
 
   utilisateur: Utilisateur;
   listes: ListesNavBar;
-  listeSuivis: any[];
+  listeSuivis: ListeSuivis;
   suivi: Suivi;
+  suiviId: number;
 
   constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
   }
@@ -33,10 +34,11 @@ export class ListesuivisComponent implements OnInit {
       console.log('les suivis' + this.listes);
     });
 
-    this.suivisService.listesuivis$.subscribe(data => {
-        this.listeSuivis = data;
-      }
-    );
+    // this.suivisService.getSuivis(this.suiviId);
+    // this.suivisService.listesuivis$.subscribe((data : ListeSuivis) => {
+    //     this.listeSuivis = data;
+    //   }
+    // );
   }
 
 }
