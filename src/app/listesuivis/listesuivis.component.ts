@@ -5,6 +5,8 @@ import {LoaderService} from '../Shared/services/loader.service';
 import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, ListeSuivis, Preview, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-listesuivis',
@@ -18,21 +20,21 @@ export class ListesuivisComponent implements OnInit {
   listeSuivis: ListeSuivis;
   suivi: Suivi;
   suiviId: number;
+  listeId:number;
+  listeName:string;
+  isLoading: boolean;
 
-  constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService) {
+  constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService, private route: ActivatedRoute) {
+  }
+
+  ngAfterViewChecked(): void{
+    console.log ("=======> ng After .." )
+    this.listeId = this.route.snapshot.params.id;
+    this.listeName = this.route.snapshot.params.name;
   }
 
   ngOnInit(): void {
-
-    // yohohoho on en a besoin pour le isLogged :D
-    this.userService.utilisateur$.subscribe(data => {
-      this.utilisateur = data;
-    });
-
-    this.userService.listes$.subscribe(data => {
-      this.listes = data;
-      console.log('les suivis' + this.listes);
-    });
+    console.log( "==> ngOninit");
 
     this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
@@ -53,5 +55,11 @@ export class ListesuivisComponent implements OnInit {
     if (preview.typePreview = TypePreview.FILM){
       return false;
     }
+
+
+  } 
+
+  getListOpacity() {
+    return this.isLoading ? 0.1 : 1;
   }
 }
