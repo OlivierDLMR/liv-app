@@ -26,8 +26,7 @@ import {RatingComponent} from './Shared/Ratings/ratings/rating.component';
 import {ListSerieComponent} from './list-serie/list-serie.component';
 import {DetailSerieComponent} from './detail-serie/detail-serie.component';
 import { AjouterAUneListeComponent } from './ajouter-aune-liste/ajouter-aune-liste.component';
-import {MatOptionModule} from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -59,8 +58,7 @@ import {MatSelectModule} from '@angular/material/select';
     /* Import des components MaterialAngular*/
     MaterialModule,
     NgbModule,
-    MatOptionModule,
-    MatSelectModule,
+   
 
 
   ],
