@@ -3,9 +3,9 @@
 
 <div class="d-flex py-3 align-items-start custom-line">
   <!-- LIST DES FILMS-->
-  <div class="col-4 ">
-    <h2>FILMS</h2>
-    <div [style.opacity]="getListOpacity()" class="col-6"> <!-- class="row content pb-4 container-fluid"-->
+  <div class="col-6 ">
+    <h2 routerLink="/films" [style.cursor]="'pointer'" class="titreSerieFilm">FILMS</h2>
+    <div [style.opacity]="getListOpacity()" class="row content pb-2 container-fluid"> <!-- class="row content pb-4 container-fluid"-->
 
       <div *ngFor="let movie of movieObs | async">
 
@@ -17,7 +17,7 @@
             <h2>{{ movie.title }}</h2>
             <rating [score]="movie.score/2"></rating>
             <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>
-            <p><em>Résumé : </em>{{ movie.desc | cuttext }}</p>
+
           </div>
         </div>
       </div>
@@ -27,22 +27,26 @@
 
 
   <!-- LIST DES SERIES-->
-  <div class="col-4 ">
-    <h2>SERIES</h2>
-    <div [style.opacity]="getListOpacitySerie()" class="col-6"> <!-- class="row content pb-4 container-fluid" -->
+  <div class="col-6 ">
+    <h2 routerLink="/series" [style.cursor]="'pointer'" class="titreSerieFilm">SERIES</h2>
+    <div [style.opacity]="getListOpacitySerie()" class="row content pb-4 container-fluid"> <!-- class="row content pb-4 container-fluid" -->
+
+
       <div *ngFor="let serie of serieObs | async">  <!-- class="col-6" -->
+
+
         <div [routerLink]="['/detailserie', serie.id, 'series']" class="card bg-dark text-white">
           <img [src]="printImageSrcSerie(serie)">
           <div class="card-body">
             <h2>{{ serie.title }}</h2>
             <rating [score]="serie.score/2"></rating>
             <p>Date de sortie : {{ serie.date | date: "dd/MM/YYYY" }}</p>
-            <p><em>Résumé : </em>{{ serie.desc | cuttext }}</p>
+
           </div>
         </div>
       </div>
       <!-- FIN LIST DES SERIES-->
     </div>
+
   </div>
 </div>
-
