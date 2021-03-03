@@ -5,7 +5,7 @@
   <!-- LIST DES FILMS-->
   <div class="col-6 ">
     <h2 routerLink="/films" [style.cursor]="'pointer'" class="titreSerieFilm">FILMS</h2>
-    <div [style.opacity]="getListOpacity()" class="row content pb-2 container-fluid"> <!-- class="row content pb-4 container-fluid"-->
+    <div [style.opacity]="getListOpacity()" class="row content p-2 container-fluid"> <!-- class="row content pb-4 container-fluid"-->
 
       <div *ngFor="let movie of movieObs | async">
 
@@ -29,7 +29,7 @@
   <!-- LIST DES SERIES-->
   <div class="col-6 ">
     <h2 routerLink="/series" [style.cursor]="'pointer'" class="titreSerieFilm">SERIES</h2>
-    <div [style.opacity]="getListOpacitySerie()" class="row content pb-4 container-fluid"> <!-- class="row content pb-4 container-fluid" -->
+    <div [style.opacity]="getListOpacitySerie()" class="row content p-2 container-fluid"> <!-- class="row content pb-4 container-fluid" -->
 
 
       <div *ngFor="let serie of serieObs | async">  <!-- class="col-6" -->
