@@ -45,7 +45,7 @@ export class ListSerieComponent implements OnInit {
     // on s'abonne à la source de données search$
     this.serieService.search$.subscribe(data => this.results = data);
 
-
+    console.log("==> series : " ,this.series);
   } // Fin ngOnInit()
 
   printImageSrc(serie: SerieModel): string {
