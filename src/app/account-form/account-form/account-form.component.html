@@ -9,52 +9,55 @@
     <div class="mb-2">
        <label class="form-label">Prénom</label>
        <input formControlName="firstname" type="text" class="form-control">
-       <p *ngIf="accountForm.get('firstname').hasError('minlength') &&(accountForm.get('firstname').touched)" class="form-error">
-         Min. 2 caractères
+       <p *ngIf="(accountForm.get('firstname').hasError('required') && accountForm.get('firstname').touched)
+                  ||(accountForm.controls.firstname.errors && submitted)" 
+       class="form-error">
+         Merci de saisir votre prénom
       </p>
+      
     </div>
     <div class="mb-2">
        <label class="form-label">Nom</label>
        <input formControlName="lastname" type="text" class="form-control">
-       <p *ngIf="(accountForm.get('lastname').hasError('minlength') && accountForm.get('lastname').touched)" class="form-error">
-          Min. 2 caractères
+       <p *ngIf="(accountForm.get('lastname').hasError('required') && accountForm.get('lastname').touched)
+                  || (accountForm.controls.lastname.errors && submitted)" class="form-error"
+       class="form-error">
+          Merci de saisir votre nom
        </p>
     </div>
    
     <div class="mb-2">
        <label class="form-label">Email</label>
        <input formControlName="email" type="text" class="form-control">
-       <p *ngIf="(accountForm.get('email').hasError('email') && accountForm.get('email').touched)" class="form-error">
-         adresse mail invalide. 
+       <p *ngIf="(accountForm.get('email').hasError('email') && accountForm.get('email').touched)
+               || (accountForm.get('email').hasError('required') && accountForm.get('email').touched)
+               || (accountForm.controls.email.errors && submitted)" 
+       class="form-error">
+         Merci de saisir une adresse mail valide. 
       </p>
-      <p *ngIf="accountForm.get('email').hasError('required') && accountForm.get('email').touched" class="form-error">
-            email obligatoire
-      </p>
-           
     </div>
 
     <div class="mb-2">
         <label class="form-label">User de connexion</label>
         <input formControlName="user" type="text" class="form-control">
-        <p *ngIf="accountForm.get('user').hasError('minlength') && accountForm.get('user').touched" class="form-error">
-         Renseignez un user valide
+        <p *ngIf="(accountForm.get('user').hasError('required') && accountForm.get('user').touched)
+               || (accountForm.get('user').hasError('minlength') && accountForm.get('user').touched)
+               || (accountForm.controls.user.errors && submitted)"
+        class="form-error">
+          Merci de saisir un user de connexion avec au moins 5 caractères 
       </p>
      </div>
 
      <div class="mb-2">
         <label class="form-label">Mot de passe</label>
         <input formControlName="password" ngModel type="password" class="form-control">
-        <p *ngIf="accountForm.get('password').hasError('minlength') && (accountForm.get('password').touched)" class="form-error">
-         Renseignez un mot de passe valide svp
+        <p *ngIf="(accountForm.get('password').hasError('required')  && accountForm.get('password').touched)  
+               || (accountForm.get('password').hasError('minlength') && accountForm.get('password').touched)
+               || (accountForm.controls.password.errors) && (submitted)"
+        class="form-error">
+         Merci de saisir un mot de passe avec au moins 8 caractères 
       </p>
-      <!-- <p *ngIf="accountForm.get('password').hasError('minlength') && submitted)" class="form-error">
-         Renseignez un mot de passe valide svp
-      </p> -->
-      <p *ngIf="f.password.errors && submitted" class="form-error">
-         Renseignez un mot de passe valide svp val
-      </p>
-      
-      <p>submitted : {{submitted}}</p>
+     
      </div>
 
     <div class="mt-3">
