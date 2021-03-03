@@ -26,6 +26,7 @@ export interface Suivi {
   dernierEpisodeVu;
 }
 
+
 export interface Preview {
   id: number;
   idMovieDb: string;

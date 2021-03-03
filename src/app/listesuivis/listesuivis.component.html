@@ -3,9 +3,15 @@
 <div>
   <span>Listes de {{utilisateur.user}} - {{listeSuivis.titre}}</span>
 
-  <a *ngFor="let suivi of listeSuivis" class="col-6">
-
-    <a> {{ suivi.preview.titre }} </a>
-  </a>
+  <ul *ngFor="let suivi of listeSuivis" class="col-6">
+    <img alt="image de {{ suivi.preview.titre }}"
+         height="250px"
+         [src]="printImageSrc(suivi.preview)">
+    <h2> {{ suivi.preview.titre }} </h2>
+    <p>{{suivi.statut}}</p>
+    <p>{{suivi.noteUser}}</p>
+    <p>{{suivi.preview.typePreview}}</p>
+<!--    <p *ngIf="isSerie(suivi.preview)>{{suivi.saisonEnCours}}</p>-->
+  </ul>
 
 </div>

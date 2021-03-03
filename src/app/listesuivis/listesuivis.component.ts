@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {Utilisateur} from '../models/utilisateur.model';
-import {ListesNavBar, ListeSuivis, Suivi} from '../models/liste.model';
+import {ListesNavBar, ListeSuivis, Preview, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 
 @Component({
@@ -42,4 +42,16 @@ export class ListesuivisComponent implements OnInit {
     );
   }
 
+  printImageSrc(preview: Preview): string {
+    return 'https://image.tmdb.org/t/p/w500/' + preview.image;
+  }
+
+  isSerie(preview: Preview): boolean {
+    if (preview.typePreview = TypePreview.SERIE){
+      return true;
+    }
+    if (preview.typePreview = TypePreview.FILM){
+      return false;
+    }
+  }
 }
