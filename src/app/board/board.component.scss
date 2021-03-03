@@ -4,6 +4,11 @@
   font-size: 3rem;;
 }
 
+
+p{
+  width: 50%;
+}
+
 .card .card-body h2{
   text-overflow: ellipsis;
   overflow: hidden;
@@ -17,9 +22,9 @@
   margin:5px;
   transition-duration:.2s;
 }
-.card .card-body{
-  background: black;
-}
+//.card .card-body{
+//  background: black;
+//}
 .card:hover {
   transform: scale(1.1);
   cursor:pointer

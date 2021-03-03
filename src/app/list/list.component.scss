@@ -1,3 +1,5 @@
+
+
 .card .card-body h2{
     text-overflow: ellipsis;
     overflow: hidden;
@@ -11,9 +13,9 @@
     margin:5px;
     transition-duration:.2s;
 }
-.card .card-body{
-    background: black;
-}
+//.card .card-body{
+//    background: grey;
+//}
 .card:hover {
     transform: scale(1.1);
     cursor:pointer
@@ -27,7 +29,7 @@
     height: 100vh;
     z-index: 999999;
  }
- 
+
 
 /* mettre du flou sur l'image pendant le hover
 .card:hover img {

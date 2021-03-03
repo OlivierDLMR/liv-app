@@ -11,6 +11,7 @@ import {DetailComponent} from './detail/detail.component';
 import {CuttextPipe} from './pipes/cuttext.pipes';
 import {LoginFormComponent} from './loging-form/login-form/login-form.component';
 import {AccountFormComponent} from './account-form/account-form/account-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // les interceptors
 import {LoaderInterceptor} from './Shared/interceptors/loader.interceptor';
@@ -24,6 +25,10 @@ import {MaterialModule} from './Shared/Material/material.module';
 import {RatingComponent} from './Shared/Ratings/ratings/rating.component';
 import {ListSerieComponent} from './list-serie/list-serie.component';
 import {DetailSerieComponent} from './detail-serie/detail-serie.component';
+import { AjouterAUneListeComponent } from './ajouter-aune-liste/ajouter-aune-liste.component';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -41,6 +46,7 @@ import {DetailSerieComponent} from './detail-serie/detail-serie.component';
     RatingComponent,
     ListSerieComponent,
     DetailSerieComponent,
+    AjouterAUneListeComponent,
 
   ],
   imports: [
@@ -52,6 +58,9 @@ import {DetailSerieComponent} from './detail-serie/detail-serie.component';
     ReactiveFormsModule,
     /* Import des components MaterialAngular*/
     MaterialModule,
+    NgbModule,
+    MatOptionModule,
+    MatSelectModule,
 
 
   ],

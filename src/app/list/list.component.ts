@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MovieModel } from '../models/movie.model';
 import { MovieService } from '../Shared/services/movie.service';
 import { UserService } from '../Shared/services/user.service';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject} from 'rxjs';
+import {SuivisService} from '../Shared/services/suivis.service';
 
 
 
