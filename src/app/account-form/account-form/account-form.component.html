@@ -44,9 +44,17 @@
      <div class="mb-2">
         <label class="form-label">Mot de passe</label>
         <input formControlName="password" ngModel type="password" class="form-control">
-        <p *ngIf="accountForm.get('password').hasError('minlength') && accountForm.get('password').touched" class="form-error">
+        <p *ngIf="accountForm.get('password').hasError('minlength') && (accountForm.get('password').touched)" class="form-error">
          Renseignez un mot de passe valide svp
       </p>
+      <!-- <p *ngIf="accountForm.get('password').hasError('minlength') && submitted)" class="form-error">
+         Renseignez un mot de passe valide svp
+      </p> -->
+      <p *ngIf="f.password.errors && submitted" class="form-error">
+         Renseignez un mot de passe valide svp val
+      </p>
+      
+      <p>submitted : {{submitted}}</p>
      </div>
 
     <div class="mt-3">

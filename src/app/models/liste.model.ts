@@ -23,7 +23,7 @@ export interface Suivi {
   statut: Statut;
   noteUser: number;
   saisonEnCours: number;
-  dernierEpisodeVu;
+  dernierEpisodeVu:number;
 }
 
 export interface Preview {

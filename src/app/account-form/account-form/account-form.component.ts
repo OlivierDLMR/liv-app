@@ -12,6 +12,7 @@ import { UserService } from 'src/app/Shared/services/user.service';
 export class AccountFormComponent implements OnInit {
 
   accountForm:FormGroup;
+  submitted:boolean=false;
 
   constructor(private fb: FormBuilder,private alertService:AlertService,private userService:UserService) { }
 
@@ -22,21 +23,24 @@ export class AccountFormComponent implements OnInit {
       lastname:['',Validators.minLength(1)],
       email: ['', [Validators.email,Validators.required]],
       user:['',[Validators.minLength(5),Validators.required]],
-      password:['',Validators.minLength(8)]
+      password:['',Validators.minLength(8)],
+      acceptTerms: [false, Validators.requiredTrue]
     });
     console.log("==> accountForm.component.ts ngOnInit" , this.accountForm)
   }
 
-
+  get f() { return this.accountForm.controls; }
   onSubmit(form) {
     console.log(" ===> accout-form.component.ts - onSubmit(form) / form : " ,form)
-    console.log(form.get('firstname').hasError('minlength'));
+    console.log("   form.get('firstname').hasError('minlength') : " ,form.get('firstname').hasError('minlength'));
     console.log("form group : " ,form.value);
+
     if (form.status === 'VALID') {
       console.log('Ok valid : on essaie de partir ...');
       this.userService.postCreationCompte(form.value);
     }
     else {
+      this.submitted=true;
       this.alertService.show('Oups...Corrigez vos erreurs !');
     }
   }
