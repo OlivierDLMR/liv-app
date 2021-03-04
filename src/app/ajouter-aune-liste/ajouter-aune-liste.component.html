@@ -1,10 +1,14 @@
 
 
 <mat-form-field appearance="fill">
-  <mat-label class="colorBtn">AJOUTER A MA LISTE</mat-label>
-  <mat-select  class="colorBtn">
+  <mat-label >
+    <span class="material-icons">
+    add_box
+    </span>
+    AJOUTER A MA LISTE</mat-label>
+  <mat-select  >
 
-    <mat-option class="colorBtn"  *ngFor="let liste of listes" >
+    <mat-option *ngFor="let liste of listes" >
       {{liste.name}}
     </mat-option>
   </mat-select>
