@@ -49,15 +49,15 @@ export class ListesuivisComponent implements OnInit {
   }
 
   isSerie(preview: Preview): boolean {
-    if (preview.typePreview = TypePreview.SERIE){
+    if (preview.typePreview == TypePreview.SERIE){
       return true;
     }
-    if (preview.typePreview = TypePreview.FILM){
+    if (preview.typePreview == TypePreview.FILM){
       return false;
     }
 
 
-  } 
+  }
 
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
