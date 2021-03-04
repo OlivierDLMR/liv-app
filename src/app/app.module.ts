@@ -28,6 +28,7 @@ import {DetailSerieComponent} from './detail-serie/detail-serie.component';
 import { AjouterAUneListeComponent } from './ajouter-aune-liste/ajouter-aune-liste.component';
 import { CuttextlongPipe } from './pipes/cuttextlong.pipe';
 import { MajSuiviComponent } from './majSuivi/maj-suivi/maj-suivi.component';
+import { StatutComponent } from './Shared/statut/statut.component';
 
 
 
@@ -50,6 +51,7 @@ import { MajSuiviComponent } from './majSuivi/maj-suivi/maj-suivi.component';
     AjouterAUneListeComponent,
     CuttextlongPipe,
     MajSuiviComponent,
+    StatutComponent,
 
   ],
   imports: [

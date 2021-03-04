@@ -11,6 +11,8 @@ import {BoardComponent} from './board/board.component';
 
 import {ListSerieComponent} from './list-serie/list-serie.component';
 import {DetailSerieComponent} from './detail-serie/detail-serie.component';
+import {MajSuiviComponent} from './majSuivi/maj-suivi/maj-suivi.component';
+import {StatutComponent} from './Shared/statut/statut.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
   {path: 'listesuivis/:id/:name', component: ListesuivisComponent},
   {path: 'suivi', component: SuiviComponent},
   {path : 'majSuivi', component: MajSuiviComponent},
+  {path: 'statutsuivi', component : StatutComponent}
 ];
 
 @NgModule({

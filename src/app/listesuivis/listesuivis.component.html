@@ -3,7 +3,7 @@
 
   <h1>{{listeName}}</h1>
   <!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
- 
+
   <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
     <div *ngFor="let suivi of listeSuivis" class="col-4">
         <div  class="card bg-dark text-white">
@@ -12,10 +12,11 @@
              <div class="card-body serie">
                 <h2> {{ suivi.preview.titre }} </h2>
                 <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
-             
-                <button (click)="miseAJour()">
-                  {{getStatut(suivi.statut)}}
-                </button>
+
+               <app-statut [suivi]="suivi" ></app-statut>
+<!--                <button (click)="miseAJour()">-->
+<!--                  {{getStatut(suivi.statut)}}-->
+<!--                </button>-->
 
                 <rating [score]="suivi.noteUser"></rating>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
@@ -26,7 +27,7 @@
 
   </div>
 
-  
+
 
 
 
