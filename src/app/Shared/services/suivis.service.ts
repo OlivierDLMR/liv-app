@@ -65,6 +65,7 @@ export class SuivisService {
       (data: any) => {
         this.listesuivis$.next(data);
         console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
+        console.log(' ==> suivi .service.ts - getSuivis(: ' + suiviId + ') ');
         console.log('     response : ', data);
         console.log('     suivis ', this.listesuivis$);
       });

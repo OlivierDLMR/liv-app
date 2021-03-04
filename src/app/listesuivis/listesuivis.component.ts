@@ -42,6 +42,7 @@ export class ListesuivisComponent implements OnInit {
         console.log(this.listeSuivis);
       }
     );
+        console.log(" ==> après subscribe" ,this.listeSuivis);
   }
 
   printImageSrc(preview: Preview): string {
@@ -49,14 +50,12 @@ export class ListesuivisComponent implements OnInit {
   }
 
   isSerie(preview: Preview): boolean {
-    if (preview.typePreview = TypePreview.SERIE){
+    if (preview.typePreview == TypePreview.SERIE){
       return true;
     }
-    if (preview.typePreview = TypePreview.FILM){
+    if (preview.typePreview == TypePreview.FILM){
       return false;
     }
-
-
   } 
 
   getListOpacity() {

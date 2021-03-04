@@ -21,6 +21,8 @@ export class LoginFormComponent implements OnInit {
     this.userService.getCompteUtilisateur(loginForm.value.user);
     this.alertService.show('Vous êtes connecté(e)');
     this.router.navigate(['/']);
+
+    
   }
 
   logoutAction(){
