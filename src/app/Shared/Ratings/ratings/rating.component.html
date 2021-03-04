@@ -3,4 +3,5 @@
   Score : {{score}}
 
   <i  *ngFor="let star of stars" class="fas fa-star"></i>
+  <i *ngIf="stars.length == 0" class="far fa-star"></i>
 </p>
