@@ -1,5 +1,13 @@
+<div [ngClass]="{
+   'a_voir': getColor(suivi.statut) === 'a_voir',
+   'vu': getColor(suivi.statut) === 'vu',
+   'abandonne': getColor(suivi.statut) === 'abandonne',
+   'en_cours': getColor(suivi.statut) === 'en_cours'
+}">
+  <button (click)="miseAJour()">
+    {{getStatut(suivi.statut)}}
+  </button>
 
-<button (click)="miseAJour()">
-  {{getStatut(suivi.statut)}}
-</button>
+</div>
+
 

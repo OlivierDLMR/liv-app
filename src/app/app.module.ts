@@ -64,10 +64,9 @@ import { StatutComponent } from './Shared/statut/statut.component';
     /* Import des components MaterialAngular*/
     MaterialModule,
     NgbModule,
-   
 
 
-  ],
+],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true},

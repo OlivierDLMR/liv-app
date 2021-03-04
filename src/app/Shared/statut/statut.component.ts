@@ -39,16 +39,17 @@ export class StatutComponent implements OnInit {
   }
 
 
-  getColor(statut: Statut) {
+  getColor(statut: Statut): string {
+    console.log('on est dans le getColor');
     switch (statut) {
       case Statut.A_VOIR:
-        return 'silver';
+        return 'a_voir';
       case Statut.ABANDONNE:
-        return 'black';
+        return 'abandonne';
       case Statut.EN_COURS:
-        return 'green';
+        return 'en_cours';
       case Statut.VU:
-        return 'orange';
+        return 'vu';
     }
   }
 }
