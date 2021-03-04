@@ -68,4 +68,7 @@ export class ListesuivisComponent implements OnInit {
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
   }
+  miseAJour(){
+    console.log(" ===> miseA jour !!!")
+  }
 }
