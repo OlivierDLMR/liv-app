@@ -10,6 +10,7 @@ export class RatingComponent implements OnInit {
   @Input() score;
   number;
   stars: Array<number>;
+  noStars: Array<number>;
 
   constructor() {
 
@@ -20,6 +21,7 @@ export class RatingComponent implements OnInit {
     let roundedScore = Math.round(this.score);
     this.stars = new Array(roundedScore).fill(1);
     // on a créé un tableau de "roundedScore" occurrences rempli de 1
+    this.noStars= new Array(5-this.stars.length).fill(1);
   }
 
 }
