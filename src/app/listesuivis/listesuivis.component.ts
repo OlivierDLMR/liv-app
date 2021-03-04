@@ -49,10 +49,16 @@ export class ListesuivisComponent implements OnInit {
     return 'https://image.tmdb.org/t/p/w500/' + preview.image;
   }
 
-  getStatut(typePreview:Statut):string {
-    return Statut[typePreview];
+  getTypePreview(typePreview:TypePreview):string{
+    return TypePreview[typePreview];
   }
+
+  getStatut(typeStatut:Statut):string {
+    return Statut[typeStatut];
+  }
+
   isSerie(preview: Preview): boolean {
+    console.log(" ==> before  is.serie : ", preview);
     if (preview.typePreview == TypePreview.SERIE){
       return true;
     }

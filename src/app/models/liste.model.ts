@@ -18,7 +18,7 @@ export interface ListeSuivis {
 }
 
 export interface Suivi {
-  // id: number;
+  id: number;
   preview: Preview;
   statut: Statut;
   noteUser: number;
@@ -49,7 +49,7 @@ export enum Statut {
 }
 
 export enum TypePreview {
-  SERIE = "SERIE",
-  FILM = "FILM",
-  AUTRE ="AUTRE",
+  SERIE = "Série",
+  FILM = "Film",
+ 
 }

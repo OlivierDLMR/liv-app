@@ -11,9 +11,11 @@
 .card{
     margin:5px;
     transition-duration:.2s;
+    height: max-content;
 }
 .card .card-body{
     background: black;
+    
 }
 .card:hover {
     transform: scale(1.1);
