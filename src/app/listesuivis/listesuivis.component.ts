@@ -58,13 +58,11 @@ export class ListesuivisComponent implements OnInit {
   }
 
   isSerie(preview: Preview): boolean {
-    console.log(" ==> before  is.serie : ", preview);
-    if (preview.typePreview == TypePreview.SERIE){
+    if (TypePreview[preview.typePreview] == TypePreview.SERIE){
       return true;
     }
-    if (preview.typePreview == TypePreview.FILM){
-      return false;
-    }
+    return false;
+    
   } 
 
   getListOpacity() {
