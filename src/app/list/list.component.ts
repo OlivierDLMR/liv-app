@@ -5,6 +5,7 @@ import { MovieService } from '../Shared/services/movie.service';
 import { UserService } from '../Shared/services/user.service';
 import {BehaviorSubject} from 'rxjs';
 import {SuivisService} from '../Shared/services/suivis.service';
+import {Utilisateur} from '../models/utilisateur.model';
 
 
 
@@ -18,6 +19,8 @@ export class ListComponent implements OnInit {
   movies: MovieModel[];
   results: MovieModel[];
 
+  utilisateur: Utilisateur;
+
    // là, on définit un observable sur lequel on pourra faire de l'asynchrone et éviter les apples successifs de subscribe
   movieObs = new BehaviorSubject<Array<MovieModel>>([]);
 
@@ -26,7 +29,7 @@ export class ListComponent implements OnInit {
   isLoading: boolean;
 
 
-  constructor(public movieService: MovieService , public userService: UserService) {
+  constructor(public userService: UserService, public movieService: MovieService) {
     console.log('Je suis le constructor');
 
   }
@@ -46,7 +49,9 @@ export class ListComponent implements OnInit {
     // on s'abonne à la source de données search$
     this.movieService.search$.subscribe(data => this.results = data);
 
-
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur = data;
+    });
   } // Fin ngOnInit()
 
   printImageSrc(movie: MovieModel): string {

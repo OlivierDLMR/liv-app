@@ -1,9 +1,19 @@
 <mat-toolbar class="d-flex justify-content-between" color="primary">
   <h1>Ma Videothèque</h1>
   <div>
-    <span *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'" routerLink="/login">Login</span>
+    <span *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'" routerLink="/login">
+      <span class="material-icons">
+        login
+      </span>
+      Login
+    </span>
     <span *ngIf="userService.isLogged()" class="ms-2 ">Hello {{utilisateur.firstname | titlecase}} 😎 </span>
-    <span *ngIf="userService.isLogged()" class="ms-2 " [style.cursor]="'pointer'" (click)="logoutAction()">Logout</span>
+    <span *ngIf="userService.isLogged()" class="ms-2 " [style.cursor]="'pointer'" (click)="logoutAction()">
+      <span class="material-icons">
+        logout
+      </span>
+      Logout
+    </span>
   </div>
 </mat-toolbar>
 <mat-progress-bar color="accent" [style.opacity]="(loaderService.isLoadingObs | async)?'1':'0'" mode="indeterminate">
@@ -16,13 +26,17 @@
       <!-- <a class="list-group-item list-group-item-action" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
         true}" href="">Home</a> -->
       <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href="">home</a>
+          true}" class="list-group-item list-group-item-action" href="">
+        <span class="material-icons">
+          home
+        </span>
+        home</a>
 
       <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-        true}" class="list-group-item list-group-item-action" href="">Catalogue films</a>
+        true}" class="list-group-item list-group-item-action" href="">  <i class="fas fa-film"></i>  Catalogue films</a>
 
       <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href="">Catalogue series</a>
+          true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i>  Catalogue series</a>
 
     </ul>
     <nav class="nav flex-column">
