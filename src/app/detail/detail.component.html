@@ -2,14 +2,14 @@
 <!-- <p>detail works!</p> -->
 <div class="d-flex">
     <button (click)="goToRootPage()" class="btn">
-       <i class="fas fa-arrow-left"> Back</i>
+       <i class="fas fa-arrow-left "> Back</i>
     </button>
     <!-- <h1>{{movie.title | titlecase }}</h1> -->
  </div>
  <div class="card">
-  <iframe *ngIf="urlYTMovie != null" width="560" height="315" [src]="urlYTMovie" 
-  frameborder="1" allow="accelerometer; 
-  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  <iframe *ngIf="urlYTMovie != null" width="560" height="315" [src]="urlYTMovie"
+  frameborder="1" allow="accelerometer;
+  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen></iframe>
   <div class="card-body">
      <!--  -->
