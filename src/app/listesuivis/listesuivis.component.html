@@ -5,22 +5,23 @@
 
   <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
 
-    <div *ngFor="let suivi of listeSuivis" class="col-6">
+    <div *ngFor="let suivi of listeSuivis" class="col-4">
       <div  class="card bg-dark text-white">
         <img alt="image de {{ suivi.preview.titre }}"
            [src]="printImageSrc(suivi.preview)">
            <div class="card-body serie">
              <h2> {{ suivi.preview.titre }} </h2>
             <p>{{suivi.statut}}</p>
-            <p>{{getStatut(suivi.statut)}}</p>
-            <p>{{suivi.noteUser}}</p>
+             <rating [score]="suivi.noteUser"></rating>
             <p>{{suivi.preview.typePreview}}</p>
-            <p *ngIf="isSerie(suivi.preview)">saison en cours : {{suivi.saisonEnCours}}</p>
+            <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
+             <p><em>Résumé : </em>{{ suivi.preview.overview | cuttextlong }}</p>
            </div>
       </div>
     </div>
-      
+
   </div>
 
- 
+
+
 
