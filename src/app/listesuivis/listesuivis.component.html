@@ -14,7 +14,7 @@
             <p>{{suivi.statut}}</p>
             <p>{{suivi.noteUser}}</p>
             <p>{{suivi.preview.typePreview}}</p>
-            <p *ngIf="isSerie()">{{suivi.saisonEnCours}}</p>
+            <p *ngIf="isSerie(suivi.preview)">{{suivi.saisonEnCours}}</p>
            </div>
       </div>
     </div>
