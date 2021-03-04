@@ -64,6 +64,7 @@ localStorage.clear();
   }
   // ==> obtenir un utilisateur par son user
   getCompteUtilisateur(user: string) {
+    
     this.http.get(this.urlBackEnd + '?user=' + user).subscribe(
       (response: any) => {
         this.utilisateur$.next(response);
