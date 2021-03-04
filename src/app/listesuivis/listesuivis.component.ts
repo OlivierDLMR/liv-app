@@ -59,12 +59,13 @@ export class ListesuivisComponent implements OnInit {
 
   isSerie(preview: Preview): boolean {
     console.log(" ==> before  is.serie : ", preview);
-    if (preview.typePreview == TypePreview.SERIE){
+    if (TypePreview[preview.typePreview] == TypePreview.SERIE){
+       console.log("      est une série !!!!!" ,preview.typePreview,TypePreview.SERIE );
       return true;
     }
-    if (preview.typePreview == TypePreview.FILM){
-      return false;
-    }
+    console.log("      est un film !!!!!",  preview.typePreview,TypePreview.FILM );          
+    return false;
+    
   } 
 
   getListOpacity() {
