@@ -26,6 +26,7 @@ import {RatingComponent} from './Shared/Ratings/ratings/rating.component';
 import {ListSerieComponent} from './list-serie/list-serie.component';
 import {DetailSerieComponent} from './detail-serie/detail-serie.component';
 import { AjouterAUneListeComponent } from './ajouter-aune-liste/ajouter-aune-liste.component';
+import { CuttextlongPipe } from './pipes/cuttextlong.pipe';
 
 
 
@@ -46,6 +47,7 @@ import { AjouterAUneListeComponent } from './ajouter-aune-liste/ajouter-aune-lis
     ListSerieComponent,
     DetailSerieComponent,
     AjouterAUneListeComponent,
+    CuttextlongPipe,
 
   ],
   imports: [
