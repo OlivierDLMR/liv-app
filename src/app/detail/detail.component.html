@@ -14,6 +14,7 @@
   <div class="card-body">
      <!--  -->
     <h1>{{movie.title | uppercase}}</h1>
+    <app-ajouter-aune-liste></app-ajouter-aune-liste>
     <!-- <p>Date de sortie : {{movie.date.toISOString().slice(0,10)}}</p> -->
     <p>Date de sortie : {{movie.date | date:'dd/MM/YYYY'}}</p>
     <p class = "lh-lg text-justify"><em>Résumé : </em>{{movie.desc}}</p>

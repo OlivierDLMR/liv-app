@@ -27,10 +27,10 @@
 <!--    <div *ngFor="let movie of movies" class="col-6">-->
 
       <div   class="card film text-white">  <!-- [routerLink]="['/detail', movie.id, 'movies']" -->
-         <img [routerLink]="['/detail', movie.id, 'movie']" [src]="printImageSrc(movie)">
+         <img [routerLink]="['/detail', movie.id, 'movies']" [src]="printImageSrc(movie)">
          <div class="card-body film">
            <h2>{{ movie.title }}  </h2>
-           <app-ajouter-aune-liste *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
+           <app-ajouter-aune-liste [movie]="movie" *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
          </div>
             <rating [score]="movie.score/2"></rating>
            <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>

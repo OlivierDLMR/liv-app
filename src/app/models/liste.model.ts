@@ -23,13 +23,26 @@ export interface Suivi {
   statut: Statut;
   noteUser: number;
   saisonEnCours: number;
-  dernierEpisodeVu:number;
+  dernierEpisodeVu: number;
+}
+
+export interface SuiviCreation {
+  dbMovieId: number;
+  image: string;
+  noteUser: number;
+  overview: string;
+  statut: Statut;
+  titre: string;
+  totalSaison: number;
+  typePreview: TypePreview;
+  userId: number;
+  videoListId: number;
 }
 
 
 export interface Preview {
   id: number;
-  idMovieDb: string;
+  idMovieDb: number;
   titre: string;
   image: string;
   dateCreation: Date;
@@ -51,5 +64,5 @@ export enum Statut {
 export enum TypePreview {
   SERIE = "Série",
   FILM = "Film",
- 
+
 }

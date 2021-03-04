@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
 import {Utilisateur} from '../../models/utilisateur.model';
-import {ListeSuivis} from '../../models/liste.model';
+import {ListeSuivis, Statut, Suivi, SuiviCreation, TypePreview} from '../../models/liste.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +52,22 @@ export class SuivisService {
 
   public filmRef$ = new BehaviorSubject([]);
   public serieRef$ = new BehaviorSubject([]);
+  public suiviCreation$ = new BehaviorSubject({
+    dbMovieId: '',
+    image: '',
+    noteUser: 0,
+    overview: '',
+    statut: 'A_VOIR',
+    titre: '',
+    totalSaison: 0,
+    typePreview: 'FILM',
+    userId: 0,
+    videoListId: 0,
+  });
 
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
+  private urlBackEndAddSuivi: string = environment.BE_API_URL + '/liv/suivis/add';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
@@ -70,5 +83,12 @@ export class SuivisService {
         console.log('     suivis ', this.listesuivis$);
       });
 
+  }
+  ajoutSuivi(suivi: SuiviCreation){
+    this.http.post(this.urlBackEndAddSuivi, suivi).subscribe(
+      (data: any) => {
+        this.suiviCreation$.next(data);
+      }
+    );
   }
 }

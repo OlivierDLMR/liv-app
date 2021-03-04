@@ -8,8 +8,8 @@
     AJOUTER A MA LISTE</mat-label>
   <mat-select  >
 
-    <mat-option *ngFor="let liste of listes" >
-      {{liste.name}}
+    <mat-option *ngFor="let liste of listes"  >
+      <button >{{liste.name}} {{utilisateur.id}} {{ movie.title }}</button> <!-- ajoutSuivi()-->
     </mat-option>
   </mat-select>
 </mat-form-field>
