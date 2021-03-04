@@ -26,7 +26,8 @@ const routes: Routes = [
   {path: 'createAccount', component: AccountFormComponent},
   {path: 'listesNavBar', component: ListesnavbarComponent},
   {path: 'listesuivis/:id/:name', component: ListesuivisComponent},
-  {path: 'suivi', component: SuiviComponent}
+  {path: 'suivi', component: SuiviComponent},
+  {path : 'majSuivi', component: MajSuiviComponent},
 ];
 
 @NgModule({
