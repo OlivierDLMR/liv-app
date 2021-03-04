@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {Utilisateur} from '../models/utilisateur.model';
-import {ListesNavBar, ListeSuivis, Preview, Suivi, TypePreview} from '../models/liste.model';
+import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -49,6 +49,9 @@ export class ListesuivisComponent implements OnInit {
     return 'https://image.tmdb.org/t/p/w500/' + preview.image;
   }
 
+  getStatut(typePreview:Statut):string {
+    return Statut[typePreview];
+  }
   isSerie(preview: Preview): boolean {
     if (preview.typePreview == TypePreview.SERIE){
       return true;

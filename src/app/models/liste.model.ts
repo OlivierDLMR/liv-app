@@ -38,10 +38,14 @@ export interface Preview {
 }
 
 export enum Statut {
-  onGoing = 'EN_COURS',
-  notSeen = 'PAS_VU',
-  finished = 'FINI',
-  abort = 'ABANDONNE',
+ EN_COURS = "en cours",
+ A_VOIR = "à voir",
+ VU = 'terminé',
+ ABANDONNE = "abandonné",
+  // onGoing = 'EN_COURS',
+  // notSeen = 'A_VOIR',
+  // finished = 'VU',
+  // abort = 'ABANDONNE',
 }
 
 export enum TypePreview {
