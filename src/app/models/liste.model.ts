@@ -26,7 +26,7 @@ export interface Suivi {
   dernierEpisodeVu: number;
 }
 
-export interface SuiviCreation {
+export class SuiviCreation {
   dbMovieId: number;
   image: string;
   noteUser: number;
@@ -37,6 +37,21 @@ export interface SuiviCreation {
   typePreview: TypePreview;
   userId: number;
   videoListId: number;
+
+  constructor(dbMovieId: number, image: string, noteUser: number, overview: string,
+              status: Statut, titre: string, totalSaison: number,
+              typePreview: TypePreview, userId: number, videoListId: number) {
+    this.dbMovieId = dbMovieId;
+    this.image = image;
+    this.noteUser = noteUser;
+    this.overview = overview;
+    this.statut = this.statut;
+    this.titre = titre;
+    this.totalSaison = totalSaison;
+    this.typePreview = typePreview;
+    this.userId = userId;
+    this.videoListId = videoListId;
+  }
 }
 
 
@@ -51,10 +66,10 @@ export interface Preview {
 }
 
 export enum Statut {
- EN_COURS = "en cours",
- A_VOIR = "à voir",
- VU = 'terminé',
- ABANDONNE = "abandonné",
+  EN_COURS = "en cours",
+  A_VOIR = "à voir",
+  VU = 'terminé',
+  ABANDONNE = "abandonné",
   // onGoing = 'EN_COURS',
   // notSeen = 'A_VOIR',
   // finished = 'VU',

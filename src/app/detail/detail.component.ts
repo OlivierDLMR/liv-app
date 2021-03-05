@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../Shared/services/movie.service';
+import {MovieModel} from "../models/movie.model";
 
 @Component({
   selector: 'app-detail',
@@ -61,5 +62,22 @@ export class DetailComponent implements OnInit {
     this.movieService.search$.next([]);
     this.router.navigate(['/films']);
   }
+
+  printImageSrc(movie: MovieModel): string {
+    return 'https://image.tmdb.org/t/p/w500' + movie.image;
+  }
+
+  // myStyles() {
+  //   console.log('https://image.tmdb.org/t/p/w500' + this.movie.image);
+  //   return {
+  //
+  //     'background-image': 'https://image.tmdb.org/t/p/w500' + this.movie.image,
+  //     'background-position': 'center',
+  //     'background-repeat': 'no-repeat',
+  //     'background-size': 'cover'
+  //   };
+  // }
+
+
 
 }
