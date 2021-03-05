@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Utilisateur} from "../../models/utilisateur.model";
-import {ListesNavBar, ListeSuivis, Statut, Suivi} from "../../models/liste.model";
-import {SuivisService} from "../services/suivis.service";
-import {UserService} from "../services/user.service";
-import {StatutService} from "../services/statut.service";
-import {Style} from "@angular/cli/lib/config/schema";
+import {Utilisateur} from '../../models/utilisateur.model';
+import {ListeSuivis, Statut, Suivi} from '../../models/liste.model';
+import {SuivisService} from '../services/suivis.service';
+import {UserService} from '../services/user.service';
+import {StatutService} from '../services/statut.service';
 
 @Component({
   selector: 'app-statut',
@@ -22,7 +21,7 @@ export class StatutComponent implements OnInit {
 
   @Input() suivi: Suivi;
 
-  constructor(public suivisService: SuivisService, public userService: UserService, public statutService:StatutService) {
+  constructor(public suivisService: SuivisService, public userService: UserService, public statutService: StatutService) {
   }
 
   ngOnInit(): void {
@@ -40,16 +39,20 @@ export class StatutComponent implements OnInit {
 
 
   getColor(statut: Statut): string {
-    console.log('on est dans le getColor');
-    switch (statut) {
-      case Statut.A_VOIR:
-        return 'a_voir';
-      case Statut.ABANDONNE:
-        return 'abandonne';
-      case Statut.EN_COURS:
-        return 'en_cours';
-      case Statut.VU:
-        return 'vu';
+    console.log('on est dans le getColor' + statut);
+    if (statut === Statut.A_VOIR) {
+      console.log('Statut.A_VOIR ===');
+      return 'avoir';
+    }
+    if (statut === Statut.ABANDONNE) {
+      return 'abandonne';
+    }
+    if (statut === Statut.EN_COURS) {
+      return 'encours';
+    }
+    if (statut === Statut.VU) {
+      console.log('Statut.VU');
+      return 'vu';
     }
   }
 }
