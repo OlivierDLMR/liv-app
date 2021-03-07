@@ -10,14 +10,13 @@
           <img alt="image de {{ suivi.preview.titre }}"
              [src]="printImageSrc(suivi.preview)">
              <div class="card-body serie">
+             <!-- <div *ngIf="isSerie(suivi.preview)" class="card-body serie"> -->
+              <!-- <div *ngIf="!isSerie(suivi.preview)" class="card-body film"> -->
                 <h2> {{ suivi.preview.titre }} </h2>
                 <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
 
                <app-statut [suivi]="suivi" ></app-statut>
-               <app-maj-statut></app-maj-statut>
-<!--                <button (click)="miseAJour()">-->
-<!--                  {{getStatut(suivi.statut)}}-->
-<!--                </button>-->
+              
 
                 <rating [score]="suivi.noteUser"></rating>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
