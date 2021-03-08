@@ -45,7 +45,7 @@ export class DetailSerieComponent implements OnInit {
       this.serie = this.serieService.search$.getValue()
         .find(serie => serie.id == this.serieId);
     }
-    console.log('detail serie .'+ this.serie);
+    console.log('detail serie .' + this.serie);
 
     this.serieService
       .getSerieInfo(this.serieId)
@@ -61,6 +61,14 @@ export class DetailSerieComponent implements OnInit {
   goToRootPage() {
     this.serieService.search$.next([]);
     this.router.navigate(['/series']);
+  }
+
+  printImageSrc(serie: SerieModel): string {
+    return 'https://image.tmdb.org/t/p/w500' + serie.image;
+  }
+
+  computeBackgroundStyle(image: string): string {
+    return `url("https://image.tmdb.org/t/p/w500${image}")`;
   }
 
 }

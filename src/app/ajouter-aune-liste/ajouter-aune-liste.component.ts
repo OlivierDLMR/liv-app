@@ -7,6 +7,7 @@ import {MovieModel} from '../models/movie.model';
 import {SuivisService} from "../Shared/services/suivis.service";
 import {AlertService} from "../Shared/services/alert.service";
 import {Router} from "@angular/router";
+import {SerieModel} from "../models/serie.model";
 
 interface Liste {
   value: string;
@@ -24,9 +25,12 @@ export class AjouterAUneListeComponent implements OnInit {
   listes: ListesNavBar;
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
-  @Input() movie: MovieModel;
 
-  constructor(public userService: UserService, public serieService: SerieService, public suiviService: SuivisService,public alertService: AlertService,  private router: Router) {
+
+  @Input() movie: MovieModel;
+  @Input() serie: SerieModel;
+
+  constructor(public userService: UserService, public serieService: SerieService, public suiviService: SuivisService, public alertService: AlertService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,20 +47,37 @@ export class AjouterAUneListeComponent implements OnInit {
 
   }
 
-  ajoutSuivi(videoListId: number, videoListName: string): void {
+  ajoutSuiviFilm(videoListId: number, videoListName: string): void {
     this.suiveCreation = new SuiviCreation(this.movie.id,
-                                            this.movie.image,
-                                            0,
-                                            this.movie.desc,
-                                            Statut.A_VOIR,
-                                            this.movie.title,
-                                              0,
-                                              TypePreview.FILM,
-                                            this.utilisateur.id,
-                                              videoListId);
+      this.movie.image,
+      0,
+      this.movie.desc,
+      Statut.A_VOIR,
+      this.movie.title,
+      0,
+      TypePreview.FILM,
+      this.utilisateur.id,
+      videoListId);
     console.log(this.suiveCreation);
     this.suiviService.ajoutSuivi(this.suiveCreation);
-    this.alertService.show('le film est ajoute à la liste : ' + videoListName );
+    this.alertService.show('le film est ajoute à la liste : ' + videoListName);
+    this.router.navigate(['/listesuivis', videoListId, videoListName]);
+  }
+
+  ajoutSuiviSerie(videoListId: number, videoListName: string): void {
+    this.suiveCreation = new SuiviCreation(this.serie.id,
+      this.serie.image,
+      0,
+      this.serie.desc,
+      Statut.A_VOIR,
+      this.serie.title,
+      0,
+      TypePreview.SERIE,
+      this.utilisateur.id,
+      videoListId);
+    console.log(this.suiveCreation);
+    this.suiviService.ajoutSuiviSerie(this.suiveCreation);
+    this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
 

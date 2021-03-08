@@ -29,10 +29,10 @@
   <!-- LIST DES SERIES-->
   <div class="col-5 ">
     <h2 routerLink="/series" [style.cursor]="'pointer'" class="titreSerieFilm">SERIES</h2>
-    <div [style.opacity]="getListOpacitySerie()" class="row content pb-4 container-fluid"> <!-- class="row content pb-4 container-fluid" -->
+    <div [style.opacity]="getListOpacitySerie()" class="row content pb-4 container-fluid">
 
 
-      <div *ngFor="let serie of serieObs | async">  <!-- class="col-6" -->
+      <div *ngFor="let serie of serieObs | async">
 
 
         <div [routerLink]="['/detailserie', serie.id, 'series']" class="card bg-dark text-white">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <!-- FIN LIST DES SERIES-->
+
     </div>
 
   </div>

@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { SerieModel } from '../models/serie.model';
 import { SerieService } from '../Shared/services/serie.service';
 import { UserService } from '../Shared/services/user.service';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject} from 'rxjs';
+import {Utilisateur} from '../models/utilisateur.model';
 
 
 
 @Component({
-  
+
   selector: 'app-list-serie',
   templateUrl: './list-serie.component.html',
   styleUrls: ['./list-serie.component.scss']
@@ -17,8 +18,9 @@ export class ListSerieComponent implements OnInit {
 
   series: SerieModel[];
   results: SerieModel[];
-  
   origineRating:string="dbmovie";
+
+  utilisateur: Utilisateur;
 
   // là, on définit un observable sur lequel on pourra faire de l'asynchrone et éviter les apples successifs de subscribe
   serieObs = new BehaviorSubject<Array<SerieModel>>([]);
@@ -48,7 +50,9 @@ export class ListSerieComponent implements OnInit {
     // on s'abonne à la source de données search$
     this.serieService.search$.subscribe(data => this.results = data);
 
-    console.log("==> series : " ,this.series);
+    this.userService.utilisateur$.subscribe(data => {
+      this.utilisateur = data;
+    });
   } // Fin ngOnInit()
 
   printImageSrc(serie: SerieModel): string {

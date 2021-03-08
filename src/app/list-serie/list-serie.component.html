@@ -1,47 +1,50 @@
 
-<h1>SERIES</h1>
-<input #inputElt (keyup)="searchSeries(inputElt.value)" placeholder="Rechercher..." type="text"
-       class="form-control sticky-top">
-<ul class="list-group">
 
-  <li [routerLink]="['/detailserie', result.id, 'results']" *ngFor="let result of results"
-      class="list-group-item">
-    {{result.title}}
-  </li>
-
-</ul>
+  <h1>SERIES</h1>
 
 
 
-<!-- LIST DES SERIES-->
-<div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
+  <input #inputElt (keyup)="searchSeries(inputElt.value)" placeholder="Rechercher..." type="text"
+         class="form-control sticky-top">
+  <ul class="list-group">
+
+    <li [routerLink]="['/detailserie', result.id, 'results']" *ngFor="let result of results"
+        class="list-group-item">
+      {{result.title}}
+    </li>
+
+  </ul>
 
 
-  <div *ngFor="let serie of serieObs | async" class="col-6">
+  <!-- LIST DES SERIES-->
+  <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
 
 
-    <div  class="card bg-dark text-white">
-      <img [routerLink]="['/detailserie', serie.id, 'series']" [src]="printImageSrc(serie)">
-      <div class="card-body serie">
-        <h2>{{ serie.title }}</h2>
-        <app-ajouter-aune-liste></app-ajouter-aune-liste>
-      </div>
-        <rating [score]="serie.score/2"></rating>
-        <p>Date de sortie : {{ serie.date | date: "dd/MM/YYYY" }}</p>
-        <p><em>Résumé : </em>{{ serie.desc | cuttext }}</p>
+    <div *ngFor="let serie of serieObs | async" class="col-6">
+
+      <div   class="card bg-dark text-white">  <!-- [routerLink]="['/detail', movie.id, 'movies']" -->
+        <img [routerLink]="['/detailserie', serie.id, 'series']" [src]="printImageSrc(serie)">
+        <div class="card-body serie">
+          <h2>{{ serie.title }}  </h2>
+          <app-ajouter-aune-liste [serie]="serie" *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
+
+          <rating [score]="serie.score/2" [origine]="origineRating"></rating>
+          <p>Date de sortie : {{ serie.date | date: "dd/MM/YYYY" }}</p>
+          <p><em>Résumé : </em>{{ serie.desc | cuttext }}</p>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- LOADER-->
-  <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center loader">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+    <!-- LOADER-->
+    <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-  </div>
 
 
-  <!-- Navigation bottom bar -->
-  <div class="fixed-bottom bg-info text-center p-2">
-    <button (click)="loadNextSeries()" class="btn btn-light">Series suivantes</button>
-  </div>
+    <!-- Navigation bottom bar -->
+    <div class="fixed-bottom bg-info text-center p-2">
+      <button (click)="loadNextSeries()" class="btn btn-light">Series suivantes</button>
+    </div>
