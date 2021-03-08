@@ -54,7 +54,7 @@ export class AjouterAUneListeComponent implements OnInit {
                                               TypePreview.FILM,
                                             this.utilisateur.id,
                                               videoListId);
-    console.log('ajoutSuivi: ' + this.suiveCreation);
+    console.log(this.suiveCreation);
     this.suiviService.ajoutSuivi(this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName );
     this.router.navigate(['/listesuivis', videoListId, videoListName]);

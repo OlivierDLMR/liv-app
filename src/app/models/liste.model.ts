@@ -77,7 +77,7 @@ export enum Statut {
 }
 
 export enum TypePreview {
-  SERIE = "Série",
-  FILM = "Film",
+  SERIE = "SERIE",
+  FILM = "FILM",
 
 }
