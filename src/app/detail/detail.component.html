@@ -4,7 +4,18 @@
 <!--  <img [src]="printImageSrc(movie)">-->
 <!--<div [ngStyle]="myStyles()">-->
 
-<div  ></div>
+
+  <div
+    class="image-rotator"
+    [ngStyle]="{
+          'background-image':
+            'url(' +
+            'https://image.tmdb.org/t/p/w500' + movie.image +
+            ')'
+        }"
+  ></div>
+
+<div  > <img [src]="printImageSrc(movie)"> </div>
   <!-- 'https://image.tmdb.org/t/p/w500' + movie.image  -->
 
 
