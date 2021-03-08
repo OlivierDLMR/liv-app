@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
@@ -6,6 +6,7 @@ import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ListesuivisComponent implements OnInit {
   listeId:number;
   listeName:string;
   isLoading: boolean;
+  suivisMisAJour:Array<Suivi>; 
  
 
   constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService, private route: ActivatedRoute) {
@@ -34,6 +36,7 @@ export class ListesuivisComponent implements OnInit {
    
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
+    
   }
 
   ngOnInit(): void {
@@ -43,8 +46,9 @@ export class ListesuivisComponent implements OnInit {
         // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
         console.log(this.listeSuivis);
       }
-    );
+          );
         console.log(" ==> après subscribe" ,this.listeSuivis);
+        console.log("      suiviMisAJour  :", this.suivisMisAJour)
        
   }
 
@@ -71,11 +75,6 @@ export class ListesuivisComponent implements OnInit {
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
   }
-  miseAJour(suivi:Suivi):void {
-    console.log(" ===> miseA jour !!!")
-    console.log("              ",  suivi);
-   
-  }
   
-
+  
 }
