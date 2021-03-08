@@ -8,6 +8,7 @@ import {BehaviorSubject} from "rxjs";
 
 
 @Component({
+  
   selector: 'app-list-serie',
   templateUrl: './list-serie.component.html',
   styleUrls: ['./list-serie.component.scss']
@@ -16,6 +17,8 @@ export class ListSerieComponent implements OnInit {
 
   series: SerieModel[];
   results: SerieModel[];
+  
+  origineRating:string="dbmovie";
 
   // là, on définit un observable sur lequel on pourra faire de l'asynchrone et éviter les apples successifs de subscribe
   serieObs = new BehaviorSubject<Array<SerieModel>>([]);

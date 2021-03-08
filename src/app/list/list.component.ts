@@ -18,6 +18,7 @@ export class ListComponent implements OnInit {
   // movies:Array<Movieodel>
   movies: MovieModel[];
   results: MovieModel[];
+  origineRating:string="dbmovie";
 
   utilisateur: Utilisateur;
 
@@ -37,6 +38,8 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     // request à l'API theMovie
+    console.log("===> origine :", this.origineRating);
+    console.log("===> origine :", this.origineRating);
     this.movieService.getMoviesFromApi();
 
     // on s'abonne à notre source de données movies$
@@ -78,6 +81,6 @@ export class ListComponent implements OnInit {
     }
   }
 
-
+  
 
 } // Fin class ListComponent

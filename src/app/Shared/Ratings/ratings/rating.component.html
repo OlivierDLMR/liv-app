@@ -1,8 +1,8 @@
 <!-- <p>ratings works!</p> -->
 <p>
   Score : 
-  <button (click)="moins()"type="button" class="btn btn-dark">-</button>
+  <button *ngIf="afficheButton()" (click)="moins()"type="button" class="btn btn-dark">-</button>
   <i  *ngFor="let star of stars" class="fas fa-star"></i>
   <i  *ngFor="let noStar of noStars" class="far fa-star"></i>
-  <button (click)="plus()"type="button" class="btn btn-dark">+</button>
+  <button *ngIf="afficheButton()" (click)="plus()"type="button" class="btn btn-dark">+</button>
 </p>

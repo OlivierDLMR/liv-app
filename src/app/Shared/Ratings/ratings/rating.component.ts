@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class RatingComponent implements OnInit {
 
   @Input() score;
+  @Input() origine;
  
   stars: Array<number>;
   noStars: Array<number>;
@@ -17,7 +18,9 @@ export class RatingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.score);
+    console.log(" ===========> score   : " , this.score);
+    console.log(" ===========> origine : " , this.origine);
+    console.log(this.score);
     let roundedScore = Math.round(this.score);
     this.calculeNbStars(roundedScore);
     this.stars = new Array(roundedScore).fill(1);
@@ -43,5 +46,13 @@ export class RatingComponent implements OnInit {
     // on a créé un tableau de 5 moins le nombe d'étoiles) rempli de 1
     this.noStars= new Array(5-this.stars.length).fill(1);
   }
+
+  afficheButton():boolean {
+    if (this.origine == "maListe"){
+      return true;
+    }
+    return false;
+  }
+
 }
 

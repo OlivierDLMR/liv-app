@@ -21,6 +21,8 @@ export class BoardComponent implements OnInit {
   resultSerie: SerieModel[];
   serieObs = new BehaviorSubject<Array<SerieModel>>([]);
 
+  origineRating:string="dbmovie";
+
   page: number;
   isLoading: boolean;
 
