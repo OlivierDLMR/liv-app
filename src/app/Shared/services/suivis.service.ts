@@ -24,7 +24,15 @@ export class SuivisService {
   });
 
   public listes$ = new BehaviorSubject([]);
-  public videoList$ = new BehaviorSubject([]);
+  public videoList$ = new BehaviorSubject([
+    {
+      id: 0,
+      name: '',
+      dateCreation: this.dateInit,
+      dateModification: this.dateInit
+    }
+  ]);
+
   public listesuivis$ = new BehaviorSubject<ListeSuivis>({
     id: 0,
     titre: '',
@@ -67,7 +75,8 @@ export class SuivisService {
 
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
-  private urlBackEndAddSuivi: string = environment.BE_API_URL + '/liv/suivis/add';
+  private urlBackEndAddSuivi: string = environment.BE_API_URL + '/liv/suivis';
+  private urlBackEndAddList: string = environment.BE_API_URL + '/liv/suivis';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
@@ -84,11 +93,23 @@ export class SuivisService {
       });
 
   }
-  ajoutSuivi(suivi: SuiviCreation){
-    this.http.post(this.urlBackEndAddSuivi, suivi).subscribe(
+
+  ajoutSuivi(suivi: SuiviCreation): void {
+    this.http.put(this.urlBackEndAddSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
       }
     );
   }
+
+  createList(name: string): void {
+    // this.http.post(this.urlBackEndAddList, videoList, this.utilisateur$.getValue().id).subscribe(
+    //   (data: any) => {
+    //     this.suiviCreation$.next(data);
+    //   }
+    // );
+    console.log('createList');
+  }
+
+
 }
