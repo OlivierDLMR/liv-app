@@ -4,6 +4,9 @@ import {SerieService} from '../Shared/services/serie.service';
 import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, Statut, SuiviCreation, TypePreview} from '../models/liste.model';
 import {MovieModel} from '../models/movie.model';
+import {SuivisService} from "../Shared/services/suivis.service";
+import {AlertService} from "../Shared/services/alert.service";
+import {Router} from "@angular/router";
 
 interface Liste {
   value: string;
@@ -23,7 +26,7 @@ export class AjouterAUneListeComponent implements OnInit {
   movies: MovieModel[];
   @Input() movie: MovieModel;
 
-  constructor(public userService: UserService, public serieService: SerieService) {
+  constructor(public userService: UserService, public serieService: SerieService, public suiviService: SuivisService,public alertService: AlertService,  private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class AjouterAUneListeComponent implements OnInit {
 
   }
 
-  ajoutSuivi(videoListId: number): void {
+  ajoutSuivi(videoListId: number, videoListName: string): void {
     this.suiveCreation = new SuiviCreation(this.movie.id,
                                             this.movie.image,
                                             0,
@@ -52,6 +55,9 @@ export class AjouterAUneListeComponent implements OnInit {
                                             this.utilisateur.id,
                                               videoListId);
     console.log('ajoutSuivi: ' + this.suiveCreation);
+    this.suiviService.ajoutSuivi(this.suiveCreation);
+    this.alertService.show('le film est ajoute à la liste : ' + videoListName );
+    this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
 
 }
