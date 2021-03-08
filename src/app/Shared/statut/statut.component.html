@@ -1,3 +1,11 @@
-<button (click)="miseAJour()"  [ngClass]="getColor(suivi.statut)">
-    {{getStatut(suivi.statut)}} - {{getColor(suivi.statut)}}
-</button>
+
+
+    
+
+<select class="form-select form-select-sm statut" aria-label="select statut">
+  <option selected>{{getStatut(suivi.statut)}}</option>
+  <option *ngFor="let statutLibelle of statutLibelles">{{statutLibelle}}</option>
+</select>  
+<!-- </div> -->
+
+
