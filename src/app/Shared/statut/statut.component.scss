@@ -1,17 +1,22 @@
-.avoir {
-  color: #d6d684;
+select.statut {
+  color:white;
+  background-color: red;
+}
+
+select.a_voir {
+  color: #bebe55;
   background-color: #864486;
 }
-.vu {
+select.vu {
   color: #bebe55;
-  background-color: #056405;
+  background-color: #047a04;
 }
-.abandonne {
+select.abandonne {
   color: #bebe55;
   background-color: #700a0a;
 }
 
-.encours{
+select.en_cours{
   color: #bebe55;
   background-color: #1616b3;
 }
@@ -24,7 +29,3 @@
   color:green;
   }
 
-  select.statut {
-    color:white;
-    background-color: red;
-  }

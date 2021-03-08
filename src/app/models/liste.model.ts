@@ -66,10 +66,10 @@ export interface Preview {
 }
 
 export enum Statut {
-  EN_COURS = "en cours",
-  A_VOIR = "à voir",
-  VU = 'terminé',
-  ABANDONNE = "abandonné",
+  EN_COURS = "EN_COURS",
+  A_VOIR = "A_VOIR",
+  VU = 'VU',
+  ABANDONNE = "ABANDONNE",
   // onGoing = 'EN_COURS',
   // notSeen = 'A_VOIR',
   // finished = 'VU',
