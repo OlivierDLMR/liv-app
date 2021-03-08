@@ -1,21 +1,56 @@
-<p>detail-serie works!</p>
+<!--<p>detail-serie works!</p>-->
 
-<div class="d-flex">
-  <button (click)="goToRootPage()" class="btn">
-    <i class="fas fa-arrow-left"> Back</i>
-  </button>
+<!--<div class="d-flex">-->
+<!--  <button (click)="goToRootPage()" class="btn">-->
+<!--    <i class="fas fa-arrow-left"> Back</i>-->
+<!--  </button>-->
 
-</div>
-<div class="card">
-  <iframe *ngIf="urlYTSerie != null" width="560" height="315" [src]="urlYTSerie"
-          frameborder="1" allow="accelerometer;
-  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-  <div class="card-body">
-    <!--  -->
+<!--</div>-->
+<!--<div class="card">-->
+<!--  <iframe *ngIf="urlYTSerie != null" width="560" height="315" [src]="urlYTSerie"-->
+<!--          frameborder="1" allow="accelerometer;-->
+<!--  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--          allowfullscreen></iframe>-->
+<!--  <div class="card-body">-->
+<!--    &lt;!&ndash;  &ndash;&gt;-->
+<!--    <h1>{{serie.title | uppercase}}</h1>-->
+
+<!--    <p>Date de sortie : {{serie.date | date:'dd/MM/YYYY'}}</p>-->
+<!--    <p class = "lh-lg text-justify"><em>Résumé : </em>{{serie.desc}}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="bkg" [style.backgroundImage]="computeBackgroundStyle(serie.image)">
+  <div class="filter-image"></div>
+
+  <div class="d-flex">
+    <button (click)="goToRootPage()" class="btn">
+      <i class="fas fa-arrow-left "> Back</i>
+    </button>
     <h1>{{serie.title | uppercase}}</h1>
-
-    <p>Date de sortie : {{serie.date | date:'dd/MM/YYYY'}}</p>
-    <p class = "lh-lg text-justify"><em>Résumé : </em>{{serie.desc}}</p>
   </div>
+
+  <div class="row movie-content">
+    <!-- BLOC VIDEO -->
+    <div *ngIf="urlYTSerie != null" class="col-12 col-md-6">
+      <div class="video-responsive">
+        <iframe  width="100%" height="auto" [src]="urlYTSerie"
+                 frameborder="1" allow="accelerometer;
+    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                 allowfullscreen></iframe>
+      </div>
+
+    </div>
+    <!-- BLOC TEXT -->
+    <div  [class.col-md-6]="urlYTSerie != null" [class.col-md-12]="urlYTSerie == null" class="col-12">
+
+      <app-ajouter-aune-liste></app-ajouter-aune-liste>
+      <!-- <p>Date de sortie : {{movie.date.toISOString().slice(0,10)}}</p> -->
+      <p>Date de sortie : {{serie.date | date:'dd/MM/YYYY'}}</p>
+      <p class="lh-lg text-justify"><em>Résumé : </em>{{serie.desc}}</p>
+    </div>
+  </div>
+
 </div>
+
