@@ -34,8 +34,8 @@
          <div class="card-body film">
            <h2>{{ movie.title }}  </h2>
            <app-ajouter-aune-liste [movie]="movie" *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
-         </div>
-            <rating [score]="movie.score/2" [origine]='dbmovie'></rating>
+      
+            <rating [score]="movie.score/2" [origine]="origineRating"></rating>
            <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>
            <p><em>Résumé : </em>{{ movie.desc | cuttext }}</p>
       </div>

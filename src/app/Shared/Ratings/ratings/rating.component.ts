@@ -46,5 +46,13 @@ export class RatingComponent implements OnInit {
     // on a créé un tableau de 5 moins le nombe d'étoiles) rempli de 1
     this.noStars= new Array(5-this.stars.length).fill(1);
   }
+
+  afficheButton():boolean {
+    if (this.origine == "maListe"){
+      return true;
+    }
+    return false;
+  }
+
 }
 

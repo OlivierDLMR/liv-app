@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListesuivisComponent implements OnInit {
 
+  origineRating:string="maListe";
+
   utilisateur: Utilisateur;
   listes: ListesNavBar;
   listeSuivis: ListeSuivis;

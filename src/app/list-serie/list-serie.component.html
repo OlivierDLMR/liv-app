@@ -25,7 +25,7 @@
       <div class="card-body serie">
         <h2>{{ serie.title }}</h2>
         <app-ajouter-aune-liste></app-ajouter-aune-liste>
-        <rating [score]="serie.score/2"></rating>
+        <rating [score]="serie.score/2" [origine]="origineRating"></rating>
         <p>Date de sortie : {{ serie.date | date: "dd/MM/YYYY" }}</p>
         <p><em>Résumé : </em>{{ serie.desc | cuttext }}</p>
       </div>
