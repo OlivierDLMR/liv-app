@@ -5,17 +5,10 @@
 <!--<div [ngStyle]="myStyles()">-->
 
 
-  <div
-    class="image-rotator"
-    [ngStyle]="{
-          'background-image':
-            'url(' +
-            'https://image.tmdb.org/t/p/w500' + movie.image +
-            ')'
-        }"
-  ></div>
+<div class="bkg" [style.backgroundImage]="computeBackgroundStyle(movie.image)">
+  <div class="filter-image"></div>
 
-<div  > <img [src]="printImageSrc(movie)"> </div>
+
   <!-- 'https://image.tmdb.org/t/p/w500' + movie.image  -->
 
 
@@ -24,20 +17,44 @@
     <button (click)="goToRootPage()" class="btn">
       <i class="fas fa-arrow-left "> Back</i>
     </button>
-
+    <h1>{{movie.title | uppercase}}</h1>
   </div>
-  <div class="card">
-    <iframe *ngIf="urlYTMovie != null" width="560" height="315" [src]="urlYTMovie"
-            frameborder="1" allow="accelerometer;
+
+  <div class="row movie-content">
+    <!-- BLOC VIDEO -->
+    <div *ngIf="urlYTMovie != null" class="col-12 col-md-6">
+      <div class="video-responsive">
+        <iframe  width="100%" height="auto" [src]="urlYTMovie"
+                frameborder="1" allow="accelerometer;
     autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-    <div class="card-body">
-      <!--  -->
-      <h1>{{movie.title | uppercase}}</h1>
+                allowfullscreen></iframe>
+      </div>
+
+    </div>
+    <!-- BLOC TEXT -->
+    <div  [class.col-md-6]="urlYTMovie != null" [class.col-md-12]="urlYTMovie == null" class="col-12">
+
       <app-ajouter-aune-liste></app-ajouter-aune-liste>
       <!-- <p>Date de sortie : {{movie.date.toISOString().slice(0,10)}}</p> -->
       <p>Date de sortie : {{movie.date | date:'dd/MM/YYYY'}}</p>
       <p class="lh-lg text-justify"><em>Résumé : </em>{{movie.desc}}</p>
     </div>
   </div>
+
+
+<!--  <div class="card">-->
+<!--    <iframe *ngIf="urlYTMovie != null" width="560" height="315" [src]="urlYTMovie"-->
+<!--            frameborder="1" allow="accelerometer;-->
+<!--    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--            allowfullscreen></iframe>-->
+<!--    <div class="card-body">-->
+<!--      &lt;!&ndash;  &ndash;&gt;-->
+<!--      <h1>{{movie.title | uppercase}}</h1>-->
+<!--      <app-ajouter-aune-liste></app-ajouter-aune-liste>-->
+<!--      &lt;!&ndash; <p>Date de sortie : {{movie.date.toISOString().slice(0,10)}}</p> &ndash;&gt;-->
+<!--      <p>Date de sortie : {{movie.date | date:'dd/MM/YYYY'}}</p>-->
+<!--      <p class="lh-lg text-justify"><em>Résumé : </em>{{movie.desc}}</p>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
 

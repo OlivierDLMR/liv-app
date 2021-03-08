@@ -67,6 +67,16 @@ export class DetailComponent implements OnInit {
     return 'https://image.tmdb.org/t/p/w500' + movie.image;
   }
 
+  computeBackgroundStyle(image:string):string {
+    return `url("https://image.tmdb.org/t/p/w500${image}")`;
+  }
+
+  // background-image: url(https://image.tmdb.org/t/p/w500/fev8UFNFFYsD5q7AcYS8LyTzqwl.jpg);
+  //   height: 500px;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // filter: brightness(0.35);
+
   // myStyles() {
   //   console.log('https://image.tmdb.org/t/p/w500' + this.movie.image);
   //   return {
