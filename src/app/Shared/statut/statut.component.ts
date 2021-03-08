@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Utilisateur} from "../../models/utilisateur.model";
-import {ListeSuivis, Statut, Suivi} from "../../models/liste.model";
-import {SuivisService} from "../services/suivis.service";
-import {UserService} from "../services/user.service";
-import {StatutService} from "../services/statut.service";
+import {Utilisateur} from '../../models/utilisateur.model';
+import {ListeSuivis, Statut, Suivi} from '../../models/liste.model';
+import {SuivisService} from '../services/suivis.service';
+import {UserService} from '../services/user.service';
+import {StatutService} from '../services/statut.service';
 
 interface Choice {
   value: string;

@@ -46,6 +46,7 @@ export class DetailSerieComponent implements OnInit {
         .find(serie => serie.id == this.serieId);
     }
     console.log('detail serie .'+ this.serie);
+    // console.log(this);
 
     this.serieService
       .getSerieInfo(this.serieId)

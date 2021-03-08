@@ -2,12 +2,19 @@ export interface ListesNavBar extends Array<Videolist> {
 
 }
 
-export interface Videolist {
+export class Videolist {
   id: number;
   name: string;
   dateCreation: Date;
   dateModif: Date;
+  constructor(id: number, name: string, dateCreation: Date, dateModif: Date) {
+    this.id = id;
+    this.name = name;
+    this.dateCreation = dateCreation;
+    this.dateModif = dateModif;
+  }
 }
+
 
 export interface ListeSuivis {
   id: number;
