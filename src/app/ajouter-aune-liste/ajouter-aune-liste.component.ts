@@ -59,7 +59,7 @@ export class AjouterAUneListeComponent implements OnInit {
       this.utilisateur.id,
       videoListId);
     console.log(this.suiveCreation);
-    this.suiviService.ajoutSuivi(this.suiveCreation);
+    this.suiviService.ajoutSuiviFilm(this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }

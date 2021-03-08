@@ -94,12 +94,20 @@ export class SuivisService {
 
   }
 
-  ajoutSuivi(suivi: SuiviCreation): void {
+  ajoutSuiviFilm(suivi: SuiviCreation): void {
     this.http.put(this.urlBackEndAddSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
       }
     );
+  }
+
+  ajoutSuiviSerie(suivi: SuiviCreation): void {
+    // this.http.put(this.urlBackEndAddSuivi, suivi).subscribe(
+    //   (data: any) => {
+    //     this.suiviCreation$.next(data);
+    //   }
+    // );
   }
 
   createList(name: string): void {
