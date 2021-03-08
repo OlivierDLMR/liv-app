@@ -48,6 +48,7 @@ export class SuivisService {
     noteUser: 0,
     saisonEncours: 0,
     dernierEpisodeVu: 0,
+   
   });
 
   public filmRef$ = new BehaviorSubject([]);

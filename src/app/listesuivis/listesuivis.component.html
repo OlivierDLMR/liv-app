@@ -15,13 +15,13 @@
                 <h2> {{ suivi.preview.titre }} </h2>
                 <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
 
-                <span class="material-icons">
+                <span (click)="miseAJour(suivi)" class="material-icons">
                   system_update_alt
                 </span>
                 <span class="material-icons">
                     delete_outline
                 </span>
-                <app-statut [suivi]="suivi" ></app-statut>
+                <app-statut  [suivi]="suivi" ></app-statut>
               
 
                 <rating [score]="suivi.noteUser" [origine]="origineRating"></rating>

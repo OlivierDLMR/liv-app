@@ -47,7 +47,7 @@ export class RatingComponent implements OnInit {
     this.noStars= new Array(5-this.stars.length).fill(1);
   }
 
-  afficheButton():boolean {
+  isMaListe():boolean {
     if (this.origine == "maListe"){
       return true;
     }

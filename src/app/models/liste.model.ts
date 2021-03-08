@@ -24,6 +24,7 @@ export interface Suivi {
   noteUser: number;
   saisonEnCours: number;
   dernierEpisodeVu: number;
+  isUpdatable:boolean;
 }
 
 export class SuiviCreation {

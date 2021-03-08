@@ -25,26 +25,28 @@ export class ListesuivisComponent implements OnInit {
   listeId:number;
   listeName:string;
   isLoading: boolean;
+ 
 
   constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService, private route: ActivatedRoute) {
   }
 
   ngAfterViewChecked(): void{
-    console.log ("=======> ng After .." )
+   
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
   }
 
   ngOnInit(): void {
-    console.log( "==> ngOninit");
 
     this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
+        // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
         console.log(this.listeSuivis);
       }
     );
         console.log(" ==> après subscribe" ,this.listeSuivis);
+       
   }
 
   printImageSrc(preview: Preview): string {
@@ -70,7 +72,11 @@ export class ListesuivisComponent implements OnInit {
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
   }
-  miseAJour(){
+  miseAJour(suivi:Suivi):void {
     console.log(" ===> miseA jour !!!")
+    console.log("              ",  suivi);
+   
   }
+  
+
 }
