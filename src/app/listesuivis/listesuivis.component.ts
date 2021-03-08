@@ -25,6 +25,7 @@ export class ListesuivisComponent implements OnInit {
   listeId:number;
   listeName:string;
   isLoading: boolean;
+  isUpdated : boolean;
 
   constructor(public suivisService: SuivisService, public userService: UserService, public loaderService: LoaderService, private route: ActivatedRoute) {
   }
@@ -37,7 +38,7 @@ export class ListesuivisComponent implements OnInit {
 
   ngOnInit(): void {
     console.log( "==> ngOninit");
-
+    this.isUpdated = false;
     this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
@@ -64,13 +65,13 @@ export class ListesuivisComponent implements OnInit {
       return true;
     }
     return false;
-    
-  } 
+
+  }
 
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;
   }
   miseAJour(){
-    console.log(" ===> miseA jour !!!")
+    this.isUpdated = true;
   }
 }
