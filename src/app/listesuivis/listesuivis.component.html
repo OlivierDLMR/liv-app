@@ -18,7 +18,7 @@
                <app-statut [suivi]="suivi" ></app-statut>
               
 
-                <rating [score]="suivi.noteUser"></rating>
+                <rating [score]="suivi.noteUser" [origine]='maListe'></rating>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
                 <p><em>Résumé : </em>{{ suivi.preview.overview | cuttextlong }}</p>
               </div>
