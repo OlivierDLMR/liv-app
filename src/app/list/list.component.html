@@ -29,7 +29,7 @@
 
 <!--    <div *ngFor="let movie of movies" class="col-6">-->
 
-      <div   class="card film text-white">  <!-- [routerLink]="['/detail', movie.id, 'movies']" -->
+      <div   class="card bg-dark text-white">  <!-- [routerLink]="['/detail', movie.id, 'movies']" -->
          <img [routerLink]="['/detail', movie.id, 'movies']" [src]="printImageSrc(movie)">
          <div class="card-body film">
            <h2>{{ movie.title }}  </h2>
