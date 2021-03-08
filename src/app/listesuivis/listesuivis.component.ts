@@ -37,7 +37,6 @@ export class ListesuivisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
@@ -66,8 +65,8 @@ export class ListesuivisComponent implements OnInit {
       return true;
     }
     return false;
-    
-  } 
+
+  }
 
   getListOpacity() {
     return this.isLoading ? 0.1 : 1;

@@ -27,6 +27,7 @@
                 <rating [score]="suivi.noteUser" [origine]="origineRating"></rating>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
                 <p><em>Résumé : </em>{{ suivi.preview.overview | cuttextlong }}</p>
+               <p *ngIf="isUpdated">j'ai changé</p>
               </div>
         </div>
     </div>

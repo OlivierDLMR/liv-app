@@ -11,5 +11,5 @@
     <a (click)="onClickList(liste.id)" [routerLink]="['/listesuivis',liste.id,liste.name]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href="">{{ liste.name }} - {{liste.id}}</a>
   </a>
-  <button class="primary">Ajouter une liste</button>
+  <button (click)="addList()" class="primary">Ajouter une liste</button>
 </div>

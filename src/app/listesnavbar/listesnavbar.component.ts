@@ -21,9 +21,9 @@ export class ListesnavbarComponent implements OnInit {
   // listsuivis: any[];
 
   constructor(public suivisService: SuivisService
-             , public userService: UserService
-             , public loaderService: LoaderService
-             , private router: Router) {
+    , public userService: UserService
+    , public loaderService: LoaderService
+    , private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,5 +41,26 @@ export class ListesnavbarComponent implements OnInit {
   onClickList(listeid) {
     console.log('dans le onclick');
     this.suivisService.getSuivis(listeid);
+  }
+
+  /**
+   * Add list for user
+   */
+  addList(): void {
+    const nameList: string = window.prompt('Renseigner un nom de liste');
+    /*
+    * pour ajouter une liste : un pop up demande le nom
+    * il faut un nom de liste non  null avec au moins 3 caractères
+    * */
+    if (nameList !== null && nameList.trim().length > 3) {
+      /*
+      * alerte si le nom de la liste existe dejà pour l'utilisateur
+      * */
+      if (this.listes.some(liste => liste.name === nameList)) {
+        alert('La valeur existe!');
+      }
+      /* si pas d'alerte, on créée une nouvelle liste */
+      this.suivisService.createList(nameList);
+    }
   }
 }
