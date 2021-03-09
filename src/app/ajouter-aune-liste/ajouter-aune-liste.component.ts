@@ -27,6 +27,7 @@ export class AjouterAUneListeComponent implements OnInit {
   movies: MovieModel[];
 
 
+
   @Input() movie: MovieModel;
   @Input() serie: SerieModel;
 

@@ -2,11 +2,11 @@
 <div class="bkg" [style.backgroundImage]="computeBackgroundStyle(movie.image)">
   <div class="filter-image"></div>
 
-  <div class="d-flex">
+  <div class="d-flex btnTitre">
     <button (click)="goToRootPage()" class="btn">
-      <i class="fas fa-arrow-left "> Back</i>
+      <i class="fas fa-arrow-left iconeBack "> </i>
     </button>
-    <h1>{{movie.title | uppercase}}</h1>
+    <h1 class="titreDetail">{{movie.title | uppercase}}</h1>
   </div>
 
   <div class="row movie-content">
