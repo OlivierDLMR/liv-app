@@ -35,7 +35,7 @@
            <h2>{{ movie.title }}  </h2>
            <app-ajouter-aune-liste [movie]="movie" *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
 
-            <rating [score]="movie.score/2" [origine]="origineRating"></rating>
+            <rating [dbMovieScore]="movie.score/2" [origine]="origineRating"></rating>
            <p>Date de sortie : {{ movie.date | date: "dd/MM/YYYY" }}</p>
            <p><em>Résumé : </em>{{ movie.desc | cuttext }}</p>
       </div>
