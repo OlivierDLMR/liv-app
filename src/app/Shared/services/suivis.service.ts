@@ -85,18 +85,18 @@ export class SuivisService {
   getSuivis(suiviId: number) {
     this.http.get(this.urlBackEnd + suiviId + '/suivis').subscribe(
       (data: ListeSuivis) => {
-        console.log(data);
+        // console.log(data);
         this.listesuivis$.next(data);
-        console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
-        console.log(' ==> suivi .service.ts - getSuivis(: ' + suiviId + ') ');
-        console.log('     response : ', data);
-        console.log('     suivis ', this.listesuivis$);
+        // console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
+        // console.log(' ==> suivi .service.ts - getSuivis(: ' + suiviId + ') ');
+        // console.log('     response : ', data);
+        // console.log('     suivis ', this.listesuivis$);
       });
 
   }
 
   mettreAJourSuivi(suivi: Suivi) {
-    console.log("===> mettreAJourSuivi :", suivi);
+    // console.log("===> mettreAJourSuivi :", suivi);
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
@@ -109,9 +109,9 @@ export class SuivisService {
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(
       (data: any) => {
-        console.log('from server after put: ', data);
-        console.log('videoList$: ', this.videoList$.getValue());
-        console.log('listesuivis$: ', this.listesuivis$.getValue());
+        // console.log('from server after put: ', data);
+        // console.log('videoList$: ', this.videoList$.getValue());
+        // console.log('listesuivis$: ', this.listesuivis$.getValue());
         this.listesuivis$.next(data);
       }
     );
