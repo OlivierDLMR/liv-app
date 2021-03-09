@@ -6,6 +6,7 @@ import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import {ActivatedRoute} from '@angular/router';
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -26,6 +27,10 @@ export class ListesuivisComponent implements OnInit {
   listeName: string;
   isLoading: boolean;
 
+  isTouched = [];
+
+  subscription: Subscription;
+
 
   constructor(public suivisService: SuivisService,
               public userService: UserService,
@@ -43,12 +48,18 @@ export class ListesuivisComponent implements OnInit {
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
     console.log(this.listeId);
-    this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+    this.subscription = this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         console.log(data);
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
         // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
         console.log(this.listeSuivis);
+
+        // for (let suivi of data) {
+        //   let obj = {id: suivi.id, touched: false};
+        //   this.isTouched.push(obj)
+        // }
+        console.log(this.isTouched);
       }
     );
     console.log(' ==> après subscribe', this.listeSuivis);
@@ -86,6 +97,10 @@ export class ListesuivisComponent implements OnInit {
     console.log(" ===> miseA jour !!!")
     console.log("              ", suivi);
 
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 
