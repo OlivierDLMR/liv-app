@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../Shared/services/movie.service';
 import {MovieModel} from "../models/movie.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +20,9 @@ export class DetailComponent implements OnInit {
   type: string;
   movie;
   urlYTMovie:any;
+
+  subscription: Subscription;
+
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
@@ -44,9 +48,9 @@ export class DetailComponent implements OnInit {
     }
 
 
-    this.movieService
+    this.subscription = this.movieService
           .getMovieInfo(this.movieId)
-          .subscribe( (data:any)=> {
+          .subscribe( (data:any) => {
                       this.urlYTMovie =
                       this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+data.results[0].key);
                             });
@@ -71,22 +75,9 @@ export class DetailComponent implements OnInit {
     return `url("https://image.tmdb.org/t/p/w500${image}")`;
   }
 
-  // background-image: url(https://image.tmdb.org/t/p/w500/fev8UFNFFYsD5q7AcYS8LyTzqwl.jpg);
-  //   height: 500px;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // filter: brightness(0.35);
-
-  // myStyles() {
-  //   console.log('https://image.tmdb.org/t/p/w500' + this.movie.image);
-  //   return {
-  //
-  //     'background-image': 'https://image.tmdb.org/t/p/w500' + this.movie.image,
-  //     'background-position': 'center',
-  //     'background-repeat': 'no-repeat',
-  //     'background-size': 'cover'
-  //   };
-  // }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 
 

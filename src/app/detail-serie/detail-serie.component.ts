@@ -3,6 +3,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SerieService} from '../Shared/services/serie.service';
 import {SerieModel} from '../models/serie.model';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +20,8 @@ export class DetailSerieComponent implements OnInit {
   type: string;
   serie: SerieModel;
   urlYTSerie: any;
+
+  subscription: Subscription;
 
 
   constructor(
@@ -47,7 +50,7 @@ export class DetailSerieComponent implements OnInit {
     }
     console.log('detail serie .' + this.serie);
 
-    this.serieService
+    this.subscription = this.serieService
       .getSerieInfo(this.serieId)
       .subscribe((data: any) => {
         this.urlYTSerie =
@@ -70,5 +73,10 @@ export class DetailSerieComponent implements OnInit {
   computeBackgroundStyle(image: string): string {
     return `url("https://image.tmdb.org/t/p/w500${image}")`;
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 
 }
