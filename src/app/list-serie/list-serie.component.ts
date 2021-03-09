@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { SerieModel } from '../models/serie.model';
-import { SerieService } from '../Shared/services/serie.service';
-import { UserService } from '../Shared/services/user.service';
+import {SerieModel} from '../models/serie.model';
+import {SerieService} from '../Shared/services/serie.service';
+import {UserService} from '../Shared/services/user.service';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {Utilisateur} from '../models/utilisateur.model';
-
 
 
 @Component({
@@ -16,12 +15,12 @@ import {Utilisateur} from '../models/utilisateur.model';
 })
 export class ListSerieComponent implements OnInit {
 
-  subscriptionSerie:Subscription;
-  subscriptionUser:Subscription;
-  subscriptionSearch:Subscription;
+  subscriptionSerie: Subscription;
+  subscriptionUser: Subscription;
+  subscriptionSearch: Subscription;
   series: SerieModel[];
   results: SerieModel[];
-  origineRating:string="dbmovie";
+  origineRating: string = "dbmovie";
 
   utilisateur: Utilisateur;
 
@@ -33,36 +32,36 @@ export class ListSerieComponent implements OnInit {
   isLoading: boolean;
 
 
-  constructor(public serieService: SerieService , public userService: UserService) {
+  constructor(public serieService: SerieService, public userService: UserService) {
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-   
 
-     // SI le movies$ ne contient pas d'objet movieModel
-     if (this.serieService.series$.getValue().length === 0) {
+
+    // SI le movies$ ne contient pas d'objet movieModel
+    if (this.serieService.series$.getValue().length === 0) {
       this.serieService.getSeriesFromApi;
-     }
+    }
 
     // on s'abonne à notre source de données movies$
-    this.subscriptionSerie=this.serieService.series$.subscribe(
+    this.subscriptionSerie = this.serieService.series$.subscribe(
       (data: SerieModel[]) => {
         this.series = data;
         this.isLoading = false;
-        console.log( " ===> ngoninit subscription serie" );
+        console.log(" ===> ngoninit subscription serie");
       });
     this.serieObs = this.serieService.series$;
     // on s'abonne à la source de données search$
-    this.subscriptionSearch=this.serieService.search$.subscribe(data =>{
+    this.subscriptionSearch = this.serieService.search$.subscribe(data => {
 
-       this.results = data;
-       console.log( " ===> ngoninit subscription search" );
+      this.results = data;
+      console.log(" ===> ngoninit subscription search");
     });
 
-    this.subscriptionUser=this.userService.utilisateur$.subscribe(data => {
+    this.subscriptionUser = this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
-      console.log( " ===> ngoninit subscription utilisateur" )
+      console.log(" ===> ngoninit subscription utilisateur")
     });
   } // Fin ngOnInit()
 
@@ -86,23 +85,22 @@ export class ListSerieComponent implements OnInit {
   searchSeries(searchText: string) {
     if (searchText.trim().length < 3) {
       this.serieService.search$.next([]);
-    }
-    else {
+    } else {
       this.serieService.searchSeriesFromApi(searchText);
     }
   }
 
   ngOnDestroy() {
     this.subscriptionSerie.unsubscribe();
-    console.log( " ===> ngonDestroy unsubscription serie" );
-    
+    console.log(" ===> ngonDestroy unsubscription serie");
+
 
     this.subscriptionSearch.unsubscribe();
-    console.log( " ===> ngonDestroy unsubscription search" );
-    
+    console.log(" ===> ngonDestroy unsubscription search");
+
 
     this.subscriptionUser.unsubscribe();
-      console.log( " ===> ngonDestroy unsubscription user" );
+    console.log(" ===> ngonDestroy unsubscription user");
   }
 
 } // Fin class ListComponent

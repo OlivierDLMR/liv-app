@@ -5,6 +5,7 @@ import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {ListesNavBar, ListeSuivis, Videolist} from '../models/liste.model';
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 // import {SuivisService} from "../Shared/services/suivis.service";
 
@@ -18,6 +19,9 @@ export class ListesnavbarComponent implements OnInit {
   utilisateur: Utilisateur;
   listes: ListesNavBar;
 
+  subscriptionUtilisateur: Subscription;
+  subscriptionListes: Subscription;
+
   // listsuivis: any[];
 
   constructor(public suivisService: SuivisService
@@ -28,13 +32,21 @@ export class ListesnavbarComponent implements OnInit {
 
   ngOnInit(): void {
     // yohohoho on en a besoin pour le isLogged :D
-    this.userService.utilisateur$.subscribe(data => {
+    this.subscriptionUtilisateur = this.userService.utilisateur$.subscribe(
+      data => {
       this.utilisateur = data;
     });
 
-    this.userService.listes$.subscribe(data => {
+
+    this.subscriptionListes = this.userService.listes$.subscribe(
+      data => {
       this.listes = data;
     });
+    console.log(this.utilisateur.user);
+    if (this.userService.listes$.getValue().length === 0) {
+      this.userService.getCompteUtilisateur(this.utilisateur.user);
+      console.log('dans le if');
+    }
   }
 
   onClickList(listeid) {
@@ -61,4 +73,11 @@ export class ListesnavbarComponent implements OnInit {
       this.suivisService.createList(nameList);
     }
   }
+
+  ngOnDestroy() {
+    this.subscriptionUtilisateur.unsubscribe();
+    this.subscriptionListes.unsubscribe();
+  }
+
+
 }
