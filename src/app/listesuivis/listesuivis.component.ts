@@ -33,14 +33,18 @@ export class ListesuivisComponent implements OnInit {
               private route: ActivatedRoute) {
   }
 
-  ngAfterViewChecked(): void {
-
-    this.listeId = this.route.snapshot.params.id;
-    this.listeName = this.route.snapshot.params.name;
-  }
+  // ngAfterViewChecked(): void {
+  //
+  //   this.listeId = this.route.snapshot.params.id;
+  //   this.listeName = this.route.snapshot.params.name;
+  // }
 
   ngOnInit(): void {
+    this.listeId = this.route.snapshot.params.id;
+    this.listeName = this.route.snapshot.params.name;
+    console.log(this.listeId);
     this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+        console.log(data);
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
         // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
@@ -49,6 +53,9 @@ export class ListesuivisComponent implements OnInit {
     );
     console.log(' ==> après subscribe', this.listeSuivis);
 
+    if (this.suivisService.listesuivis$.getValue().id === 0) {
+      this.suivisService.getSuivis(this.listeId);
+    }
   }
 
   printImageSrc(preview: Preview): string {

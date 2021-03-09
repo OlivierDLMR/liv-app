@@ -56,7 +56,7 @@ export class SuivisService {
     noteUser: 0,
     saisonEncours: 0,
     dernierEpisodeVu: 0,
-   
+
   });
 
   public filmRef$ = new BehaviorSubject([]);
@@ -85,6 +85,7 @@ export class SuivisService {
   getSuivis(suiviId: number) {
     this.http.get(this.urlBackEnd + suiviId + '/suivis').subscribe(
       (data: any) => {
+        console.log(data);
         this.listesuivis$.next(data);
         console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
         console.log(' ==> suivi .service.ts - getSuivis(: ' + suiviId + ') ');
@@ -104,11 +105,14 @@ export class SuivisService {
   }
 
   ajoutSuiviFilm(utilisateurId:number, videoListId:number,suivi: SuiviCreation): void {
-    this.http.put(this.urlBackEndSuivi + "/" 
+    this.http.put(this.urlBackEndSuivi + "/"
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(
       (data: any) => {
-        this.suiviCreation$.next(data);
+        console.log('from server after put: ', data);
+        console.log('videoList$: ', this.videoList$.getValue());
+        console.log('listesuivis$: ', this.listesuivis$.getValue());
+        this.listesuivis$.next(data);
       }
     );
   }

@@ -16,7 +16,7 @@
 
 
 <!-- LIST DES FILMS-->
-<div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
+<div  *ngIf="movies.length>0" [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
 
   <!--on peut mettre le movieService en public et non private dans le construteur de component
   dans le HTML, on met un pipe pour dire async
@@ -25,7 +25,7 @@
   -->
   <!--   <div *ngFor="let movie of movieService.movies$ | async" class="col-6">-->
 
-  <div *ngFor="let movie of movieObs | async" class="col-6">
+  <div *ngFor="let movie of movies" class="col-6">
 
 <!--    <div *ngFor="let movie of movies" class="col-6">-->
 

@@ -5,7 +5,7 @@
   <!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
 
   <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
-    <div *ngFor="let suivi of listeSuivis" class="col-4">
+    <div *ngFor="let suivi of listeSuivis.suivis" class="col-4">
         <div  class="card bg-dark text-white">
           <img alt="image de {{ suivi.preview.titre }}"
              [src]="printImageSrc(suivi.preview)">
@@ -24,7 +24,7 @@
                     delete_outline
                 </span>
                 <app-statut  [suivi]="suivi" ></app-statut>
-              
+
 
                 <rating [score]="suivi.noteUser" [origine]="origineRating"></rating>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>

@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { MovieModel } from '../models/movie.model';
-import { MovieService } from '../Shared/services/movie.service';
-import { UserService } from '../Shared/services/user.service';
-import {BehaviorSubject} from 'rxjs';
+import {MovieModel} from '../models/movie.model';
+import {MovieService} from '../Shared/services/movie.service';
+import {UserService} from '../Shared/services/user.service';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {SuivisService} from '../Shared/services/suivis.service';
 import {Utilisateur} from '../models/utilisateur.model';
-
 
 
 @Component({
@@ -18,13 +17,13 @@ export class ListComponent implements OnInit {
   // movies:Array<Movieodel>
   movies: MovieModel[];
   results: MovieModel[];
-  origineRating:string="dbmovie";
+  origineRating: string = "dbmovie";
 
   utilisateur: Utilisateur;
 
-   // là, on définit un observable sur lequel on pourra faire de l'asynchrone et éviter les apples successifs de subscribe
+  // là, on définit un observable sur lequel on pourra faire de l'asynchrone et éviter les apples successifs de subscribe
   movieObs = new BehaviorSubject<Array<MovieModel>>([]);
-
+  subscription: Subscription;
 
   page: number;
   isLoading: boolean;
@@ -40,15 +39,21 @@ export class ListComponent implements OnInit {
     // request à l'API theMovie
     console.log("===> origine :", this.origineRating);
     console.log("===> origine :", this.origineRating);
-    this.movieService.getMoviesFromApi();
+
+    // SI le movies$ ne contient pas d'objet movieModel
+    if (this.movieService.movies$.getValue().length === 0) {
+      this.movieService.getMoviesFromApi();
+    }
+
 
     // on s'abonne à notre source de données movies$
-    this.movieService.movies$.subscribe(
+    this.subscription = this.movieService.movies$.subscribe(
       (data: MovieModel[]) => {
+        console.log('hello')
         this.movies = data;
         this.isLoading = false;
       });
-    this.movieObs = this.movieService.movies$;
+    // this.movieObs = this.movieService.movies$;
     // on s'abonne à la source de données search$
     this.movieService.search$.subscribe(data => this.results = data);
 
@@ -75,12 +80,14 @@ export class ListComponent implements OnInit {
     console.log(searchText);
     if (searchText.trim().length < 3) {
       this.movieService.search$.next([]);
-    }
-    else {
+    } else {
       this.movieService.searchMoviesFromApi(searchText);
     }
   }
 
-  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 
 } // Fin class ListComponent
