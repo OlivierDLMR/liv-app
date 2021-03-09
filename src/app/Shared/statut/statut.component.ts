@@ -29,11 +29,14 @@ export class StatutComponent implements OnInit {
   ];
 
   @Input() suivi: Suivi;
-  @Input()  isUpdatable:boolean;
 
-  constructor(public statutService: StatutService) {
-  }
 
+  // constructor(public statutService: StatutService) {
+  // }
+
+  constructor(public suiviService: SuivisService) {
+
+   }
 
   ngOnInit(): void {
   }
@@ -44,7 +47,8 @@ export class StatutComponent implements OnInit {
 
   changeStatut(selectStatut: Statut): void {
     this.suivi.statut=selectStatut;
-    this.isUpdatable=true;
+    this.suiviService.mettreAJourSuivi(this.suivi);
+
   }
 
   

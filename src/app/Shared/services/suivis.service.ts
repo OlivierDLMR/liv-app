@@ -76,8 +76,7 @@ export class SuivisService {
 
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
-  private urlBackEndAddSuivi: string = environment.BE_API_URL + '/liv/suivis';
-  private urlBackEndAddList: string = environment.BE_API_URL + '/liv/suivis';
+  private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
@@ -95,8 +94,19 @@ export class SuivisService {
 
   }
 
-  ajoutSuiviFilm(suivi: SuiviCreation): void {
-    this.http.put(this.urlBackEndAddSuivi, suivi).subscribe(
+  mettreAJourSuivi(suivi:Suivi){
+    console.log("===> mettreAJourSuivi :", suivi);
+    this.http.post(this.urlBackEndSuivi, suivi).subscribe(
+      (data: any) => {
+        this.suiviCreation$.next(data);
+      }
+    );
+  }
+
+  ajoutSuiviFilm(utilisateurId:number, videoListId:number,suivi: SuiviCreation): void {
+    this.http.put(this.urlBackEndSuivi + "/" 
+      + utilisateurId + "/"
+      + videoListId, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
       }
