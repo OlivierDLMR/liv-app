@@ -56,7 +56,7 @@ export class ListesnavbarComponent implements OnInit {
       /*
       * alerte si le nom de la liste existe dejà pour l'utilisateur
       * */
-      if (this.listes.some(liste => liste.name === nameList)) {
+      if (this.listes.some(liste => liste.name.toLowerCase()  === nameList.toLowerCase() )) {
         alert('La valeur existe!');
       }
       /* si pas d'alerte, on créée une nouvelle liste */
