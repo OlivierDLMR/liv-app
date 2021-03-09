@@ -24,7 +24,6 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('==> loader.interceptor -intercept : je suis passé par là !!!');
     return next.handle(request);
   }
 }

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {cpuUsage} from 'process';
 import {UserService} from 'src/app/Shared/services/user.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-account-form',
@@ -15,7 +16,12 @@ export class AccountFormComponent implements OnInit {
   accountForm: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private alertService: AlertService, private userService: UserService, private router: Router) {
+  subscription: Subscription;
+
+  constructor(private fb: FormBuilder,
+              private alertService: AlertService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,6 +35,7 @@ export class AccountFormComponent implements OnInit {
       // ,acceptTerms: [false, Validators.requiredTrue]
     });
     console.log('==> accountForm.component.ts ngOnInit', this.accountForm)
+
   }
 
   get f() {

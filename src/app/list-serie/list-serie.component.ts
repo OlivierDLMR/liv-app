@@ -31,8 +31,6 @@ export class ListSerieComponent implements OnInit {
 
 
   constructor(public serieService: SerieService , public userService: UserService) {
-    console.log('Je suis le constructor');
-
   }
 
   ngOnInit(): void {
@@ -45,6 +43,7 @@ export class ListSerieComponent implements OnInit {
       (data: SerieModel[]) => {
         this.series = data;
         this.isLoading = false;
+        console.log( " ===> ngoninit list-serie" );
       });
     this.serieObs = this.serieService.series$;
     // on s'abonne à la source de données search$
@@ -73,7 +72,6 @@ export class ListSerieComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   searchSeries(searchText: string) {
-    console.log(searchText);
     if (searchText.trim().length < 3) {
       this.serieService.search$.next([]);
     }

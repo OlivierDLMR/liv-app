@@ -20,8 +20,6 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    console.log('==> api.interceptor - intercept() ');
-    console.log('     request : ', request);
 
     // =================> gestiion de l'url du backend <==================
 

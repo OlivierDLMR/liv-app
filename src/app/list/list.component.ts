@@ -30,15 +30,12 @@ export class ListComponent implements OnInit {
 
 
   constructor(public userService: UserService, public movieService: MovieService) {
-    console.log('Je suis le constructor');
 
   }
 
   ngOnInit(): void {
     this.isLoading = true;
     // request à l'API theMovie
-    console.log("===> origine :", this.origineRating);
-    console.log("===> origine :", this.origineRating);
 
     // SI le movies$ ne contient pas d'objet movieModel
     if (this.movieService.movies$.getValue().length === 0) {
@@ -49,7 +46,6 @@ export class ListComponent implements OnInit {
     // on s'abonne à notre source de données movies$
     this.subscription = this.movieService.movies$.subscribe(
       (data: MovieModel[]) => {
-        console.log('hello')
         this.movies = data;
         this.isLoading = false;
       });
@@ -77,7 +73,6 @@ export class ListComponent implements OnInit {
   }
 
   searchMovies(searchText: string) {
-    console.log(searchText);
     if (searchText.trim().length < 3) {
       this.movieService.search$.next([]);
     } else {

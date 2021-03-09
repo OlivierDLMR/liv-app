@@ -15,9 +15,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   onLoginSubmit(loginForm) {
-    console.log(loginForm.value);
     // this.userService.login(loginForm.value);
-    console.log (" ===> login-form-component.ts - onLoginSubmit");
     this.userService.getCompteUtilisateur(loginForm.value.user);
     this.alertService.show('Vous êtes connecté(e)');
     this.router.navigate(['/']);

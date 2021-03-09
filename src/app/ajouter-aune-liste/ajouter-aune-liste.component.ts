@@ -4,10 +4,11 @@ import {SerieService} from '../Shared/services/serie.service';
 import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, Saison, Statut, SuiviCreation, TypePreview} from '../models/liste.model';
 import {MovieModel} from '../models/movie.model';
-import {SuivisService} from "../Shared/services/suivis.service";
-import {AlertService} from "../Shared/services/alert.service";
-import {Router} from "@angular/router";
-import {SerieModel} from "../models/serie.model";
+import {SuivisService} from '../Shared/services/suivis.service';
+import {AlertService} from '../Shared/services/alert.service';
+import {Router} from '@angular/router';
+import {SerieModel} from '../models/serie.model';
+import {Subscription} from 'rxjs';
 
 interface Liste {
   value: string;
@@ -26,25 +27,30 @@ export class AjouterAUneListeComponent implements OnInit {
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
 
-
+  subscriptionUtilisateur: Subscription;
+  subscriptionListe: Subscription;
 
   @Input() movie: MovieModel;
   @Input() serie: SerieModel;
 
-  constructor(public userService: UserService, public serieService: SerieService, public suiviService: SuivisService, public alertService: AlertService, private router: Router) {
+  constructor(public userService: UserService,
+              public serieService: SerieService,
+              public suiviService: SuivisService,
+              public alertService: AlertService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     // yohohoho on en a besoin pour le isLogged :D
-    this.userService.utilisateur$.subscribe(data => {
+    this.subscriptionUtilisateur = this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
 
-    this.userService.listes$.subscribe(data => {
+    this.subscriptionListe = this.userService.listes$.subscribe(data => {
       this.listes = data;
-      console.log('les listes' + this.listes);
     });
-    console.log(this.movie);
+
+
 
   }
 
@@ -59,7 +65,6 @@ export class AjouterAUneListeComponent implements OnInit {
         0,
         TypePreview.FILM,
         Array<Saison>()    );
-    console.log(this.suiveCreation);
     this.suiviService.ajoutSuiviFilm(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
@@ -78,10 +83,15 @@ export class AjouterAUneListeComponent implements OnInit {
       // this.utilisateur.id,
       // videoListId
       );
-    console.log(this.suiveCreation);
     this.suiviService.ajoutSuiviSerie(this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
+  }
+
+
+  ngOnDestroy() {
+    this.subscriptionUtilisateur.unsubscribe();
+    this.subscriptionListe.unsubscribe();
   }
 
 }

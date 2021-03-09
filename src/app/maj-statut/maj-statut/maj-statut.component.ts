@@ -13,11 +13,7 @@ statutLibelles:any;
   constructor() { }
 
   ngOnInit(): void {
-    console.log ( "===> maj-statut-component : ");
-    console.log ( "     ===>ngOnInit : ");
-    console.log ("           statut", this.statut);
     this.statutLibelles = Object.keys(this.statut).map(k =>this.statut[k] as string);
-    console.log ("          work : " ,this.statutLibelles);
   }
 }
 
