@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../Shared/services/user.service';
 import {SerieService} from '../Shared/services/serie.service';
 import {Utilisateur} from '../models/utilisateur.model';
-import {ListesNavBar, Statut, SuiviCreation, TypePreview} from '../models/liste.model';
+import {ListesNavBar, Saison, Statut, SuiviCreation, TypePreview} from '../models/liste.model';
 import {MovieModel} from '../models/movie.model';
 import {SuivisService} from "../Shared/services/suivis.service";
 import {AlertService} from "../Shared/services/alert.service";
@@ -49,18 +49,18 @@ export class AjouterAUneListeComponent implements OnInit {
   }
 
   ajoutSuiviFilm(videoListId: number, videoListName: string): void {
-    this.suiveCreation = new SuiviCreation(this.movie.id,
-      this.movie.image,
-      0,
-      this.movie.desc,
-      Statut.A_VOIR,
-      this.movie.title,
-      0,
-      TypePreview.FILM,
-      this.utilisateur.id,
-      videoListId);
+    this.suiveCreation = new SuiviCreation(
+        this.movie.id,
+        this.movie.image,
+        0,
+        this.movie.desc,
+        Statut.A_VOIR,
+        this.movie.title,
+        0,
+        TypePreview.FILM,
+        Array<Saison>()    );
     console.log(this.suiveCreation);
-    this.suiviService.ajoutSuiviFilm(this.suiveCreation);
+    this.suiviService.ajoutSuiviFilm(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
@@ -74,8 +74,10 @@ export class AjouterAUneListeComponent implements OnInit {
       this.serie.title,
       0,
       TypePreview.SERIE,
-      this.utilisateur.id,
-      videoListId);
+      Array<Saison>()
+      // this.utilisateur.id,
+      // videoListId
+      );
     console.log(this.suiveCreation);
     this.suiviService.ajoutSuiviSerie(this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);

@@ -34,6 +34,10 @@ export interface Suivi {
   isUpdatable:boolean;
 }
 
+export interface Saison{
+  nombreEpisodes:number;
+}
+
 export class SuiviCreation {
   dbMovieId: number;
   image: string;
@@ -43,12 +47,15 @@ export class SuiviCreation {
   titre: string;
   totalSaison: number;
   typePreview: TypePreview;
-  userId: number;
-  videoListId: number;
+  saisons:Array<Saison>;
+  // userId: number;
+  // videoListId: number;
 
   constructor(dbMovieId: number, image: string, noteUser: number, overview: string,
               status: Statut, titre: string, totalSaison: number,
-              typePreview: TypePreview, userId: number, videoListId: number) {
+              typePreview: TypePreview,saisons:Array<Saison>
+              // userId: number, videoListId: number
+              ) {
     this.dbMovieId = dbMovieId;
     this.image = image;
     this.noteUser = noteUser;
@@ -57,8 +64,9 @@ export class SuiviCreation {
     this.titre = titre;
     this.totalSaison = totalSaison;
     this.typePreview = typePreview;
-    this.userId = userId;
-    this.videoListId = videoListId;
+    this.saisons=saisons;
+    // this.userId = userId;
+    // this.videoListId = videoListId;
   }
 }
 
