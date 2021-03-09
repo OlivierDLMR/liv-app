@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MovieModel} from '../models/movie.model';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {MovieService} from '../Shared/services/movie.service';
 import {UserService} from '../Shared/services/user.service';
 import {SerieModel} from '../models/serie.model';
@@ -21,7 +21,10 @@ export class BoardComponent implements OnInit {
   resultSerie: SerieModel[];
   serieObs = new BehaviorSubject<Array<SerieModel>>([]);
 
-  origineRating:string="dbmovie";
+  origineRating:string='dbmovie';
+
+  subscriptionMovie: Subscription;
+  subscriptionSerie: Subscription;
 
   page: number;
   isLoading: boolean;
@@ -34,33 +37,40 @@ export class BoardComponent implements OnInit {
     // FILMS
     this.isLoading = true;
     // request à l'API theMovie
-    this.movieService.getMoviesFromApi();
+    //this.movieService.getMoviesFromApi();
 
     // on s'abonne à notre source de données movies$
-    this.movieService.movies$.subscribe(
+    this.subscriptionMovie = this.movieService.movies$.subscribe(
       (data: MovieModel[]) => {
         this.movies = data;
         this.isLoading = false;
       });
     this.movieObs = this.movieService.movies$;
-    // on s'abonne à la source de données search$
-    this.movieService.search$.subscribe(data => this.results = data);
+
+
+    if (this.movieService.movies$.getValue().length === 0) {
+      this.movieService.getMoviesFromApi();
+    }
 
 
     // SERIES
     this.isLoading = true;
     // request à l'API theMovie
-    this.serieService.getSeriesFromApi();
+    //this.serieService.getSeriesFromApi();
 
     // on s'abonne à notre source de données movies$
-    this.serieService.series$.subscribe(
+    this.subscriptionSerie = this.serieService.series$.subscribe(
       (data: SerieModel[]) => {
         this.series = data;
         this.isLoading = false;
       });
     this.serieObs = this.serieService.series$;
-    // on s'abonne à la source de données search$
-    this.serieService.search$.subscribe(data => this.resultSerie = data);
+
+    if (this.serieService.series$.getValue().length === 0) {
+      this.serieService.getSeriesFromApi();
+    }
+
+
 
 
   } // Fin ngOnInit()
@@ -97,6 +107,10 @@ export class BoardComponent implements OnInit {
     return this.isLoading ? 0.1 : 1;
   }
 
+  ngOnDestroy() {
+    this.subscriptionMovie.unsubscribe();
+    this.subscriptionSerie.unsubscribe();
+  }
 
 
 }
