@@ -9,7 +9,9 @@
         <div  class="card bg-dark text-white">
           <img alt="image de {{ suivi.preview.titre }}"
              [src]="printImageSrc(suivi.preview)">
-             <div class="card-body serie">
+             <div class="card-body serie"
+              [class.serie]="isSerie(suivi.preview)"
+              [class.film]="!isSerie(suivi.preview)">
              <!-- <div *ngIf="isSerie(suivi.preview)" class="card-body serie"> -->
               <!-- <div *ngIf="!isSerie(suivi.preview)" class="card-body film"> -->
                 <h2> {{ suivi.preview.titre }} </h2>

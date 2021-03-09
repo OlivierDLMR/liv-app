@@ -13,14 +13,11 @@
     transition-duration:.2s;
     height: max-content;
 }
-.card .card-body{
-    background: black;
-    
-}
-.card:hover {
-    transform: scale(1.1);
-    cursor:pointer
-}
+// 
+// .card:hover {
+//     transform: scale(1.1);
+//     cursor:pointer
+// }
 
 .loader {
     position: fixed;
