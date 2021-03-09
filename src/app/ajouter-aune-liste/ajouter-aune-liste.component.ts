@@ -4,10 +4,11 @@ import {SerieService} from '../Shared/services/serie.service';
 import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, Saison, Statut, SuiviCreation, TypePreview} from '../models/liste.model';
 import {MovieModel} from '../models/movie.model';
-import {SuivisService} from "../Shared/services/suivis.service";
-import {AlertService} from "../Shared/services/alert.service";
-import {Router} from "@angular/router";
-import {SerieModel} from "../models/serie.model";
+import {SuivisService} from '../Shared/services/suivis.service';
+import {AlertService} from '../Shared/services/alert.service';
+import {Router} from '@angular/router';
+import {SerieModel} from '../models/serie.model';
+import {Subscription} from 'rxjs';
 
 interface Liste {
   value: string;
@@ -26,12 +27,16 @@ export class AjouterAUneListeComponent implements OnInit {
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
 
-
+  subscription: Subscription;
 
   @Input() movie: MovieModel;
   @Input() serie: SerieModel;
 
-  constructor(public userService: UserService, public serieService: SerieService, public suiviService: SuivisService, public alertService: AlertService, private router: Router) {
+  constructor(public userService: UserService,
+              public serieService: SerieService,
+              public suiviService: SuivisService,
+              public alertService: AlertService,
+              private router: Router) {
   }
 
   ngOnInit(): void {

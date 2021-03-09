@@ -6,7 +6,7 @@ import {Utilisateur} from '../models/utilisateur.model';
 import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import {ActivatedRoute} from '@angular/router';
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
 
 @Component({
