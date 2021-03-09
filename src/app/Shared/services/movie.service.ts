@@ -34,7 +34,6 @@ export class MovieService {
         page: this.currentPage.toString()
       }
     });
-    console.log(params);
 
     this.http
       .get(this.API_URL + '/discover/movie', { params })
@@ -54,7 +53,6 @@ export class MovieService {
       )
       )
       .subscribe(response => {
-        console.log(response);
         //this.movies$.next(response);
         let movies = this.movies$.getValue();
         this.movies$.next([...movies, ...response]);
@@ -76,7 +74,6 @@ export class MovieService {
         query: searchText
       }
     });
-    console.log(params);
 
     this.http
       .get(this.API_URL + '/search/movie', { params })
@@ -96,7 +93,6 @@ export class MovieService {
       )
       )
       .subscribe(response => {
-        console.log(response);
         this.search$.next(response);
       })
   }

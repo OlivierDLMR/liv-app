@@ -47,22 +47,16 @@ export class ListesuivisComponent implements OnInit {
   ngOnInit(): void {
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
-    console.log(this.listeId);
     this.subscription = this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
-        console.log(data);
         this.listeSuivis = data;
-        console.log('on est dans le liste suivis :' + data);
         // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
-        console.log(this.listeSuivis);
 
         // for (let suivi of data) {
         //   let obj = {id: suivi.id, touched: false};
         //   this.isTouched.push(obj)
         // }
-        console.log(this.isTouched);
       }
     );
-    console.log(' ==> après subscribe', this.listeSuivis);
 
     if (this.suivisService.listesuivis$.getValue().id === 0) {
       this.suivisService.getSuivis(this.listeId);

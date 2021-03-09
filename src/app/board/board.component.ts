@@ -27,7 +27,6 @@ export class BoardComponent implements OnInit {
   isLoading: boolean;
 
   constructor(public movieService: MovieService , public serieService: SerieService, public userService: UserService) {
-    console.log('Je suis le constructor du home');
 
   }
 

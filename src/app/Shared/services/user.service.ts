@@ -58,8 +58,6 @@ localStorage.clear();
     this.http.post(this.urlBackEnd, utilisateurObj).subscribe(
       (responseApi: any) => {
         this.utilisateur$.next(responseApi);
-        console.log(' ==> user.service.ts - postCreationComptepostCreationCompte : ');
-        console.log('   ', responseApi);
       });
   }
   // ==> obtenir un utilisateur par son user
@@ -68,17 +66,11 @@ localStorage.clear();
     this.http.get(this.urlBackEnd + '?user=' + user).subscribe(
       (response: any) => {
         this.utilisateur$.next(response);
-        console.log(' ==> user.service.ts - getCompteutilisateur(: ' + user + ')');
-        console.log('     response : ', response);
-        console.log('     utilisateur$ ', this.utilisateur$);
         if (this.isLogged() == false) {
           localStorage.setItem('token', 'temporaire !!');
           this.http.get(this.urlBackEnd + '/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
             (data: any) => {
               this.listes$.next(data);
-              console.log(' ==> listes .service.ts - getListesutilisateur(: ' + this.utilisateur$.getValue().id + ')');
-              console.log('     response : ', response);
-              console.log('     listes ', this.listes$);
             });
         }
       });

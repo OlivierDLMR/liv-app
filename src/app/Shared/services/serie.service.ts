@@ -27,7 +27,6 @@ export class SerieService {
    Load 20 serie from API
   */
   getSeriesFromApi() {
-    console.log("getseriefromapi !!!");
     const params = new HttpParams({
       fromObject: {
         api_key: this.API_KEY,
@@ -56,7 +55,6 @@ export class SerieService {
       )
       )
       .subscribe(response => {
-        console.log(response);
         //this.series$.next(response);
         let series = this.series$.getValue();
         this.series$.next([...series, ...response]);
@@ -78,7 +76,6 @@ export class SerieService {
         query: searchText
       }
     });
-    console.log(params);
 
     this.http
       .get(this.API_URL + '/search/tv', { params })
@@ -99,7 +96,6 @@ export class SerieService {
       )
       )
       .subscribe(response => {
-        console.log(response);
         this.search$.next(response);
       })
   }
