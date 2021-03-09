@@ -16,6 +16,25 @@
   height: 500px;
   position: absolute;
 }
+
+.btnTitre {
+  position: relative;
+  align-content: space-between;
+  font-size: 1rem;
+}
+
+.titreDetail {
+  font-size: 2rem;
+}
+
+.iconeBack {
+  color: white;
+  font-size: 2rem;
+}
+
+
+
+
 .movie-content {
   z-index:1;
   padding: 20px;

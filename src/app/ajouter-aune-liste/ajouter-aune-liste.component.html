@@ -9,7 +9,8 @@
   <mat-select  >
 
     <mat-option *ngFor="let liste of listes"  >
-      <button *ngIf (click)="ajoutSuiviFilm(liste.id, liste.name)" >{{liste.name}} {{utilisateur.id}} {{ movie.title }} </button> <!-- ajoutSuivi()-->
+      <button *ngIf="movie" (click)="ajoutSuiviFilm(liste.id, liste.name)" >{{liste.name}} {{utilisateur.id}} {{ movie.title }} </button>
+      <button *ngIf="serie" (click)="ajoutSuiviSerie(liste.id, liste.name)" >{{liste.name}} {{utilisateur.id}} {{ serie.title }} </button>
     </mat-option>
   </mat-select>
 </mat-form-field>
