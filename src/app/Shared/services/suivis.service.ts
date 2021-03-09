@@ -35,7 +35,7 @@ export class SuivisService {
 
   public listesuivis$ = new BehaviorSubject<ListeSuivis>({
     id: 0,
-    titre: '',
+    name: '',
     dateCreation: this.dateInit,
     dateModification: this.dateInit,
     suivis: [],
@@ -84,7 +84,7 @@ export class SuivisService {
 
   getSuivis(suiviId: number) {
     this.http.get(this.urlBackEnd + suiviId + '/suivis').subscribe(
-      (data: any) => {
+      (data: ListeSuivis) => {
         console.log(data);
         this.listesuivis$.next(data);
         console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
@@ -95,7 +95,7 @@ export class SuivisService {
 
   }
 
-  mettreAJourSuivi(suivi:Suivi){
+  mettreAJourSuivi(suivi: Suivi) {
     console.log("===> mettreAJourSuivi :", suivi);
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
       (data: any) => {
@@ -104,7 +104,7 @@ export class SuivisService {
     );
   }
 
-  ajoutSuiviFilm(utilisateurId:number, videoListId:number,suivi: SuiviCreation): void {
+  ajoutSuiviFilm(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
     this.http.put(this.urlBackEndSuivi + "/"
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(

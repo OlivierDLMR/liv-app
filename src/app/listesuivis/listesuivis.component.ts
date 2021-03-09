@@ -48,7 +48,7 @@ export class ListesuivisComponent implements OnInit {
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
     console.log(this.listeId);
-    this.subscription = this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+    this.subscription = this.suivisService.listesuivis$.subscribe((data: any) => {
         console.log(data);
         this.listeSuivis = data;
         console.log('on est dans le liste suivis :' + data);
@@ -59,12 +59,12 @@ export class ListesuivisComponent implements OnInit {
         //   let obj = {id: suivi.id, touched: false};
         //   this.isTouched.push(obj)
         // }
-        console.log(this.isTouched);
+        // console.log(this.isTouched);
       }
     );
-    console.log(' ==> après subscribe', this.listeSuivis);
 
     if (this.suivisService.listesuivis$.getValue().id === 0) {
+      // console.log(this.suivisService.listesuivis$.getValue().id);
       this.suivisService.getSuivis(this.listeId);
     }
   }
