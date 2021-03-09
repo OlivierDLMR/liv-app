@@ -34,12 +34,10 @@ export class ListesnavbarComponent implements OnInit {
 
     this.userService.listes$.subscribe(data => {
       this.listes = data;
-      console.log('les listes' + this.listes);
     });
   }
 
   onClickList(listeid) {
-    console.log('dans le onclick');
     this.suivisService.getSuivis(listeid);
   }
 

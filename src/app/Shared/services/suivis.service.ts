@@ -96,7 +96,6 @@ export class SuivisService {
   }
 
   mettreAJourSuivi(suivi:Suivi){
-    console.log("===> mettreAJourSuivi :", suivi);
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
@@ -109,9 +108,6 @@ export class SuivisService {
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(
       (data: any) => {
-        console.log('from server after put: ', data);
-        console.log('videoList$: ', this.videoList$.getValue());
-        console.log('listesuivis$: ', this.listesuivis$.getValue());
         this.listesuivis$.next(data);
       }
     );
@@ -131,7 +127,6 @@ export class SuivisService {
     //     this.suiviCreation$.next(data);
     //   }
     // );
-    console.log('createList');
   }
 
 

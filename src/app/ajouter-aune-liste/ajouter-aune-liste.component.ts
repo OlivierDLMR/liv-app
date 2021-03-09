@@ -42,9 +42,7 @@ export class AjouterAUneListeComponent implements OnInit {
 
     this.userService.listes$.subscribe(data => {
       this.listes = data;
-      console.log('les listes' + this.listes);
     });
-    console.log(this.movie);
 
   }
 
@@ -59,7 +57,6 @@ export class AjouterAUneListeComponent implements OnInit {
         0,
         TypePreview.FILM,
         Array<Saison>()    );
-    console.log(this.suiveCreation);
     this.suiviService.ajoutSuiviFilm(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
@@ -78,7 +75,6 @@ export class AjouterAUneListeComponent implements OnInit {
       // this.utilisateur.id,
       // videoListId
       );
-    console.log(this.suiveCreation);
     this.suiviService.ajoutSuiviSerie(this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
