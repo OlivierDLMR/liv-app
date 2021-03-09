@@ -18,7 +18,7 @@ export class Videolist {
 
 export interface ListeSuivis {
   id: number;
-  titre: string;
+  name: string;
   dateCreation: Date;
   dateModification: Date;
   suivis: Array<Suivi>;

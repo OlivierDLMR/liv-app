@@ -35,7 +35,7 @@ export class SuivisService {
 
   public listesuivis$ = new BehaviorSubject<ListeSuivis>({
     id: 0,
-    titre: '',
+    name: '',
     dateCreation: this.dateInit,
     dateModification: this.dateInit,
     suivis: [],

@@ -27,7 +27,8 @@ export class AjouterAUneListeComponent implements OnInit {
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
 
-  subscription: Subscription;
+  subscriptionUtilisateur: Subscription;
+  subscriptionListe: Subscription;
 
   @Input() movie: MovieModel;
   @Input() serie: SerieModel;
@@ -41,13 +42,15 @@ export class AjouterAUneListeComponent implements OnInit {
 
   ngOnInit(): void {
     // yohohoho on en a besoin pour le isLogged :D
-    this.userService.utilisateur$.subscribe(data => {
+    this.subscriptionUtilisateur = this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
     });
 
-    this.userService.listes$.subscribe(data => {
+    this.subscriptionListe = this.userService.listes$.subscribe(data => {
       this.listes = data;
     });
+
+
 
   }
 
@@ -83,6 +86,12 @@ export class AjouterAUneListeComponent implements OnInit {
     this.suiviService.ajoutSuiviSerie(this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
+  }
+
+
+  ngOnDestroy() {
+    this.subscriptionUtilisateur.unsubscribe();
+    this.subscriptionListe.unsubscribe();
   }
 
 }
