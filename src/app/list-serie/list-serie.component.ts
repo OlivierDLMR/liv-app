@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SerieModel } from '../models/serie.model';
 import { SerieService } from '../Shared/services/serie.service';
 import { UserService } from '../Shared/services/user.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {Utilisateur} from '../models/utilisateur.model';
 
 
@@ -16,6 +16,9 @@ import {Utilisateur} from '../models/utilisateur.model';
 })
 export class ListSerieComponent implements OnInit {
 
+  subscriptionSerie:Subscription;
+  subscriptionUser:Subscription;
+  subscriptionSearch:Subscription;
   series: SerieModel[];
   results: SerieModel[];
   origineRating:string="dbmovie";
@@ -35,22 +38,31 @@ export class ListSerieComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    // request à l'API theMovie
-    this.serieService.getSeriesFromApi();
+   
+
+     // SI le movies$ ne contient pas d'objet movieModel
+     if (this.serieService.series$.getValue().length === 0) {
+      this.serieService.getSeriesFromApi;
+     }
 
     // on s'abonne à notre source de données movies$
-    this.serieService.series$.subscribe(
+    this.subscriptionSerie=this.serieService.series$.subscribe(
       (data: SerieModel[]) => {
         this.series = data;
         this.isLoading = false;
-        console.log( " ===> ngoninit list-serie" );
+        console.log( " ===> ngoninit subscription serie" );
       });
     this.serieObs = this.serieService.series$;
     // on s'abonne à la source de données search$
-    this.serieService.search$.subscribe(data => this.results = data);
+    this.subscriptionSearch=this.serieService.search$.subscribe(data =>{
 
-    this.userService.utilisateur$.subscribe(data => {
+       this.results = data;
+       console.log( " ===> ngoninit subscription search" );
+    });
+
+    this.subscriptionUser=this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
+      console.log( " ===> ngoninit subscription utilisateur" )
     });
   } // Fin ngOnInit()
 
@@ -80,6 +92,17 @@ export class ListSerieComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.subscriptionSerie.unsubscribe();
+    console.log( " ===> ngonDestroy unsubscription serie" );
+    
 
+    this.subscriptionSearch.unsubscribe();
+    console.log( " ===> ngonDestroy unsubscription search" );
+    
+
+    this.subscriptionUser.unsubscribe();
+      console.log( " ===> ngonDestroy unsubscription user" );
+  }
 
 } // Fin class ListComponent

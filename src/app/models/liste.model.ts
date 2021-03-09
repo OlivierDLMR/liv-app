@@ -7,6 +7,7 @@ export class Videolist {
   name: string;
   dateCreation: Date;
   dateModif: Date;
+
   constructor(id: number, name: string, dateCreation: Date, dateModif: Date) {
     this.id = id;
     this.name = name;
@@ -16,12 +17,20 @@ export class Videolist {
 }
 
 
-export interface ListeSuivis {
+export class ListeSuivis {
   id: number;
   name: string;
   dateCreation: Date;
   dateModification: Date;
   suivis: Array<Suivi>;
+
+  constructor(id: number, name: string, dateCreation: Date, dateModif: Date, suivis: Array<Suivi>) {
+    this.id = id;
+    this.name = name;
+    this.dateCreation = dateCreation;
+    this.dateModification = dateModif;
+    this.suivis = suivis;
+  }
 }
 
 export interface Suivi {
@@ -31,11 +40,11 @@ export interface Suivi {
   noteUser: number;
   saisonEnCours: number;
   dernierEpisodeVu: number;
-  isUpdatable:boolean;
+  // isUpdatable: boolean;
 }
 
-export interface Saison{
-  nombreEpisodes:number;
+export interface Saison {
+  nombreEpisodes: number;
 }
 
 export class SuiviCreation {
@@ -47,15 +56,15 @@ export class SuiviCreation {
   titre: string;
   totalSaison: number;
   typePreview: TypePreview;
-  saisons:Array<Saison>;
+  saisons: Array<Saison>;
   // userId: number;
   // videoListId: number;
 
   constructor(dbMovieId: number, image: string, noteUser: number, overview: string,
               status: Statut, titre: string, totalSaison: number,
-              typePreview: TypePreview,saisons:Array<Saison>
+              typePreview: TypePreview, saisons: Array<Saison>
               // userId: number, videoListId: number
-              ) {
+  ) {
     this.dbMovieId = dbMovieId;
     this.image = image;
     this.noteUser = noteUser;
@@ -64,7 +73,7 @@ export class SuiviCreation {
     this.titre = titre;
     this.totalSaison = totalSaison;
     this.typePreview = typePreview;
-    this.saisons=saisons;
+    this.saisons = saisons;
     // this.userId = userId;
     // this.videoListId = videoListId;
   }
