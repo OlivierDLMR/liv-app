@@ -18,9 +18,6 @@ export class RatingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(" ===========> score   : " , this.score);
-    console.log(" ===========> origine : " , this.origine);
-    console.log(this.score);
     let roundedScore = Math.round(this.score);
     this.calculeNbStars(roundedScore);
     this.stars = new Array(roundedScore).fill(1);
@@ -28,13 +25,11 @@ export class RatingComponent implements OnInit {
     this.noStars= new Array(5-this.stars.length).fill(1);
   }
   plus(){
-    console.log("==========> plus")
     if (this.stars.length < 5){
       this.calculeNbStars(this.stars.length + 1);
     }
   }
   moins(){
-    console.log("==========>moins")
     if (this.stars.length > 0){
       this.calculeNbStars(this.stars.length - 1);
     }
@@ -47,7 +42,7 @@ export class RatingComponent implements OnInit {
     this.noStars= new Array(5-this.stars.length).fill(1);
   }
 
-  afficheButton():boolean {
+  isMaListe():boolean {
     if (this.origine == "maListe"){
       return true;
     }

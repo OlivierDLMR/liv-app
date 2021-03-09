@@ -49,7 +49,8 @@ export class SerieService {
               serie.backdrop_path,
               serie.first_air_date,
               serie.vote_average,
-              serie.key
+              serie.key,
+              serie.seasons
             )
           )
       )
@@ -91,7 +92,8 @@ export class SerieService {
               serie.backdrop_path,
               serie.first_air_date,
               serie.vote_average,
-              serie.key
+              serie.key,
+              serie.seasons
             )
           )
       )
