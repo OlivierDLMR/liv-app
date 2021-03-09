@@ -49,6 +49,7 @@ export class ListesuivisComponent implements OnInit {
     this.listeName = this.route.snapshot.params.name;
     this.subscription = this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
+        // console.log(this.listeSuivis);
         // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
 
         // for (let suivi of data) {
