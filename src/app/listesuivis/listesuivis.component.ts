@@ -7,6 +7,7 @@ import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '..
 import {SuivisService} from '../Shared/services/suivis.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import { VideolistService } from '../Shared/services/videolist.service';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class ListesuivisComponent implements OnInit {
 
 
   constructor(public suivisService: SuivisService,
+    public videoListService: VideolistService,
               public userService: UserService,
               public loaderService: LoaderService,
               private route: ActivatedRoute) {
@@ -47,22 +49,16 @@ export class ListesuivisComponent implements OnInit {
   ngOnInit(): void {
     this.listeId = this.route.snapshot.params.id;
     this.listeName = this.route.snapshot.params.name;
-    this.subscription = this.suivisService.listesuivis$.subscribe((data: ListeSuivis) => {
+    this.subscription = this.videoListService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
-        // console.log(this.listeSuivis);
-        // this.listeSuivis.suivis.every(elem => elem.isUpdatable = false);
-
-        // for (let suivi of data) {
-        //   let obj = {id: suivi.id, touched: false};
-        //   this.isTouched.push(obj)
-        // }
-        // console.log( this.listeSuivis );
       }
 
     );
-
-    if (this.suivisService.listesuivis$.getValue().id === 0) {
-      this.suivisService.getSuivis(this.listeId);
+console.log(  "this.videoListService.listesuivis$.getValue().id",this.videoListService.listesuivis$.getValue().id);
+console.log( "this.liste.id : " , this.listeSuivis.id)
+    if (this.videoListService.listesuivis$.getValue().id === 0
+      ||this.videoListService.listesuivis$.getValue().id !=this.listeId ) {
+      this.videoListService.getSuivis(this.listeId);
     }
   }
 

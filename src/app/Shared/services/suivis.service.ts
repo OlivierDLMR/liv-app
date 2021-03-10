@@ -12,34 +12,12 @@ import {ListeSuivis, Statut, Suivi, SuiviCreation, TypePreview} from '../../mode
 })
 export class SuivisService {
 
+ 
+  private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
+
   private dateInit = new Date();
 
-  // public utilisateur$ = new BehaviorSubject<Utilisateur>({
-  //   id: 0,
-  //   user: '',
-  //   password: '',
-  //   email: '',
-  //   firstname: '',
-  //   lastname: ''
-  // });
 
-  // public listes$ = new BehaviorSubject([]);
-  public videoList$ = new BehaviorSubject([
-    {
-      id: 0,
-      name: '',
-      dateCreation: this.dateInit,
-      dateModification: this.dateInit
-    }
-  ]);
-
-  public listesuivis$ = new BehaviorSubject<ListeSuivis>({
-    id: 0,
-    name: '',
-    dateCreation: this.dateInit,
-    dateModification: this.dateInit,
-    suivis: [],
-  });
 
   public preview$ = new BehaviorSubject({
     id: 0,
@@ -59,8 +37,8 @@ export class SuivisService {
 
   });
 
-  public filmRef$ = new BehaviorSubject([]);
-  public serieRef$ = new BehaviorSubject([]);
+  // public filmRef$ = new BehaviorSubject([]);
+  // public serieRef$ = new BehaviorSubject([]);
   public suiviCreation$ = new BehaviorSubject({
     dbMovieId: '',
     image: '',
@@ -75,25 +53,13 @@ export class SuivisService {
   });
 
 
-  private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
-  private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
+  
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
   }
 
-  getSuivis(suiviId: number) {
-    this.http.get(this.urlBackEnd + suiviId + '/suivis').subscribe(
-      (data: ListeSuivis) => {
-        // console.log(data);
-        this.listesuivis$.next(data);
-        // console.log(' ==> suivi .service.ts - getSuivis(: ' + this.utilisateur$.getValue().id + ')');
-        // console.log(' ==> suivi .service.ts - getSuivis(: ' + suiviId + ') ');
-        // console.log('     response : ', data);
-        // console.log('     suivis ', this.listesuivis$);
-      });
-
-  }
+  
 
   mettreAJourSuivi(suivi: Suivi) {
     // console.log("===> mettreAJourSuivi :", suivi);
@@ -123,7 +89,7 @@ export class SuivisService {
         // console.log('from server after put: ', data);
         // console.log('videoList$: ', this.videoList$.getValue());
         // console.log('listesuivis$: ', this.listesuivis$.getValue());
-        this.listesuivis$.next(data);
+        // this.listesuivis$.next(data);
       }
     );
   }

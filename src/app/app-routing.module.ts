@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
   {path: 'createAccount', component: AccountFormComponent},
   {path: 'listesNavBar', component: ListesnavbarComponent},
-  {path: 'listesuivis/:id/:name', component: ListesuivisComponent},
+  {path: 'listesuivis/:id', component: ListesuivisComponent},
   {path: 'suivi', component: SuiviComponent},
   {path : 'majSuivi', component: MajSuiviComponent},
   {path: 'statutsuivi', component : StatutComponent}

@@ -50,7 +50,13 @@ export class ListesnavbarComponent implements OnInit {
   }
 
   onClickList(listeid) {
-    this.suivisService.getSuivis(listeid);
+    
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+  }
+  this.router.onSameUrlNavigation = 'reload';
+
+    this.router.navigate(['/listesuivis', listeid]);
   }
 
   /**
