@@ -1,4 +1,3 @@
-
 // liste des objets echangés avec le back hors moviedb
 
 export interface ListesNavBar extends Array<Videolist> {
@@ -46,8 +45,12 @@ export interface Suivi {
   // isUpdatable: boolean;
 }
 
-export interface Saison {
+export class Saison {
   nombreEpisodes: number;
+
+  constructor(episode_count: number) {
+    this.nombreEpisodes = episode_count;
+  }
 }
 
 export class SuiviCreation {

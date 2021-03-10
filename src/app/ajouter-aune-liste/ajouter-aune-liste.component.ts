@@ -26,6 +26,7 @@ export class AjouterAUneListeComponent implements OnInit {
   listes: ListesNavBar;
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
+  saisons: Saison[];
 
   subscriptionUtilisateur: Subscription;
   subscriptionListe: Subscription;
@@ -51,26 +52,32 @@ export class AjouterAUneListeComponent implements OnInit {
     });
 
 
-
   }
 
   ajoutSuiviFilm(videoListId: number, videoListName: string): void {
     this.suiveCreation = new SuiviCreation(
-        this.movie.id,
-        this.movie.image,
-        0,
-        this.movie.desc,
-        Statut.A_VOIR,
-        this.movie.title,
-        0,
-        TypePreview.FILM,
-        Array<Saison>()    );
+      this.movie.id,
+      this.movie.image,
+      0,
+      this.movie.desc,
+      Statut.A_VOIR,
+      this.movie.title,
+      0,
+      TypePreview.FILM,
+      Array<Saison>());
     this.suiviService.ajoutSuiviFilm(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
 
   ajoutSuiviSerie(videoListId: number, videoListName: string): void {
+    // for (const season in this.serie.seasons) {
+    //   const saison = Saison(season.episode_count);
+    //   this.saisons.push(saison);
+    // }
+    // ;
+
+    // this.saisons = this.serie.seasons.map(season => saison(season.episode_count));
     // tableau de saison
     this.suiveCreation = new SuiviCreation(this.serie.id,
       this.serie.image,
@@ -80,10 +87,11 @@ export class AjouterAUneListeComponent implements OnInit {
       this.serie.title,
       0,
       TypePreview.SERIE,
-      this.serie.seasons.map(season => saison(season.episode_count))// mettre dans le constructeur list saison
+      this.saisons,
+     // this.serie.seasons.map(season => saison(season.episode_count))// mettre dans le constructeur list saison
       // this.utilisateur.id,
       // videoListId
-      );
+    );
     this.suiviService.ajoutSuiviSerie(this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);

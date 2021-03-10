@@ -56,9 +56,9 @@ export class ListesuivisComponent implements OnInit {
         //   let obj = {id: suivi.id, touched: false};
         //   this.isTouched.push(obj)
         // }
-        console.log( this.listeSuivis )
+        // console.log( this.listeSuivis );
       }
-      
+
     );
 
     if (this.suivisService.listesuivis$.getValue().id === 0) {
