@@ -11,9 +11,10 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class VideolistService {
-  userService:UserService;
+
+
   private urlBackEnd: string = environment.BE_API_URL + '/liv/videolists/';
-  constructor(private http: HttpClient, private router: Router,) { }
+  constructor(private http: HttpClient, private router: Router,private userService:UserService) { }
 
   private dateInit = new Date();
   private videolist:Videolist;
@@ -44,11 +45,17 @@ export class VideolistService {
     console.log("===> utilisateurId : " ,utilisateur);
 
     this.http.put(this.urlBackEnd + utilisateur.id, this.videolist).subscribe(
-      (data: any) => {
-        console.log("retour creation liste : ", data);
-       // this.suiviCreation$.next(data);
-      }
-    );
-    console.log('createList');
-  }
+      (responseApi: Array<Videolist>) => {
+        
+        console.log("retour creation liste :  ", responseApi);
+        
+        this.userService.mettreAjourListes(responseApi);
+          //   this.suiviCreation$.next(data);
+        })
+        console.log('createList');
+    }
+    
+    
+  
 }
+

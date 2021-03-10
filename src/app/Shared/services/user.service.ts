@@ -70,9 +70,15 @@ localStorage.clear();
           localStorage.setItem('token', 'temporaire !!');
           this.http.get(this.urlBackEnd + '/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
             (data: any) => {
-              this.listes$.next(data);
+              // this.listes$.next(data);
+              this.mettreAjourListes(data);
             });
         }
       });
+  }
+
+  mettreAjourListes(data){
+    console.log(" Mettre à jour listes : ",data);
+    this.listes$.next(data)
   }
 }
