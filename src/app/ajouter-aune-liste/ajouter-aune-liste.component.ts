@@ -7,7 +7,7 @@ import {MovieModel} from '../models/movie.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import {AlertService} from '../Shared/services/alert.service';
 import {Router} from '@angular/router';
-import {SerieModel} from '../models/serie.model';
+import {Season, SerieModel} from '../models/serie.model';
 import {Subscription} from 'rxjs';
 
 interface Liste {
@@ -71,6 +71,7 @@ export class AjouterAUneListeComponent implements OnInit {
   }
 
   ajoutSuiviSerie(videoListId: number, videoListName: string): void {
+    // tableau de saison
     this.suiveCreation = new SuiviCreation(this.serie.id,
       this.serie.image,
       0,
@@ -79,7 +80,7 @@ export class AjouterAUneListeComponent implements OnInit {
       this.serie.title,
       0,
       TypePreview.SERIE,
-      Array<Saison>()
+      this.serie.seasons.map(season => saison(season.episode_count))// mettre dans le constructeur list saison
       // this.utilisateur.id,
       // videoListId
       );

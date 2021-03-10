@@ -1,3 +1,6 @@
+
+// liste des objets echangés avec le back hors moviedb
+
 export interface ListesNavBar extends Array<Videolist> {
 
 }
