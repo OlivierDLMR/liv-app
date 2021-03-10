@@ -4,8 +4,9 @@ import {BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
-import {Saison, Suivi, SuiviCreation} from '../../models/liste.model';
+import {ListeSuivis, Saison, Suivi, SuiviCreation} from '../../models/liste.model';
 import {SerieService} from './serie.service';
+import { VideolistService } from './videolist.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,11 @@ export class SuivisService {
   private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
   private dateInit = new Date();
 
-  constructor(private http: HttpClient, private router: Router, private alertService: AlertService, public serieService: SerieService) {
+  constructor(private http: HttpClient, 
+              private router: Router, 
+              private alertService: AlertService, 
+              private videolistService:VideolistService,
+              public serieService: SerieService) {
 
   }
 
@@ -58,7 +63,8 @@ export class SuivisService {
     this.http.put(this.urlBackEndSuivi + '/'
       + utilisateurId + '/'
       + videoListId, suivi).subscribe(
-      (data: any) => {
+      (data: ListeSuivis) => {
+        this.videolistService.mettreAjourListeSuiviBehavior(data)
       }
     );
   }
@@ -78,7 +84,8 @@ export class SuivisService {
         this.http.put(this.urlBackEndSuivi + '/'
           + utilisateurId + '/'
           + videoListId, suivi).subscribe(
-          (result: any) => {
+          (data: ListeSuivis) => {
+            this.videolistService.mettreAjourListeSuiviBehavior(data)
           }
         );
       });

@@ -33,11 +33,14 @@ export class VideolistService {
   getSuivis(listeId: number) {
     this.http.get(this.urlBackEnd + listeId + '/suivis').subscribe(
       (data: ListeSuivis) => {
-        this.listesuivis$.next(data);
+        this.mettreAjourListeSuiviBehavior(data)
       });
 
   }
-
+  mettreAjourListeSuiviBehavior(data:ListeSuivis){
+    this.listesuivis$.next(data);
+  }
+  
   createList(utilisateur:Utilisateur,name: string): void {
     this.videolist=new Videolist(0,name,this.dateInit,this.dateInit);
     console.log("===> " ,this.videolist);

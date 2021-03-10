@@ -93,7 +93,7 @@ export class AjouterAUneListeComponent implements OnInit {
     );
     this.suiviService.ajoutSuiviSerie(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
-    this.router.navigate(['/listesuivis', videoListId, videoListName]);
+    this.router.navigate(['/listesuivis', videoListId]);
   }
 
 
