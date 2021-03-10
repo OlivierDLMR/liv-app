@@ -73,20 +73,10 @@ export class AjouterAUneListeComponent implements OnInit {
 
   ajoutSuiviSerie(videoListId: number, videoListName: string): void {
 
-    // on récupère détail série
-
-    this.serieService
-      .getSerieSeasons(this.serie.id)
-      .subscribe((data: any) => {
-        // this.urlYTSerie =
-        //   this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + data.results[0].key);
-        console.log(data);
-      });
-
-    // tableau de saison
 
 
     // this.serie.seasons.forEach(season => this.saisons.push(new Saison (season.episode_count)));
+    console.log(this.saisons);
 
     this.suiveCreation = new SuiviCreation(this.serie.id,
       this.serie.image,
@@ -101,7 +91,7 @@ export class AjouterAUneListeComponent implements OnInit {
       // this.utilisateur.id,
       // videoListId
     );
-    this.suiviService.ajoutSuivi(this.utilisateur.id, videoListId, this.suiveCreation);
+    this.suiviService.ajoutSuiviSerie(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
