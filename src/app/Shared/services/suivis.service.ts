@@ -4,8 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
-import {Utilisateur} from '../../models/utilisateur.model';
-import {ListeSuivis, Statut, Suivi, SuiviCreation, TypePreview} from '../../models/liste.model';
+import {Suivi, SuiviCreation} from '../../models/liste.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,26 +18,6 @@ export class SuivisService {
 
 
 
-  public preview$ = new BehaviorSubject({
-    id: 0,
-    idMovieDB: '',
-    titre: '',
-    image: '',
-    dateCreation: this.dateInit,
-    overview: '',
-    typePreview: 'FILM',
-  });
-  public suivi$ = new BehaviorSubject({
-    preview: this.preview$,
-    statut: 'EN_COURS',
-    noteUser: 0,
-    saisonEncours: 0,
-    dernierEpisodeVu: 0,
-
-  });
-
-  // public filmRef$ = new BehaviorSubject([]);
-  // public serieRef$ = new BehaviorSubject([]);
   public suiviCreation$ = new BehaviorSubject({
     dbMovieId: '',
     image: '',
@@ -62,7 +41,6 @@ export class SuivisService {
   
 
   mettreAJourSuivi(suivi: Suivi) {
-    // console.log("===> mettreAJourSuivi :", suivi);
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
@@ -86,10 +64,6 @@ export class SuivisService {
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(
       (data: any) => {
-        // console.log('from server after put: ', data);
-        // console.log('videoList$: ', this.videoList$.getValue());
-        // console.log('listesuivis$: ', this.listesuivis$.getValue());
-        // this.listesuivis$.next(data);
       }
     );
   }
@@ -102,14 +76,7 @@ export class SuivisService {
     // );
   }
 
-  createList(name: string): void {
-    // this.http.post(this.urlBackEndAddList, videoList, this.utilisateur$.getValue().id).subscribe(
-    //   (data: any) => {
-    //     this.suiviCreation$.next(data);
-    //   }
-    // );
-    console.log('createList');
-  }
+ 
 
 
 }

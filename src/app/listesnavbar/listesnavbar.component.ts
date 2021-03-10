@@ -6,6 +6,7 @@ import {LoaderService} from '../Shared/services/loader.service';
 import {ListesNavBar, ListeSuivis, Videolist} from '../models/liste.model';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import { VideolistService } from '../Shared/services/videolist.service';
 
 // import {SuivisService} from "../Shared/services/suivis.service";
 
@@ -24,7 +25,7 @@ export class ListesnavbarComponent implements OnInit {
 
   // listsuivis: any[];
 
-  constructor(public suivisService: SuivisService
+  constructor(public videolistService:VideolistService
     , public userService: UserService
     , public loaderService: LoaderService
     , private router: Router) {
@@ -76,7 +77,7 @@ export class ListesnavbarComponent implements OnInit {
         alert('La valeur existe!');
       }
       /* si pas d'alerte, on créée une nouvelle liste */
-      this.suivisService.createList(nameList);
+      this.videolistService.createList(this.utilisateur.id,nameList);
     }
   }
 
