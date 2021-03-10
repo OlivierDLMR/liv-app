@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Suivi } from 'src/app/models/liste.model';
+import { isThisTypeNode } from 'typescript';
+import { SuivisService } from '../../services/suivis.service';
 
 @Component({
   selector: 'rating', // on peut le changer, par défaut il il ajoute app-
@@ -7,17 +10,27 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class RatingComponent implements OnInit {
 
-  @Input() score;
+  @Input() dbMovieScore;
+  @Input() suivi:Suivi;
   @Input() origine;
  
+  score:number;
   stars: Array<number>;
   noStars: Array<number>;
 
-  constructor() {
+  constructor(public suiviService: SuivisService) {
 
   }
 
   ngOnInit(): void {
+    
+
+    if (this.isMaListe()){
+      this.score=this.suivi.noteUser;
+    }else{
+      this.score=this.dbMovieScore;
+    }
+
     let roundedScore = Math.round(this.score);
     this.calculeNbStars(roundedScore);
     this.stars = new Array(roundedScore).fill(1);
@@ -27,6 +40,7 @@ export class RatingComponent implements OnInit {
   plus(){
     if (this.stars.length < 5){
       this.calculeNbStars(this.stars.length + 1);
+      
     }
   }
   moins(){
@@ -48,6 +62,17 @@ export class RatingComponent implements OnInit {
     }
     return false;
   }
+  ngOnDestroy(){
 
+    // console.log("ondestroy", this.score, this.suivi.noteUser);
+    console.log(this.isMaListe());
+    if (this.isMaListe()){ 
+        if (this.stars.length!= this.suivi.noteUser){
+          this.suivi.noteUser=this.stars.length;
+          this.suiviService.mettreAJourSuivi(this.suivi);
+        }
+      }
+
+  } 
 }
 
