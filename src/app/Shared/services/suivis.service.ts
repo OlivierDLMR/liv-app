@@ -13,7 +13,7 @@ import {SerieService} from './serie.service';
 export class SuivisService {
 
 
-  saisons: Saison[];
+
   public suiviCreation$ = new BehaviorSubject({
     dbMovieId: '',
     image: '',
@@ -64,15 +64,16 @@ export class SuivisService {
   }
 
   ajoutSuiviSerie(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
+    let saisons = new Array<Saison>();
     this.serieService
       .getSerieSeasons(suivi.dbMovieId)
       .subscribe((data: any) => {
         console.log(data);
         // pour chaque element du tableau data.seasons creation d'une nouvelle occurence dans this.saisons
         // this.saisons est composé d'élément saison que je construis avec le nb d'épisodes d'une occurence de data.seasons
-        data.seasons.forEach(toto => this.saisons.push(new Saison(toto.episode_count)));
-        console.log(this.saisons);
-        suivi.saisons = this.saisons;
+        data.seasons.forEach(toto => saisons.push(new Saison(toto.episode_count)));
+        console.log(saisons);
+        suivi.saisons = saisons;
         console.log(suivi);
         this.http.put(this.urlBackEndSuivi + '/'
           + utilisateurId + '/'
