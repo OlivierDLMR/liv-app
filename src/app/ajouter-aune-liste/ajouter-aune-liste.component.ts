@@ -71,14 +71,13 @@ export class AjouterAUneListeComponent implements OnInit {
   }
 
   ajoutSuiviSerie(videoListId: number, videoListName: string): void {
-    // for (const season in this.serie.seasons) {
-    //   const saison = Saison(season.episode_count);
-    //   this.saisons.push(saison);
-    // }
-    // ;
 
-    // this.saisons = this.serie.seasons.map(season => saison(season.episode_count));
+
     // tableau de saison
+
+
+    this.serie.seasons.forEach(season => this.saisons.push(new Saison (season.episode_count)));
+
     this.suiveCreation = new SuiviCreation(this.serie.id,
       this.serie.image,
       0,
