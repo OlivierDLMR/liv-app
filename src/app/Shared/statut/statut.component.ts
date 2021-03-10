@@ -17,7 +17,7 @@ interface Choice {
 
 export class StatutComponent implements OnInit {
 
-
+  statutSaved:Statut;
 
   statut = Statut;
   
@@ -39,6 +39,7 @@ export class StatutComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.statutSaved=this.suivi.statut;
   }
 
   getStatut(typeStatut: Statut): string {
@@ -46,11 +47,18 @@ export class StatutComponent implements OnInit {
   }
 
   changeStatut(selectStatut: Statut): void {
-    this.suivi.statut=selectStatut;
-    this.suiviService.mettreAJourSuivi(this.suivi);
+    this.statutSaved=selectStatut;
 
   }
 
-  
+  ngOnDestroy(){
+
+    // console.log("ondestroy", this.score, this.suivi.noteUser);
+    if (this.statutSaved!= this.suivi.statut){
+          this.suivi.statut=this.statutSaved;
+          this.suiviService.mettreAJourSuivi(this.suivi);
+      }
+
+  } 
 
 }

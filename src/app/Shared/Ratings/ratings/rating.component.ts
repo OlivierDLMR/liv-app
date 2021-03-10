@@ -65,7 +65,6 @@ export class RatingComponent implements OnInit {
   ngOnDestroy(){
 
     // console.log("ondestroy", this.score, this.suivi.noteUser);
-    console.log(this.isMaListe());
     if (this.isMaListe()){ 
         if (this.stars.length!= this.suivi.noteUser){
           this.suivi.noteUser=this.stars.length;

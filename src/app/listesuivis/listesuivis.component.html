@@ -1,5 +1,3 @@
-<p>listesuivis works!</p>
-
 
   <h1>{{listeName}} - {{listeSuivis.name}}</h1>
   <!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
@@ -9,21 +7,19 @@
         <div  class="card bg-dark text-white">
           <img alt="image de {{ suivi.preview.titre }}"
              [src]="printImageSrc(suivi.preview)">
-             <div class="card-body serie"
-              [class.serie]="isSerie(suivi.preview)"
-              [class.film]="!isSerie(suivi.preview)">
-             <!-- <div *ngIf="isSerie(suivi.preview)" class="card-body serie"> -->
-              <!-- <div *ngIf="!isSerie(suivi.preview)" class="card-body film"> -->
+             <div class="card-body"
+                  [class.serie]="isSerie(suivi.preview)"
+                  [class.film]="!isSerie(suivi.preview)">
                 <h2> {{ suivi.preview.titre }} </h2>
-                <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
-
-<!--           <span  *ngIf="changed(suivi.id)" class="material-icons">-->
-               <span class="material-icons">
-                  system_update_alt
-                </span>
-                <span class="material-icons">
-                    delete_outline
-                </span>
+                  <div>
+                    <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
+                    <button (click)="supprimer($event, suivi)" class="suppression">
+                      <span class="material-icons">
+                        delete_outline
+                    </span>
+                    </button>
+                    
+                  </div>
                 <app-statut  [suivi]="suivi" ></app-statut>
 
 

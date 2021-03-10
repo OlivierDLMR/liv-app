@@ -14,16 +14,16 @@ export class SuivisService {
 
   private dateInit = new Date();
 
-  public utilisateur$ = new BehaviorSubject<Utilisateur>({
-    id: 0,
-    user: '',
-    password: '',
-    email: '',
-    firstname: '',
-    lastname: ''
-  });
+  // public utilisateur$ = new BehaviorSubject<Utilisateur>({
+  //   id: 0,
+  //   user: '',
+  //   password: '',
+  //   email: '',
+  //   firstname: '',
+  //   lastname: ''
+  // });
 
-  public listes$ = new BehaviorSubject([]);
+  // public listes$ = new BehaviorSubject([]);
   public videoList$ = new BehaviorSubject([
     {
       id: 0,
@@ -100,6 +100,17 @@ export class SuivisService {
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
       (data: any) => {
         this.suiviCreation$.next(data);
+      }
+    );
+  }
+
+  supprimerSuivi(suivi:Suivi){
+    this.http.delete(this.urlBackEndSuivi + "/delete/" + suivi.id).subscribe(
+      (data: any) => {
+        console.log("retour  delete : ", data)
+        // this.listesuivis$.next(
+          // this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
+        // );
       }
     );
   }
