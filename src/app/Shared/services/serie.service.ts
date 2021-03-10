@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SerieModel } from '../../models/serie.model';
+import {Season, SerieModel} from '../../models/serie.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -49,7 +49,7 @@ export class SerieService {
               serie.first_air_date,
               serie.vote_average,
               serie.key,
-              serie.seasons
+              serie.seasons.map(season => new Season(season.episode_count))
             )
           )
       )
