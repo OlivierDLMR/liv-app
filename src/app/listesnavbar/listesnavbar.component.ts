@@ -46,7 +46,6 @@ export class ListesnavbarComponent implements OnInit {
     console.log(this.utilisateur.user);
     if (this.userService.listes$.getValue().length === 0) {
       this.userService.getCompteUtilisateur(this.utilisateur.user);
-      console.log('dans le if');
     }
   }
 
@@ -77,7 +76,8 @@ export class ListesnavbarComponent implements OnInit {
         alert('La valeur existe!');
       }
       /* si pas d'alerte, on créée une nouvelle liste */
-      this.videolistService.createList(this.utilisateur.id,nameList);
+      this.videolistService.createList(this.utilisateur,nameList);
+      
     }
   }
 
