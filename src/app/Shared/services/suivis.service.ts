@@ -11,7 +11,7 @@ import {Suivi, SuiviCreation} from '../../models/liste.model';
 })
 export class SuivisService {
 
- 
+
   private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
 
   private dateInit = new Date();
@@ -32,13 +32,13 @@ export class SuivisService {
   });
 
 
-  
+
 
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
 
   }
 
-  
+
 
   mettreAJourSuivi(suivi: Suivi) {
     this.http.post(this.urlBackEndSuivi, suivi).subscribe(
@@ -59,7 +59,7 @@ export class SuivisService {
     );
   }
 
-  ajoutSuiviFilm(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
+  ajoutSuivi(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
     this.http.put(this.urlBackEndSuivi + "/"
       + utilisateurId + "/"
       + videoListId, suivi).subscribe(
@@ -68,15 +68,6 @@ export class SuivisService {
     );
   }
 
-  ajoutSuiviSerie(suivi: SuiviCreation): void {
-    // this.http.put(this.urlBackEndAddSuivi, suivi).subscribe(
-    //   (data: any) => {
-    //     this.suiviCreation$.next(data);
-    //   }
-    // );
-  }
-
- 
 
 
 }
