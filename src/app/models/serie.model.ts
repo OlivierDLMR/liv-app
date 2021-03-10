@@ -4,7 +4,9 @@ export class Season {
   constructor(episode_count) {
     this.episode_count = episode_count;
   }
+
 }
+
 
 export class SerieModel {
   id: number;
@@ -14,7 +16,7 @@ export class SerieModel {
   date: Date;
   score: number;
   video: string;
-  seasons: Array<Season>;
+  seasons: Season[];
 
   constructor(id, name, overview, backdrop, first_air_date, vote_average, key, seasons) {
     this.id = id;

@@ -41,7 +41,8 @@ export class ListSerieComponent implements OnInit {
 
     // SI le movies$ ne contient pas d'objet movieModel
     if (this.serieService.series$.getValue().length === 0) {
-      this.serieService.getSeriesFromApi;
+      // console.log('on a bien un appel au serieServce');
+      this.serieService.getSeriesFromApi();
     }
 
     // on s'abonne à notre source de données movies$
@@ -49,19 +50,19 @@ export class ListSerieComponent implements OnInit {
       (data: SerieModel[]) => {
         this.series = data;
         this.isLoading = false;
-        console.log(" ===> ngoninit subscription serie");
+        console.log(' ===> ngoninit subscription serie');
       });
     this.serieObs = this.serieService.series$;
     // on s'abonne à la source de données search$
     this.subscriptionSearch = this.serieService.search$.subscribe(data => {
 
       this.results = data;
-      console.log(" ===> ngoninit subscription search");
+      // console.log(' ===> ngoninit subscription search');
     });
 
     this.subscriptionUser = this.userService.utilisateur$.subscribe(data => {
       this.utilisateur = data;
-      console.log(" ===> ngoninit subscription utilisateur")
+      // console.log(' ===> ngoninit subscription utilisateur');
     });
   } // Fin ngOnInit()
 

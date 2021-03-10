@@ -7,7 +7,7 @@ import {MovieModel} from '../models/movie.model';
 import {SuivisService} from '../Shared/services/suivis.service';
 import {AlertService} from '../Shared/services/alert.service';
 import {Router} from '@angular/router';
-import {Season, SerieModel} from '../models/serie.model';
+import { SerieModel} from '../models/serie.model';
 import {Subscription} from 'rxjs';
 
 interface Liste {
@@ -26,6 +26,7 @@ export class AjouterAUneListeComponent implements OnInit {
   listes: ListesNavBar;
   suiveCreation: SuiviCreation;
   movies: MovieModel[];
+  series: SerieModel[];
   saisons: Saison[];
 
   subscriptionUtilisateur: Subscription;
@@ -65,7 +66,7 @@ export class AjouterAUneListeComponent implements OnInit {
       0,
       TypePreview.FILM,
       Array<Saison>());
-    this.suiviService.ajoutSuiviFilm(this.utilisateur.id, videoListId, this.suiveCreation);
+    this.suiviService.ajoutSuivi(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('le film est ajoute à la liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId]);
   }
@@ -73,10 +74,9 @@ export class AjouterAUneListeComponent implements OnInit {
   ajoutSuiviSerie(videoListId: number, videoListName: string): void {
 
 
-    // tableau de saison
 
-
-    this.serie.seasons.forEach(season => this.saisons.push(new Saison (season.episode_count)));
+    // this.serie.seasons.forEach(season => this.saisons.push(new Saison (season.episode_count)));
+    console.log(this.saisons);
 
     this.suiveCreation = new SuiviCreation(this.serie.id,
       this.serie.image,
@@ -91,7 +91,7 @@ export class AjouterAUneListeComponent implements OnInit {
       // this.utilisateur.id,
       // videoListId
     );
-    this.suiviService.ajoutSuiviSerie(this.suiveCreation);
+    this.suiviService.ajoutSuiviSerie(this.utilisateur.id, videoListId, this.suiveCreation);
     this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId, videoListName]);
   }
