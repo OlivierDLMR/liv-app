@@ -64,5 +64,6 @@ export class ErrorsInterceptor implements HttpInterceptor {
           return throwError(err.message);
         }
       })
-    )}
+    );
+  }
 }
