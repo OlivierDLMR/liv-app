@@ -45,7 +45,12 @@ export class ErrorsInterceptor implements HttpInterceptor {
               this.alertService.show('Ressource inconnue');
               break;
             case 409:
-              this.alertService.show('Le user est déjà référencé. merci de le modifier');
+              // console.log(err);
+              this.alertService.show(err.error.message);
+              // this.alertService.show('Le user est déjà référencé. merci de le modifier');
+              break;
+            case 500:
+              this.alertService.show(err.error.message);
               break;
             case 501:
             case 502:
@@ -59,7 +64,5 @@ export class ErrorsInterceptor implements HttpInterceptor {
           return throwError(err.message);
         }
       })
-    )
-
-  }
+    )}
 }
