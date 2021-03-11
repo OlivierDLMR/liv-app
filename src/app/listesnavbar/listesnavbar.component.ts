@@ -6,7 +6,7 @@ import {LoaderService} from '../Shared/services/loader.service';
 import {ListesNavBar, ListeSuivis, Videolist} from '../models/liste.model';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import { VideolistService } from '../Shared/services/videolist.service';
+import {VideolistService} from '../Shared/services/videolist.service';
 
 // import {SuivisService} from "../Shared/services/suivis.service";
 
@@ -25,7 +25,7 @@ export class ListesnavbarComponent implements OnInit {
 
   // listsuivis: any[];
 
-  constructor(public videolistService:VideolistService
+  constructor(public videolistService: VideolistService
     , public userService: UserService
     , public loaderService: LoaderService
     , private router: Router) {
@@ -35,14 +35,14 @@ export class ListesnavbarComponent implements OnInit {
     // yohohoho on en a besoin pour le isLogged :D
     this.subscriptionUtilisateur = this.userService.utilisateur$.subscribe(
       data => {
-      this.utilisateur = data;
-    });
+        this.utilisateur = data;
+      });
 
 
     this.subscriptionListes = this.userService.listes$.subscribe(
       data => {
-      this.listes = data;
-    });
+        this.listes = data;
+      });
     console.log(this.utilisateur.user);
     if (this.userService.listes$.getValue().length === 0) {
       this.userService.getCompteUtilisateur(this.utilisateur.user);
@@ -50,11 +50,11 @@ export class ListesnavbarComponent implements OnInit {
   }
 
   onClickList(listeid) {
-    
+
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
-  }
-  this.router.onSameUrlNavigation = 'reload';
+    }
+    this.router.onSameUrlNavigation = 'reload';
 
     this.router.navigate(['/listesuivis', listeid]);
   }
@@ -68,7 +68,10 @@ export class ListesnavbarComponent implements OnInit {
     * pour ajouter une liste : un pop up demande le nom
     * il faut un nom de liste non  null avec au moins 3 caractères
     * */
-    if (nameList !== null && nameList.trim().length > 3) {
+    if (nameList == null || nameList.trim().length < 3) {
+
+      alert('Nom de liste non conforme (au moins 3 caractères)');
+    } else {
       /*
       * alerte si le nom de la liste existe dejà pour l'utilisateur
       * */
@@ -76,8 +79,8 @@ export class ListesnavbarComponent implements OnInit {
         alert('La valeur existe!');
       }
       /* si pas d'alerte, on créée une nouvelle liste */
-      this.videolistService.createList(this.utilisateur,nameList);
-      
+      this.videolistService.createList(this.utilisateur, nameList);
+
     }
   }
 
