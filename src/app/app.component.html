@@ -1,5 +1,5 @@
 <mat-toolbar class="d-flex justify-content-between" color="primary">
-  <h1>Ma Videothèque</h1>
+  <h1>LOST IN VIEW</h1>
   <div>
     <span *ngIf="!userService.isLogged()" class="me-2" [style.cursor]="'pointer'" routerLink="/login">
       <span class="material-icons">
@@ -33,10 +33,10 @@
         home</a>
 
       <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-        true}" class="list-group-item list-group-item-action" href="">  <i class="fas fa-film"></i>  Catalogue films</a>
+        true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-film"></i> Catalogue films</a>
 
       <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i>  Catalogue series</a>
+          true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i> Catalogue series</a>
 
     </ul>
     <nav class="nav flex-column">
@@ -47,16 +47,17 @@
     </nav>
 
 
+  </div>
+
+
+  <div class="container-fluid">
+
+    <!--COMPONENT <app-list></app-list> -->
+    <!-- <app-list></app-list> -->
+    <router-outlet></router-outlet>
+
+  </div>
 </div>
 
-
-<div class="container-fluid">
-
-  <!--COMPONENT <app-list></app-list> -->
-  <!-- <app-list></app-list> -->
-  <router-outlet></router-outlet>
-
-</div>
-</div>
 
 
