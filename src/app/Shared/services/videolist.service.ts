@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { ListeSuivis, Videolist } from 'src/app/models/liste.model';
+import { ListeSuivis, Suivi, Videolist } from 'src/app/models/liste.model';
 import { Utilisateur } from 'src/app/models/utilisateur.model';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
@@ -19,7 +19,7 @@ export class VideolistService {
   private dateInit = new Date();
   private videolist:Videolist;
 
-  public listes$ = new BehaviorSubject([]);
+  // public listes$ = new BehaviorSubject([]);
 
 
   public listesuivis$ = new BehaviorSubject<ListeSuivis>({
@@ -27,8 +27,8 @@ export class VideolistService {
     name: '',
     dateCreation: this.dateInit,
     dateModification: this.dateInit,
-    suivis: [],
-  });
+    suivis:  Array<Suivi>()
+    });
 
   getSuivis(listeId: number) {
     this.http.get(this.urlBackEnd + listeId + '/suivis').subscribe(
@@ -40,22 +40,31 @@ export class VideolistService {
   mettreAjourListeSuiviBehavior(data:ListeSuivis){
     this.listesuivis$.next(data);
   }
+
+  supprimeSuiviDansListeSuiviBehavior(suiviId:number){
+    console.log("=========> a terminer !!!!!!!!!!!!!!!!!!!!!!!")
+    // this.listesuivis$.next(
+    //   this.listesuivis$.getValue().suivis.filter(data => data.id != suiviId)   )}
+     
+      // suivis.filter((suiviASupprimer:any) => suiviId);
+
+
+    //     this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
+    //     );
+      // suppression du contact dans contacts$
+  //     this.contacts$.next(
+  //       this.contacts$.getValue().filter((contact: any) => contact.id != contactId)
+  // 
+}
   
   createList(utilisateur:Utilisateur,name: string): void {
     this.videolist=new Videolist(0,name,this.dateInit,this.dateInit);
-    console.log("===> " ,this.videolist);
-    console.log("===> " ,this.videolist);
-    console.log("===> utilisateurId : " ,utilisateur);
-
+  
     this.http.put(this.urlBackEnd + utilisateur.id, this.videolist).subscribe(
       (responseApi: Array<Videolist>) => {
-        
-        console.log("retour creation liste :  ", responseApi);
-        
         this.userService.mettreAjourListes(responseApi);
           //   this.suiviCreation$.next(data);
         })
-        console.log('createList');
     }
     
     

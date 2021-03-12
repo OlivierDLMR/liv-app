@@ -15,11 +15,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   onLoginSubmit(loginForm) {
-    console.log("==> loginForm : " ,loginForm.value)
     this.userService.login(loginForm.value);
-    // this.userService.getCompteUtilisateur(loginForm.value.user);
-    
-
     
   }
 

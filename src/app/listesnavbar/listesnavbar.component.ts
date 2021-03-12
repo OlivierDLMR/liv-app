@@ -42,10 +42,7 @@ export class ListesnavbarComponent implements OnInit {
       data => {
         this.listes = data;
       });
-    console.log(this.utilisateur.user);
-    if (this.userService.listes$.getValue().length === 0) {
-      this.userService.getlistesUser();
-    }
+    
   }
 
   onClickList(listeid) {

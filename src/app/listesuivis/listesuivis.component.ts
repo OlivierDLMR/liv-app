@@ -54,8 +54,6 @@ export class ListesuivisComponent implements OnInit {
       }
 
     );
-console.log(  "this.videoListService.listesuivis$.getValue().id",this.videoListService.listesuivis$.getValue().id);
-console.log( "this.liste.id : " , this.listeSuivis.id)
     if (this.videoListService.listesuivis$.getValue().id === 0
       ||this.videoListService.listesuivis$.getValue().id !=this.listeId ) {
       this.videoListService.getSuivis(this.listeId);
@@ -86,17 +84,13 @@ console.log( "this.liste.id : " , this.listeSuivis.id)
     return this.isLoading ? 0.1 : 1;
   }
 
-  miseAJour(suivi: Suivi): void {
-    console.log(" ===> miseA jour !!!")
-    console.log("              ", suivi);
-
-  }
+  
 
   supprimer(ev:any,suivi:Suivi):void{
     console.log(" ==> je supprime ", suivi);
     ev.stopPropagation();
     if (confirm("confirmez-vous la suppresssion de" + suivi.preview.titre + " ?")){
-       this.suivisService.supprimerSuivi(suivi)
+      this.suivisService.supprimerSuivi(suivi);
     }
   }
 

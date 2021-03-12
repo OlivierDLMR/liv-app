@@ -35,7 +35,7 @@ export class ListeSuivis {
   }
 }
 
-export interface Suivi {
+export class Suivi {
   id: number;
   preview: Preview;
   statut: Statut;

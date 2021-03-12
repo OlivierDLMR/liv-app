@@ -25,7 +25,6 @@ export class ErrorsInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
-          console.log('error is intercepted');
           console.error(err.status);
           switch (err.status) {
             case 400:
@@ -36,13 +35,10 @@ export class ErrorsInterceptor implements HttpInterceptor {
               this.router.navigate(['/login']);
               break;
             case 403:
-              this.alertService.show('Ressource non-autorisée');
+              this.alertService.show(err.error.message);
               break;
             case 404:
-              this.alertService.show('Ressource inconnue');
-              break;
-            case 404:
-              this.alertService.show('Ressource inconnue');
+              this.alertService.show(err.error.message);
               break;
             case 409:
               // console.log(err);
@@ -62,6 +58,7 @@ export class ErrorsInterceptor implements HttpInterceptor {
               this.alertService.show('Erreur serveur');
           }
           return throwError(err.message);
+         
         }
       })
     );
