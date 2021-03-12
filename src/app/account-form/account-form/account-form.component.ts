@@ -25,7 +25,6 @@ export class AccountFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('==> accountForm.component.ts ngOnInit debut')
     this.accountForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -34,7 +33,6 @@ export class AccountFormComponent implements OnInit {
       password: ['', [Validators.minLength(8), , Validators.required]]
       // ,acceptTerms: [false, Validators.requiredTrue]
     });
-    console.log('==> accountForm.component.ts ngOnInit', this.accountForm)
 
   }
 
@@ -43,13 +41,9 @@ export class AccountFormComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(' ===> accout-form.component.ts - onSubmit(form) / form : ', form)
-    console.log('form group : ', form.value);
-    console.log('accountForm.control', this.accountForm.controls);
-    console.log('accountForm.controls.password.errors', this.accountForm.controls.password.errors);
+    
 
     if (form.status === 'VALID') {
-      console.log('Ok valid : on essaie de partir ...');
       this.userService.postCreationCompte(form.value);
       this.alertService.show('compte créé. Merci de vous connecter');
       this.router.navigate(['/login']);

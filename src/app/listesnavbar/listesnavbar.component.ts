@@ -38,14 +38,13 @@ export class ListesnavbarComponent implements OnInit {
         this.utilisateur = data;
       });
 
-
     this.subscriptionListes = this.userService.listes$.subscribe(
       data => {
         this.listes = data;
       });
     console.log(this.utilisateur.user);
     if (this.userService.listes$.getValue().length === 0) {
-      this.userService.getCompteUtilisateur(this.utilisateur.user);
+      this.userService.getlistesUser();
     }
   }
 

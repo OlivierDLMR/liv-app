@@ -48,7 +48,7 @@ export class SuivisService {
   }
 
   supprimerSuivi(suivi: Suivi): void {
-    this.http.delete(this.urlBackEndSuivi + '/delete/' + suivi.id).subscribe(
+    this.http.delete(this.urlBackEndSuivi + '/' + suivi.id).subscribe(
       (data: any) => {
         console.log('retour  delete : ', data);
         // this.listesuivis$.next(
@@ -74,13 +74,10 @@ export class SuivisService {
     this.serieService
       .getSerieSeasons(suivi.dbMovieId)
       .subscribe((data: any) => {
-        console.log(data);
         // pour chaque element du tableau data.seasons creation d'une nouvelle occurence dans this.saisons
         // this.saisons est composé d'élément saison que je construis avec le nb d'épisodes d'une occurence de data.seasons
         data.seasons.forEach(toto => saisons.push(new Saison(toto.episode_count)));
-        console.log(saisons);
         suivi.saisons = saisons;
-        console.log(suivi);
         this.http.put(this.urlBackEndSuivi + '/'
           + utilisateurId + '/'
           + videoListId, suivi).subscribe(

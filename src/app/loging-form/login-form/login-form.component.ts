@@ -15,10 +15,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   onLoginSubmit(loginForm) {
-    // this.userService.login(loginForm.value);
-    this.userService.getCompteUtilisateur(loginForm.value.user);
-    this.alertService.show('Vous êtes connecté(e)');
-    this.router.navigate(['/']);
+    console.log("==> loginForm : " ,loginForm.value)
+    this.userService.login(loginForm.value);
+    // this.userService.getCompteUtilisateur(loginForm.value.user);
+    
 
     
   }
