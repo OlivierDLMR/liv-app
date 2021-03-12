@@ -43,18 +43,17 @@ export class VideolistService {
 
   supprimeSuiviDansListeSuiviBehavior(suiviId:number){
     console.log("=========> a terminer !!!!!!!!!!!!!!!!!!!!!!!")
-    // this.listesuivis$.next(
-    //   this.listesuivis$.getValue().suivis.filter(data => data.id != suiviId)   )}
-     
-      // suivis.filter((suiviASupprimer:any) => suiviId);
-
-
-    //     this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
-    //     );
-      // suppression du contact dans contacts$
-  //     this.contacts$.next(
-  //       this.contacts$.getValue().filter((contact: any) => contact.id != contactId)
-  // 
+    console.log(this.listesuivis$ )
+    console.log(this.listesuivis$.getValue());
+    console.log(this.listesuivis$.getValue().suivis )
+    console.log(this.listesuivis$.getValue().suivis[1])
+    let id=this.listesuivis$.getValue().id;
+    let name=this.listesuivis$.getValue().name;
+    let dateCreation=this.listesuivis$.getValue().dateCreation
+    let dateModification=this.listesuivis$.getValue().dateModification;
+    let suivis:Suivi[]=this.listesuivis$.getValue().suivis.filter(data => data.id !=suiviId);
+    let listesuiviTemp=new ListeSuivis(id,name,dateCreation,dateModification,suivis)
+    this.mettreAjourListeSuiviBehavior(listesuiviTemp)
 }
   
   createList(utilisateur:Utilisateur,name: string): void {
