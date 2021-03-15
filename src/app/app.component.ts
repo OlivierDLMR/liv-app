@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Utilisateur} from './models/utilisateur.model';
 import {UserService} from './Shared/services/user.service';
 import {LoaderService} from './Shared/services/loader.service';
-import {ListesNavBar} from "./models/liste.model";
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
 
 
   constructor(public userService: UserService, public loaderService: LoaderService) {
-    console.log(this);
   }
 
   ngOnInit() {

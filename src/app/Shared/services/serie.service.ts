@@ -31,7 +31,6 @@ export class SerieService {
    Load 20 serie from API
   */
   getSeriesFromApi() {
-    console.log('get serie from api');
     const params = new HttpParams({
       fromObject: {
         api_key: this.API_KEY,
@@ -105,7 +104,6 @@ export class SerieService {
         this.search$.next(response);
       });
 
-    console.log("get serie from api", this.series$);
   }
 
 

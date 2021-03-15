@@ -28,13 +28,11 @@ export class SuivisService {
     videoListId: 0,
   });
   private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
-  private dateInit = new Date();
 
   constructor(private http: HttpClient, 
-              private router: Router, 
               private alertService: AlertService, 
               private videolistService:VideolistService,
-              public serieService: SerieService) {
+              private serieService: SerieService) {
 
   }
 
@@ -48,14 +46,19 @@ export class SuivisService {
   }
 
   supprimerSuivi(suivi: Suivi): void {
-    this.http.delete(this.urlBackEndSuivi + '/delete/' + suivi.id).subscribe(
-      (data: any) => {
-        console.log('retour  delete : ', data);
+    this.http.delete(this.urlBackEndSuivi + '/' + suivi.id).subscribe(
+      (responseIdDeleted: number) => {
+          console.log('retour  delete : ', responseIdDeleted);
+          if (responseIdDeleted===suivi.id){
+            this.videolistService.supprimeSuiviDansListeSuiviBehavior(suivi.id)
+          }
+         
         // this.listesuivis$.next(
         // this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
         // );
       }
     );
+   
   }
 
   ajoutSuivi(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
@@ -74,13 +77,10 @@ export class SuivisService {
     this.serieService
       .getSerieSeasons(suivi.dbMovieId)
       .subscribe((data: any) => {
-        console.log(data);
         // pour chaque element du tableau data.seasons creation d'une nouvelle occurence dans this.saisons
         // this.saisons est composé d'élément saison que je construis avec le nb d'épisodes d'une occurence de data.seasons
         data.seasons.forEach(toto => saisons.push(new Saison(toto.episode_count)));
-        console.log(saisons);
         suivi.saisons = saisons;
-        console.log(suivi);
         this.http.put(this.urlBackEndSuivi + '/'
           + utilisateurId + '/'
           + videoListId, suivi).subscribe(

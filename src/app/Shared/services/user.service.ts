@@ -23,9 +23,12 @@ export class UserService {
   public listeSuivis$ = new BehaviorSubject([]);
 
   private urlBackEnd: string = environment.BE_API_URL + '/liv/utilisateurs';
+  private urlAuhtenticate: string = environment.BE_API_URL + '/liv/authenticate';
 
-  constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
+  constructor(private http: HttpClient, private router: Router, 
+              private alertService: AlertService) {
   }
+
 clearStorage(){
 localStorage.clear();
 }
@@ -38,48 +41,59 @@ localStorage.clear();
   isLogged(): boolean {
     
     if (localStorage.getItem('token')) {
-      return true;
+      return  true;
     }
     return false;
   }
 
 
-  login(credentials) {
-    console.log('==> user.service.ts login(credentieals) - credentials : ', credentials);
-    console.log('supprimer la gestion du token dans getCompteUtilisateur(user:string)');
-
+  login(loginForm) {
+    
+    let user=loginForm.user;
+    this.http.post(this.urlAuhtenticate, loginForm).subscribe(
+        (response:any) => {
+          localStorage.setItem('token',response.token)
+          localStorage.setItem('user', loginForm.user )
+          // this.getlistesUser();
+          this.alertService.show('Vous êtes connecté(e)');
+          this.getCompteUser();
+          this.router.navigate(['/']);
+        },
+        err => console.log(" pb authenticate - err :" ,err)
+    );
   }
 
 // ==> Crer un utilisateur
 
   postCreationCompte(utilisateurObj: Utilisateur) {
 
-    // le header ci-dessous est renigné dans apiInterceptor, du moins normalement !!! :)
+    // le header ci-dessous est renseigné dans apiInterceptor, du moins normalement !!! :)
     // let headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
-    this.http.post(this.urlBackEnd, utilisateurObj).subscribe(
+    this.http.post(this.urlBackEnd + '/create', utilisateurObj).subscribe(
       (responseApi: any) => {
-        this.utilisateur$.next(responseApi);
+        // this.utilisateur$.next(responseApi);
       });
   }
   // ==> obtenir un utilisateur par son user
-  getCompteUtilisateur(user: string) {
+  getlistesUser() {
 
-    this.http.get(this.urlBackEnd + '?user=' + user).subscribe(
-      (response: any) => {
-        this.utilisateur$.next(response);
-        if (this.isLogged() == false) {
-          localStorage.setItem('token', 'temporaire !!');
-          this.http.get(this.urlBackEnd + '/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
-            (data: any) => {
-              // this.listes$.next(data);
+    this.http.get(this.urlBackEnd + '/' + this.utilisateur$.getValue().id + '/videolists').subscribe(
+        (data: any) => {
               this.mettreAjourListes(data);
-            });
-        }
-      });
+        });
   }
 
   mettreAjourListes(data){
-    console.log(" Mettre à jour listes : ",data);
     this.listes$.next(data)
   }
+
+  getCompteUser() {
+
+    this.http.get(this.urlBackEnd + '?user=' + localStorage.getItem('user')).subscribe(
+      (response: any) => {    
+        this.utilisateur$.next(response);  
+        this.getlistesUser() 
+      });
+  }
+
 }
