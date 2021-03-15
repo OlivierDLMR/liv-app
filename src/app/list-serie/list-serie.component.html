@@ -17,10 +17,10 @@
 
 
   <!-- LIST DES SERIES-->
-  <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
+  <div [style.opacity]="getListOpacity()" class="row content container-fluid">
 
 
-    <div *ngFor="let serie of serieObs | async" class="col-6">
+    <div *ngFor="let serie of serieObs | async" class="col-12 col-lg-6 col-xxl-4">
 
       <div   class="card bg-dark text-white">  <!-- [routerLink]="['/detail', movie.id, 'movies']" -->
         <img [routerLink]="['/detailserie', serie.id, 'series']" [src]="printImageSrc(serie)">

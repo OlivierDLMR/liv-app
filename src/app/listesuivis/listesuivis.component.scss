@@ -23,6 +23,7 @@
 button.suppression {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0.5em;
+  color: white;
 }
 
 .loader {
@@ -34,7 +35,18 @@ button.suppression {
   z-index: 999999;
 }
 
-
+.sousTitre{
+  align-content: space-between;
+  
+  margin-bottom:2% ;
+  padding: 0;
+}
+.score{
+  margin-top: 2%;
+}
+.preview{
+  padding: 0;
+}
 /* mettre du flou sur l'image pendant le hover
 .card:hover img {
     filter: blur(2px);

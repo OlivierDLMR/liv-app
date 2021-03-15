@@ -2,8 +2,8 @@
   <h1>{{listeSuivis.name}}</h1>
   <!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
 
-  <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid">
-    <div *ngFor="let suivi of listeSuivis.suivis" class="col-4">
+  <div [style.opacity]="getListOpacity()" class="row content container-fluid">
+    <div *ngFor="let suivi of listeSuivis.suivis" class="col-12 col-lg-6 col-xxl-4">
         <div  class="card bg-dark text-white">
           <img alt="image de {{ suivi.preview.titre }}"
              [src]="printImageSrc(suivi.preview)">
@@ -11,9 +11,9 @@
                   [class.serie]="isSerie(suivi.preview)"
                   [class.film]="!isSerie(suivi.preview)">
                 <h2> {{ suivi.preview.titre }} </h2>
-                  <div>
-                    <p>{{getTypePreview(suivi.preview.typePreview)}}</p>
-                    <button (click)="supprimer($event, suivi)" class="suppression">
+                  <div class='container d-flex sousTitre'>
+                    <p class='col-10 preview'>{{getTypePreview(suivi.preview.typePreview)}}</p>
+                    <button (click)="supprimer($event, suivi)" class="suppression col-2">
                       <span class="material-icons">
                         delete_outline
                     </span>
@@ -21,9 +21,9 @@
 
                   </div>
                 <app-statut  [suivi]="suivi" ></app-statut>
-
-
-                <rating [suivi]="suivi" [origine]="origineRating"></rating>
+                <div  class="score">
+                  <rating [suivi]="suivi" [origine]="origineRating"></rating>
+                </div>
                 <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
                 <p><em>Résumé : </em>{{ suivi.preview.overview | cuttextlong }}</p>
               </div>
