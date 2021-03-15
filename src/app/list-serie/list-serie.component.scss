@@ -22,8 +22,11 @@ h1 {
 //}
 .card:hover {
   transform: scale(1.1);
-  cursor:pointer
 }
+img {
+  cursor: pointer;
+}
+
 
 .loader {
   position: fixed;
@@ -33,7 +36,10 @@ h1 {
   height: 100vh;
   z-index: 999999;
 }
-
+.results{
+  background: black;
+  color: white;
+}
 
 /* mettre du flou sur l'image pendant le hover
 .card:hover img {

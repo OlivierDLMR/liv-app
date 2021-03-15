@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../Shared/services/movie.service';
 import {MovieModel} from "../models/movie.model";
 import {Subscription} from "rxjs";
+import { UserService } from '../Shared/services/user.service';
 
 @Component({
   selector: 'app-detail',
@@ -27,7 +28,8 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
     private movieService: MovieService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public userService:UserService
   ) { }
 
   ngOnInit(): void {
