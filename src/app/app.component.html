@@ -20,6 +20,8 @@
 </mat-progress-bar>
 
 <div class="d-flex">
+
+<!--  <div class="container-fluid h-100">-->
   <!-- side bar -->
   <div class="sidebar">
     <ul class="list-group">
@@ -38,15 +40,14 @@
       <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i> Catalogue series</a>
 
-    </ul>
+
     <nav class="nav flex-column">
-      <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
+         <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
         <!--      <span>Mes Listes</span>-->
         <app-listesnavbar></app-listesnavbar>
       </div>
     </nav>
-
-
+    </ul>
   </div>
 
 

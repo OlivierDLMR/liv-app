@@ -1,37 +1,39 @@
-.card .card-body h2{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 1.2rem;
-    padding: 0.3em;
-    color: #ffffff;
-    text-align: center;
+.card .card-body h2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  padding: 0.3em;
+  color: #ffffff;
+  text-align: center;
 }
 
-.card{
-    margin:5px;
-    transition-duration:.2s;
-    height: max-content;
+.card {
+  margin: 5px;
+  transition-duration: .2s;
+  height: max-content;
 }
-// 
+
+//
 // .card:hover {
 //     transform: scale(1.1);
 //     cursor:pointer
 // }
 
-button.suppression{
-    background: rgba(0,0,0,0.2);
-    border-radius: 0.5em;
+button.suppression {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
 }
+
 .loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999999;
- }
- 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+}
+
 
 /* mettre du flou sur l'image pendant le hover
 .card:hover img {

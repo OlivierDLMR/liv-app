@@ -1,15 +1,15 @@
-
-<div>
+<div class="listes">
   <span>
-    <span class="material-icons">
-      mode
-    </span>
-    Listes de {{utilisateur.user}} - {{utilisateur.id}}</span>
+<!--    <span class="material-icons">-->
+    <!--      mode-->
+    <!--    </span>-->
+    {{utilisateur.user}}, voici vos listes</span>
 
   <a *ngFor="let liste of listes" class="col-6">
 
-    <a (click)="onClickList(liste.id)" [routerLink]="['/listesuivis',liste.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-      true}" class="list-group-item list-group-item-action" href="">{{ liste.name }} - {{liste.id}}</a>
+    <a (click)="onClickList(liste.id)" [routerLink]="['/listesuivis',liste.id]" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact:
+      true}" class="list-group-item list-group-item-action" href="">{{ liste.name }}</a>
   </a>
   <button (click)="addList()" class="primary">Ajouter une liste</button>
 </div>
