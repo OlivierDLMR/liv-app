@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {SerieService} from '../Shared/services/serie.service';
 import {SerieModel} from '../models/serie.model';
 import {Subscription} from "rxjs";
+import { UserService } from '../Shared/services/user.service';
 
 @Component({
   selector: 'app-detail',
@@ -28,7 +29,8 @@ export class DetailSerieComponent implements OnInit {
     private route: ActivatedRoute,
     private serieService: SerieService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public userService: UserService
   ) {
   }
 

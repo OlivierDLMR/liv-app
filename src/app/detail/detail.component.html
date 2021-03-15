@@ -23,7 +23,7 @@
     <!-- BLOC TEXT -->
     <div  [class.col-md-6]="urlYTMovie != null" [class.col-md-12]="urlYTMovie == null" class="col-12">
 
-      <app-ajouter-aune-liste></app-ajouter-aune-liste>
+      <app-ajouter-aune-liste [movie]="movie" *ngIf="userService.isLogged()" ></app-ajouter-aune-liste>
       <!-- <p>Date de sortie : {{movie.date.toISOString().slice(0,10)}}</p> -->
       <p>Date de sortie : {{movie.date | date:'dd/MM/YYYY'}}</p>
       <p class="lh-lg text-justify"><em>Résumé : </em>{{movie.desc}}</p>
