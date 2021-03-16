@@ -18,13 +18,14 @@
   height: max-content;
 }
 
+
 //
 // .card:hover {
 //     transform: scale(1.1);
 //     cursor:pointer
 // }
 
-button.suppression {
+button.action {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0.5em;
   color: white;
@@ -40,13 +41,13 @@ button.suppression {
 }
 
 .sousTitre{
-  align-content: space-between;
+  align-content: space-around;
 
   margin-bottom:2% ;
   padding: 0;
 }
 .score{
-  margin-top: 2%;
+  margin-top: 5%;
 }
 .preview{
   padding: 0;

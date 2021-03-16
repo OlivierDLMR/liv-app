@@ -11,8 +11,18 @@
            [class.film]="!isSerie(suivi.preview)">
         <h2> {{ suivi.preview.titre }} </h2>
         <div class='container d-flex sousTitre'>
-          <p class='col-10 preview'>{{getTypePreview(suivi.preview.typePreview)}}</p>
-          <button (click)="supprimer($event, suivi)" class="suppression col-2">
+          <p class='preview'
+            [class.col-8]="isSerie(suivi.preview)"
+            [class.col-10]="!isSerie(suivi.preview)">
+              {{getTypePreview(suivi.preview.typePreview)}}
+          </p>
+
+          <button (click)="updateSaisonSerie(suivi,listeSuivis.id)" *ngIf="isSerie(suivi.preview)"  class="action col-2"
+                  title="Rafraîchir les données des saisons"><span class="material-icons">system_update_alt</span>
+          </button>
+          
+          <button (click)="supprimer($event, suivi)" class="action col-2"
+            title="Supprimer">
                       <span class="material-icons">
                         delete_outline
                     </span>
@@ -23,36 +33,16 @@
         <app-statut [suivi]="suivi"></app-statut>
         <!--        affichage du score-->
         <div class="score">
-          <rating [suivi]="suivi" [origine]="origineRating"></rating>
+          <rating [suivi]="suivi" [origine]="origineRating" ></rating>
         </div>
         <!--        saisons / épisodes et leur mise à jour pour les séries-->
-        <div *ngIf="isSerie(suivi.preview)" class="container">
-          <div class="d-flex">
-            <form (submit)="newSaison.value">
-          <span>Saison en cours :<input type="number" id="newSaison" #newSaison [value]="suivi.saisonEnCours">
+        <app-nb-series *ngIf="isSerie(suivi.preview)" [suivi]="suivi"></app-nb-series>
 
-          <button (click)="updateSuiviSaisons(suivi,newSaison.value)"
-                  title="Mise à jour de la saison en cours"><span class="material-icons">update</span>
-          </button>
-          </span>
-            </form>
+                
+       
 
-          </div>
-          <form (submit)="newSaison.value">
-            <p>Dernier épisode vu : {{suivi.dernierEpisodeVu}}</p>
-            <input type="number" id="newEpisode" #newEpisode [value]="suivi.dernierEpisodeVu">
-            <button (click)="updateSuiviEpisode(suivi,newEpisode.value)"
-                    title="Mise à jour du dernier episode vu"><span class="material-icons">update</span>
-            </button>
-          </form>
-          <!--permet de mettre à jour la base back end sur les saisons et episodes-->
-          <button (click)="updateSaisonSerie(suivi,listeSuivis.id)"
-                  title="Mise à jour des données des saisons"><span class="material-icons">system_update_alt</span>
-          </button>
-        </div>
-
-
-        <p><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
+        <p *ngIf="isSerie(suivi.preview)"><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
+        <p *ngIf="!isSerie(suivi.preview)"><em>Résumé : </em> {{ suivi.preview.overview | cuttextverylong }}</p>
       </div>
     </div>
   </div>

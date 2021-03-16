@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CuttextlongPipe implements PipeTransform {
 
   transform(value: string): string {
-    return value.substring(0,250)+'...';
+    return value.substring(0,200)+'...';
   }
 
 }

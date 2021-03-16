@@ -30,6 +30,8 @@ import { CuttextlongPipe } from './pipes/cuttextlong.pipe';
 import { MajSuiviComponent } from './majSuivi/maj-suivi/maj-suivi.component';
 import { StatutComponent } from './Shared/statut/statut.component';
 import { MajStatutComponent } from './maj-statut/maj-statut/maj-statut.component';
+import { NbSeriesComponent } from './Shared/nb-series/nb-series.component';
+import { CuttextverylongPipe } from './pipes/cuttextverylong.pipe';
 
 
 
@@ -54,6 +56,8 @@ import { MajStatutComponent } from './maj-statut/maj-statut/maj-statut.component
     MajSuiviComponent,
     StatutComponent,
     MajStatutComponent,
+    NbSeriesComponent,
+    CuttextverylongPipe,
     
 
   ],

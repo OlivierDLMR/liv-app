@@ -106,22 +106,21 @@ export class ListesuivisComponent implements OnInit {
   }
 
   supprimer(ev: any, suivi: Suivi): void {
-    console.log(' ==> je supprime ', suivi);
     ev.stopPropagation();
     if (confirm('confirmez-vous la suppresssion de' + suivi.preview.titre + ' ?')) {
       this.suivisService.supprimerSuivi(suivi);
     }
   }
 
-  updateSuiviSaisons(suivi: Suivi, newSaison): void {
-    suivi.saisonEnCours = newSaison;
-    this.suivisService.mettreAJourSuivi(suivi);
-  }
+  // updateSuiviSaisons(suivi: Suivi, newSaison): void {
+  //   suivi.saisonEnCours = newSaison;
+  //   this.suivisService.mettreAJourSuivi(suivi);
+  // }
 
-  updateSuiviEpisode(suivi: Suivi, newEpisode): void {
-    suivi.dernierEpisodeVu = newEpisode;
-    this.suivisService.mettreAJourSuivi(suivi);
-  }
+  // updateSuiviEpisode(suivi: Suivi, newEpisode): void {
+  //   suivi.dernierEpisodeVu = newEpisode;
+  //   this.suivisService.mettreAJourSuivi(suivi);
+  // }
 
   updateSaisonSerie(suivi: Suivi, videoListId: number): void {
     // console.log('updateSaisonSerie');
