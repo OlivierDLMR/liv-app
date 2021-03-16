@@ -13,8 +13,16 @@
  }
 
  .sidebar{
-   width:13%;
+   width:180px;
+   padding: 10px 0 0 0;
  }
+
+ .sidebarNav {
+   width: 160px;
+   vertical-align: center;
+ }
+
+
  .content{
      padding: 20px;
  }
