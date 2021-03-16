@@ -18,17 +18,39 @@
                     </span>
           </button>
         </div>
+        <!--       compsant du statut (affichage et mise à jour)
+        -->
         <app-statut [suivi]="suivi"></app-statut>
+        <!--        affichage du score-->
         <div class="score">
           <rating [suivi]="suivi" [origine]="origineRating"></rating>
         </div>
+        <!--        saisons / épisodes et leur mise à jour pour les séries-->
+        <div *ngIf="isSerie(suivi.preview)" class="container">
+          <div class="d-flex">
+            <form (submit)="newSaison.value">
+          <span>Saison en cours :<input type="number" id="newSaison" #newSaison [value]="suivi.saisonEnCours">
 
-        <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
-        <p *ngIf="isSerie(suivi.preview)">Dernier épisode vu : {{suivi.saisonEnCours}}</p>
-        <button *ngIf="isSerie(suivi.preview)"
-                (click)="updateSaisonSerie(suivi,listeSuivis.id)"
-                title="Mise à jour des saisons"><span class="material-icons">system_update_alt</span>
-        </button>
+          <button (click)="updateSuiviSaisons(suivi,newSaison.value)"
+                  title="Mise à jour de la saison en cours"><span class="material-icons">update</span>
+          </button>
+          </span>
+            </form>
+
+          </div>
+          <form (submit)="newSaison.value">
+            <p>Dernier épisode vu : {{suivi.dernierEpisodeVu}}</p>
+            <input type="number" id="newEpisode" #newEpisode [value]="suivi.dernierEpisodeVu">
+            <button (click)="updateSuiviEpisode(suivi,newEpisode.value)"
+                    title="Mise à jour du dernier episode vu"><span class="material-icons">update</span>
+            </button>
+          </form>
+          <!--permet de mettre à jour la base back end sur les saisons et episodes-->
+          <button (click)="updateSaisonSerie(suivi,listeSuivis.id)"
+                  title="Mise à jour des données des saisons"><span class="material-icons">system_update_alt</span>
+          </button>
+        </div>
+
 
         <p><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
       </div>

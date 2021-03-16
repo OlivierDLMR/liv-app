@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+#saison {
+  width: 3em;
+}
+
 .card {
   margin: 5px;
   transition-duration: .2s;
@@ -37,7 +41,7 @@ button.suppression {
 
 .sousTitre{
   align-content: space-between;
-  
+
   margin-bottom:2% ;
   padding: 0;
 }
