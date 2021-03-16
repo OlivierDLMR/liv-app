@@ -27,27 +27,30 @@
         </div>
         <!--        saisons / épisodes et leur mise à jour pour les séries-->
         <div *ngIf="isSerie(suivi.preview)" class="container">
-          <div class="d-flex">
+          <div class="space-between">
             <form (submit)="newSaison.value">
-          <span>Saison en cours :<input type="number" id="newSaison" #newSaison [value]="suivi.saisonEnCours">
+          <span>Saison en cours :<input type="number" id="newSaison" #newSaison [value]="suivi.saisonEnCours" size="3">
 
           <button (click)="updateSuiviSaisons(suivi,newSaison.value)"
-                  title="Mise à jour de la saison en cours"><span class="material-icons">update</span>
+                  title=" Mise à jour de la saison en cours " class="btnTitre"><span class="material-icons small"> update</span>
           </button>
           </span>
             </form>
-
           </div>
-          <form (submit)="newSaison.value">
-            <p>Dernier épisode vu : {{suivi.dernierEpisodeVu}}</p>
-            <input type="number" id="newEpisode" #newEpisode [value]="suivi.dernierEpisodeVu">
+          <div class="d-flex">
+          <form (submit)="newEpisode.value">
+            <span>Dernier épisode vu :
+<!--            p>Dernier épisode vu : {{suivi.dernierEpisodeVu}}</p>-->
+            <input type="number" id="newEpisode" #newEpisode [value]="suivi.dernierEpisodeVu" size="3">
             <button (click)="updateSuiviEpisode(suivi,newEpisode.value)"
-                    title="Mise à jour du dernier episode vu"><span class="material-icons">update</span>
+                    title="Mise à jour du dernier episode vu"><span class="material-icons small">update</span>
             </button>
+              </span>
           </form>
+          </div>
           <!--permet de mettre à jour la base back end sur les saisons et episodes-->
-          <button (click)="updateSaisonSerie(suivi,listeSuivis.id)"
-                  title="Mise à jour des données des saisons"><span class="material-icons">system_update_alt</span>
+          <button (click)="updateSaisonSerie(suivi,listeSuivis.id)" class="btn btn-outline-warning"
+                  title="Mise à jour des données des saisons"><span class="material-icons md-18">system_update_alt</span>
           </button>
         </div>
 
