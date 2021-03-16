@@ -1,6 +1,6 @@
- .ms-2{
-     padding-left: 30px;
- }
+ //.ms-2{
+ //    padding-left: 30px;
+ //}
  mat-progress-bar {
    position: absolute;
    top: 60px;
@@ -13,6 +13,12 @@
  }
 
  .sidebar{
-   width:250px;
+   width:13%;
 
+ }
+ div.listes{
+   margin-top: 1em;
+   justify-content: space-between;
+   background-color:#212020;
+   color: #ffffff;
  }
