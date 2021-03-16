@@ -40,14 +40,17 @@
       <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i> Catalogue series</a>
 
-
-    <nav class="nav flex-column">
-         <div *ngIf="userService.isLogged()" class="me-2 container-fluid" [style.cursor]="'pointer'">
+       <!-- class="nav flex-column" -->
+      <a *ngIf="userService.isLogged()"  [style.cursor]="'pointer'"> <!-- class="ms-2 container-fluid" -->
         <!--      <span>Mes Listes</span>-->
         <app-listesnavbar></app-listesnavbar>
-      </div>
-    </nav>
+      </a>
+
+
     </ul>
+
+
+
   </div>
 
 
