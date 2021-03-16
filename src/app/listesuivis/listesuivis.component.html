@@ -18,14 +18,18 @@
                         delete_outline
                     </span>
                     </button>
-
                   </div>
                 <app-statut  [suivi]="suivi" ></app-statut>
                 <div  class="score">
                   <rating [suivi]="suivi" [origine]="origineRating"></rating>
                 </div>
-                <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
-                <p><em>Résumé : </em>{{ suivi.preview.overview | cuttextlong }}</p>
+               <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
+               <p *ngIf="isSerie(suivi.preview)">Dernier épisode vu : {{suivi.saisonEnCours}}</p>
+               <button (click)="updateSaisonSerie(suivi,listeSuivis.id)" *ngIf="isSerie(suivi.preview)"
+               >Mise à jour des saisons <span class="material-icons">system_update_alt</span>
+               </button>
+               <p> {{suivi | json}}</p>
+                <p><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
               </div>
         </div>
     </div>

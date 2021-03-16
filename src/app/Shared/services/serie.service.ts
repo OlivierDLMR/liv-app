@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Season, SerieModel} from '../../models/serie.model';
 import {environment} from '../../../environments/environment';
+import {AlertService} from "./alert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class SerieService {
   seasons: Season[];
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertService: AlertService) {
   }
 
   /*

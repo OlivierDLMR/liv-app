@@ -28,10 +28,11 @@ export class SuivisService {
     videoListId: 0,
   });
   private urlBackEndSuivi: string = environment.BE_API_URL + '/liv/suivis';
+  private urlUpDateSerie: string = environment.BE_API_URL + '/liv/series';
 
-  constructor(private http: HttpClient, 
-              private alertService: AlertService, 
-              private videolistService:VideolistService,
+  constructor(private http: HttpClient,
+              private alertService: AlertService,
+              private videolistService: VideolistService,
               private serieService: SerieService) {
 
   }
@@ -52,13 +53,13 @@ export class SuivisService {
           if (responseIdDeleted===suivi.id){
             this.videolistService.supprimeSuiviDansListeSuiviBehavior(suivi.id)
           }
-         
+
         // this.listesuivis$.next(
         // this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
         // );
       }
     );
-   
+
   }
 
   ajoutSuivi(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
@@ -81,6 +82,7 @@ export class SuivisService {
         // this.saisons est composé d'élément saison que je construis avec le nb d'épisodes d'une occurence de data.seasons
         data.seasons.forEach(toto => saisons.push(new Saison(toto.episode_count)));
         suivi.saisons = saisons;
+        console.log(saisons);
         this.http.put(this.urlBackEndSuivi + '/'
           + utilisateurId + '/'
           + videoListId, suivi).subscribe(
@@ -90,6 +92,24 @@ export class SuivisService {
         );
       });
   }
-
-
+  updateSaisonSerie(utilisateurId: number, videoListId: number, suivi: SuiviCreation): void {
+    let saisons = new Array<Saison>();
+    // console.log(suivi);
+    // console.log(localStorage);
+    this.serieService
+      .getSerieSeasons(suivi.dbMovieId)
+      .subscribe((data: any) => {
+        // pour chaque element du tableau data.seasons creation d'une nouvelle occurence dans this.saisons
+        // this.saisons est composé d'élément saison que je construis avec le nb d'épisodes d'une occurence de data.seasons
+        data.seasons.forEach(toto => saisons.push(new Saison(toto.episode_count)));
+        suivi.saisons = saisons;
+        this.http.post(this.urlUpDateSerie + '/'
+          + utilisateurId + '/'
+          + videoListId, suivi).subscribe(
+          (data: ListeSuivis) => {
+            this.videolistService.mettreAjourListeSuiviBehavior(data);
+          }
+        );
+      });
+  }
 }

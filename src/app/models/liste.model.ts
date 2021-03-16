@@ -88,7 +88,7 @@ export class SuiviCreation {
 
 export interface Preview {
   id: number;
-  idMovieDb: number;
+  dbMovieId: number;
   titre: string;
   image: string;
   dateCreation: Date;
