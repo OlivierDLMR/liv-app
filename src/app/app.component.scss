@@ -8,17 +8,25 @@
  }
 
  .mat-toolbar.mat-primary {
-   background: #212020;
+   background: #000000;
    color: #fff;
  }
 
  .sidebar{
    width:13%;
-
  }
+ .content{
+     padding: 20px;
+ }
+
+
  div.listes{
    margin-top: 1em;
    justify-content: space-between;
    background-color:#212020;
    color: #ffffff;
+ }
+
+ a {
+   color: white;
  }

@@ -19,39 +19,34 @@
 <mat-progress-bar color="accent" [style.opacity]="(loaderService.isLoadingObs | async)?'1':'0'" mode="indeterminate">
 </mat-progress-bar>
 
-<div class="d-flex">
+<div class="d-flex  ">
 
 <!--  <div class="container-fluid h-100">-->
   <!-- side bar -->
-  <div class="sidebar">
-    <ul class="list-group">
-      <!-- <a class="list-group-item list-group-item-action" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-        true}" href="">Home</a> -->
-      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href="">
-        <span class="material-icons">
-          home
-        </span>
-        home</a>
+    <div >
+      <nav >
+        <ul class="nav flex-column">
+          <li class="nav-item">
+              <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+              true}" class="nav-link " href=""><i class="fas fa-home"></i>home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}" class="nav-link" href=""> <i class="fas fa-film"></i> Catalogue films</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}" class="nav-link" href=""> <i class="fas fa-tv"></i> Catalogue series</a>
+          </li>
+<!--          <li class="nav-item">-->
 
-      <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-        true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-film"></i> Catalogue films</a>
+              <app-listesnavbar *ngIf="userService.isLogged()"  [style.cursor]="'pointer'"></app-listesnavbar>
 
-      <a routerLink="/series" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-          true}" class="list-group-item list-group-item-action" href=""> <i class="fas fa-tv"></i> Catalogue series</a>
+<!--          </li>-->
+        </ul>
+      </nav>
 
-       <!-- class="nav flex-column" -->
-      <a *ngIf="userService.isLogged()"  [style.cursor]="'pointer'"> <!-- class="ms-2 container-fluid" -->
-        <!--      <span>Mes Listes</span>-->
-        <app-listesnavbar></app-listesnavbar>
-      </a>
-
-
-    </ul>
-
-
-
-  </div>
+    </div>
 
 
   <div class="container-fluid">
