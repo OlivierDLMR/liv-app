@@ -105,7 +105,6 @@ export class ListesuivisComponent implements OnInit {
     return this.isLoading ? 0.1 : 1;
   }
 
-
   supprimer(ev: any, suivi: Suivi): void {
     console.log(' ==> je supprime ', suivi);
     ev.stopPropagation();
@@ -114,15 +113,14 @@ export class ListesuivisComponent implements OnInit {
     }
   }
 
-  // getTableauSaisons(dbMovieID: number): any {
-  //   this.suivisService.getTableauSaison(this.utilisateur.id, videoListId, this.suiveCreation);
-  //
-  // }
+  updateSuiviSaisons(suivi: Suivi, newSaison): void {
+    suivi.saisonEnCours = newSaison;
+    this.suivisService.mettreAJourSuivi(suivi);
+  }
 
-  updateSuiviSaisons(suivi: Suivi, saisonEnCours: number, dernierEpisodeVu: number): void{
-    this.suivi.saisonEnCours = saisonEnCours;
-    this.suivi.dernierEpisodeVu = dernierEpisodeVu;
-    this.suivisService.mettreAJourSuivi(this.suivi);
+  updateSuiviEpisode(suivi: Suivi, newEpisode): void {
+    suivi.dernierEpisodeVu = newEpisode;
+    this.suivisService.mettreAJourSuivi(suivi);
   }
 
   updateSaisonSerie(suivi: Suivi, videoListId: number): void {
@@ -141,7 +139,7 @@ export class ListesuivisComponent implements OnInit {
     let userID: number = this.userService.utilisateur$.getValue().id;
     // console.log(this.suiveCreation);
     this.suivisService.updateSaisonSerie(userID, videoListId, this.suiveCreation);
-    this.alertService.show('les saisons de la série ' + suivi.preview.titre +  ' sont à jour ');
+    this.alertService.show('les saisons de la série ' + suivi.preview.titre + ' sont à jour ');
   }
 
 
