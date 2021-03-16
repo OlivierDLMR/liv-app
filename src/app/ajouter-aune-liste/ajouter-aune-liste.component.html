@@ -5,13 +5,18 @@
     <span class="material-icons">
     add_box
     </span>
-    AJOUTER A MA LISTE</mat-label>
-  <mat-select  >
+   Ajouter à ma liste
+  </mat-label>
 
+  <mat-select>
+  <!-- <select matNativeControl > -->
     <mat-option *ngFor="let liste of listes"  >
-      <button *ngIf="movie" (click)="ajoutSuiviFilm(liste.id, liste.name)" >{{liste.name}} {{utilisateur.id}} {{ movie.title }} </button>
-      <button *ngIf="serie" (click)="ajoutSuiviSerie(liste.id, liste.name)" >{{liste.name}} {{utilisateur.id}} {{ serie.title }} </button>
+       <option *ngIf="movie" (click)="ajoutSuiviFilm(liste.id, liste.name)"  >  {{liste.name}} </option>
+       <option *ngIf="serie" (click)="ajoutSuiviSerie(liste.id, liste.name)" > {{liste.name}} </option>
     </mat-option>
+  <!-- </select> -->
   </mat-select>
 </mat-form-field>
+
+
 
