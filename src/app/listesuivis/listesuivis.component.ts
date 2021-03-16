@@ -3,11 +3,22 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../Shared/services/user.service';
 import {LoaderService} from '../Shared/services/loader.service';
 import {Utilisateur} from '../models/utilisateur.model';
-import {ListesNavBar, ListeSuivis, Preview, Statut, Suivi, TypePreview} from '../models/liste.model';
+import {
+  ListesNavBar,
+  ListeSuivis,
+  Preview,
+  Saison,
+  Statut,
+  Suivi,
+  SuiviCreation,
+  TypePreview
+} from '../models/liste.model';
 import {SuivisService} from '../Shared/services/suivis.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import { VideolistService } from '../Shared/services/videolist.service';
+import {VideolistService} from '../Shared/services/videolist.service';
+import {AlertService} from '../Shared/services/alert.service';
+import {SerieModel} from '../models/serie.model';
 
 
 @Component({
@@ -17,7 +28,7 @@ import { VideolistService } from '../Shared/services/videolist.service';
 })
 export class ListesuivisComponent implements OnInit {
 
-  origineRating: string = "maListe";
+  origineRating: string = 'maListe';
 
   utilisateur: Utilisateur;
   listes: ListesNavBar;
@@ -32,12 +43,23 @@ export class ListesuivisComponent implements OnInit {
 
   subscription: Subscription;
 
+  suiveCreation: SuiviCreation;
+  series: SerieModel[];
+  saisons: Saison[];
+  serie: SerieModel;
+  totalSaisons: Saison[];
+
+  subscriptionUtilisateur: Subscription;
+  subscriptionListe: Subscription;
+
 
   constructor(public suivisService: SuivisService,
-    public videoListService: VideolistService,
+              public videoListService: VideolistService,
               public userService: UserService,
               public loaderService: LoaderService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public alertService: AlertService,
+              private router: Router) {
   }
 
   // ngAfterViewChecked(): void {
@@ -52,10 +74,9 @@ export class ListesuivisComponent implements OnInit {
     this.subscription = this.videoListService.listesuivis$.subscribe((data: ListeSuivis) => {
         this.listeSuivis = data;
       }
-
     );
     if (this.videoListService.listesuivis$.getValue().id === 0
-      ||this.videoListService.listesuivis$.getValue().id !=this.listeId ) {
+      || this.videoListService.listesuivis$.getValue().id != this.listeId) {
       this.videoListService.getSuivis(this.listeId);
     }
   }
@@ -80,19 +101,49 @@ export class ListesuivisComponent implements OnInit {
 
   }
 
-  getListOpacity() {
+  getListOpacity(): any {
     return this.isLoading ? 0.1 : 1;
   }
 
-  
 
-  supprimer(ev:any,suivi:Suivi):void{
-    console.log(" ==> je supprime ", suivi);
+  supprimer(ev: any, suivi: Suivi): void {
+    console.log(' ==> je supprime ', suivi);
     ev.stopPropagation();
-    if (confirm("confirmez-vous la suppresssion de" + suivi.preview.titre + " ?")){
+    if (confirm('confirmez-vous la suppresssion de' + suivi.preview.titre + ' ?')) {
       this.suivisService.supprimerSuivi(suivi);
     }
   }
+
+  // getTableauSaisons(dbMovieID: number): any {
+  //   this.suivisService.getTableauSaison(this.utilisateur.id, videoListId, this.suiveCreation);
+  //
+  // }
+
+  updateSuiviSaisons(suivi: Suivi, saisonEnCours: number, dernierEpisodeVu: number): void{
+    this.suivi.saisonEnCours = saisonEnCours;
+    this.suivi.dernierEpisodeVu = dernierEpisodeVu;
+    this.suivisService.mettreAJourSuivi(this.suivi);
+  }
+
+  updateSaisonSerie(suivi: Suivi, videoListId: number): void {
+    // console.log('updateSaisonSerie');
+    // suivi.preview.dbMovieId;
+    this.suiveCreation = new SuiviCreation(suivi.preview.dbMovieId,
+      suivi.preview.image,
+      suivi.noteUser,
+      suivi.preview.overview,
+      suivi.statut,
+      suivi.preview.titre,
+      0,
+      TypePreview.SERIE,
+      this.saisons,
+    );
+    let userID: number = this.userService.utilisateur$.getValue().id;
+    // console.log(this.suiveCreation);
+    this.suivisService.updateSaisonSerie(userID, videoListId, this.suiveCreation);
+    this.alertService.show('les saisons de la série ' + suivi.preview.titre +  ' sont à jour ');
+  }
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
