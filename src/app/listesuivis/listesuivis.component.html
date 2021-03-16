@@ -1,40 +1,41 @@
+<h1>{{listeSuivis.name}}</h1>
+<!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
 
-  <h1>{{listeSuivis.name}}</h1>
-  <!-- <div [style.opacity]="getListOpacity()" class="row content pb-4 container-fluid"> -->
-
-  <div [style.opacity]="getListOpacity()" class="row content container-fluid">
-    <div *ngFor="let suivi of listeSuivis.suivis" class="col-12 col-lg-6 col-xxl-4">
-        <div  class="card bg-dark text-white">
-          <img alt="image de {{ suivi.preview.titre }}"
-             [src]="printImageSrc(suivi.preview)">
-             <div class="card-body"
-                  [class.serie]="isSerie(suivi.preview)"
-                  [class.film]="!isSerie(suivi.preview)">
-                <h2> {{ suivi.preview.titre }} </h2>
-                  <div class='container d-flex sousTitre'>
-                    <p class='col-10 preview'>{{getTypePreview(suivi.preview.typePreview)}}</p>
-                    <button (click)="supprimer($event, suivi)" class="suppression col-2">
+<div [style.opacity]="getListOpacity()" class="row content container-fluid">
+  <div *ngFor="let suivi of listeSuivis.suivis" class="col-12 col-lg-6 col-xxl-4">
+    <div class="card bg-dark text-white">
+      <img alt="image de {{ suivi.preview.titre }}"
+           [src]="printImageSrc(suivi.preview)">
+      <div class="card-body"
+           [class.serie]="isSerie(suivi.preview)"
+           [class.film]="!isSerie(suivi.preview)">
+        <h2> {{ suivi.preview.titre }} </h2>
+        <div class='container d-flex sousTitre'>
+          <p class='col-10 preview'>{{getTypePreview(suivi.preview.typePreview)}}</p>
+          <button (click)="supprimer($event, suivi)" class="suppression col-2">
                       <span class="material-icons">
                         delete_outline
                     </span>
-                    </button>
-                  </div>
-                <app-statut  [suivi]="suivi" ></app-statut>
-                <div  class="score">
-                  <rating [suivi]="suivi" [origine]="origineRating"></rating>
-                </div>
-               <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
-               <p *ngIf="isSerie(suivi.preview)">Dernier épisode vu : {{suivi.saisonEnCours}}</p>
-               <button (click)="updateSaisonSerie(suivi,listeSuivis.id)" *ngIf="isSerie(suivi.preview)"
-               >Mise à jour des saisons <span class="material-icons">system_update_alt</span>
-               </button>
-               <p> {{suivi | json}}</p>
-                <p><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
-              </div>
+          </button>
         </div>
-    </div>
+        <app-statut [suivi]="suivi"></app-statut>
+        <div class="score">
+          <rating [suivi]="suivi" [origine]="origineRating"></rating>
+        </div>
 
+        <p *ngIf="isSerie(suivi.preview)">Saison en cours : {{suivi.saisonEnCours}}</p>
+        <p *ngIf="isSerie(suivi.preview)">Dernier épisode vu : {{suivi.saisonEnCours}}</p>
+        <button *ngIf="isSerie(suivi.preview)"
+                (click)="updateSaisonSerie(suivi,listeSuivis.id)"
+                title="Mise à jour des saisons"><span class="material-icons">system_update_alt</span>
+        </button>
+
+        <p><em>Résumé : </em> {{ suivi.preview.overview | cuttextlong }}</p>
+      </div>
+    </div>
   </div>
+
+</div>
 
 
 
