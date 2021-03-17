@@ -1,7 +1,7 @@
 button.action{
     background: rgba(0,0,0,0.2);
     border-radius: 0.5em;
-  
+
 }
 
 .paragraphe{
@@ -16,4 +16,8 @@ button.action{
 .lib{
     text-align: left;
     padding: 0;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
 }

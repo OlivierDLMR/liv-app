@@ -1,9 +1,9 @@
 <!-- <p>ratings works!</p> -->
-<p>
-  <span *ngIf="isMaListe()">Mon score : </span>  
-  <span *ngIf="!isMaListe()">Score de la Communauté : </span>  
+<div class="d-flex col-7 nopadding">
+  <span class="lib mr-auto" *ngIf="isMaListe()">Mon score : </span>
+  <span class="lib mr-auto" *ngIf="!isMaListe()">Score de la Communauté : </span>
   <button *ngIf="isMaListe()" (click)="moins()"type="button" class="action">-</button>
   <i  *ngFor="let star of stars" class="fas fa-star"></i>
   <i  *ngFor="let noStar of noStars" class="far fa-star"></i>
   <button *ngIf="isMaListe()" (click)="plus()"type="button" class="action">+</button>
-</p>
+</div>
