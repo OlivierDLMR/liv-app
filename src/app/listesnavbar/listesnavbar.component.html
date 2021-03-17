@@ -6,7 +6,7 @@
         <!--    </span>-->
 <!--        {{utilisateur.firstname}}, voici vos listes</span>-->
 
-  <li *ngFor="let liste of listes" class="nav-item">
+  <li *ngFor="let liste of listes" class="nav-item videoListName">
 
     <a (click)="onClickList(liste.id)" [routerLink]="['/listesuivis',liste.id]" routerLinkActive="active"
        [routerLinkActiveOptions]="{exact:
