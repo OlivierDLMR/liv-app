@@ -3,7 +3,9 @@
   <span class="lib mr-auto" *ngIf="isMaListe()">Mon score : </span>
   <span class="lib mr-auto" *ngIf="!isMaListe()">Score de la Communauté : </span>
   <button *ngIf="isMaListe()" (click)="moins()"type="button" class="action">-</button>
-  <i  *ngFor="let star of stars" class="fas fa-star"></i>
-  <i  *ngFor="let noStar of noStars" class="far fa-star"></i>
+  <p class="star">
+    <i  *ngFor="let star of stars" class="fas fa-star"></i>
+    <i  *ngFor="let noStar of noStars" class="far fa-star"></i>
+  </p>
   <button *ngIf="isMaListe()" (click)="plus()"type="button" class="action">+</button>
 </div>
