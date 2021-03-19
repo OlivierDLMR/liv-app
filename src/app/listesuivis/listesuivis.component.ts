@@ -107,7 +107,7 @@ export class ListesuivisComponent implements OnInit {
 
   supprimer(ev: any, suivi: Suivi): void {
     ev.stopPropagation();
-    if (confirm('confirmez-vous la suppresssion de' + suivi.preview.titre + ' ?')) {
+    if (confirm('confirmez-vous la suppresssion de ' + suivi.preview.titre + ' ?')) {
       this.suivisService.supprimerSuivi(suivi);
     }
   }

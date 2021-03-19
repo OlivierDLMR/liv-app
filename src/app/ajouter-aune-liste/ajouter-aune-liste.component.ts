@@ -67,7 +67,7 @@ export class AjouterAUneListeComponent implements OnInit {
       TypePreview.FILM,
       Array<Saison>());
     this.suiviService.ajoutSuivi(this.utilisateur.id, videoListId, this.suiveCreation);
-    this.alertService.show('le film est ajoute à la liste : ' + videoListName);
+    
     this.router.navigate(['/listesuivis', videoListId]);
   }
 
@@ -92,7 +92,6 @@ export class AjouterAUneListeComponent implements OnInit {
       // videoListId
     );
     this.suiviService.ajoutSuiviSerie(this.utilisateur.id, videoListId, this.suiveCreation);
-    this.alertService.show('la serie est ajoutée à ma liste : ' + videoListName);
     this.router.navigate(['/listesuivis', videoListId]);
   }
 

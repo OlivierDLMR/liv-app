@@ -4,7 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService} from './alert.service';
-import {ListeSuivis, Saison, Suivi, SuiviCreation} from '../../models/liste.model';
+import {ListeSuivis, Saison, Suivi, SuiviCreation, TypePreview} from '../../models/liste.model';
 import {SerieService} from './serie.service';
 import { VideolistService } from './videolist.service';
 
@@ -49,16 +49,11 @@ export class SuivisService {
   supprimerSuivi(suivi: Suivi): void {
     this.http.delete(this.urlBackEndSuivi + '/' + suivi.id).subscribe(
       (responseIdDeleted: number) => {
-          console.log('retour  delete : ', responseIdDeleted);
           if (responseIdDeleted===suivi.id){
-            this.videolistService.supprimeSuiviDansListeSuiviBehavior(suivi.id)
-          }
-
-        // this.listesuivis$.next(
-        // this.listesuivis$.getValue().suivis.filter((suiviASupprimer:any)=> suiviASupprimer.id !=suivi.id)
-        // );
-      }
-    );
+            this.videolistService.supprimeSuiviDansListeSuiviBehavior(suivi.id);
+            this.alertService.show( '" ' + suivi.preview.titre + ' " a été supprimé de la liste');
+          };
+      });
 
   }
 
@@ -69,6 +64,8 @@ export class SuivisService {
       + videoListId, suivi).subscribe(
       (data: ListeSuivis) => {
         this.videolistService.mettreAjourListeSuiviBehavior(data)
+        this.alertService.show('le film " ' + suivi.titre + ' " a été ajouté à la liste');
+
       }
     );
   }
@@ -88,6 +85,7 @@ export class SuivisService {
           + videoListId, suivi).subscribe(
           (data: ListeSuivis) => {
             this.videolistService.mettreAjourListeSuiviBehavior(data)
+            this.alertService.show('la série " ' + suivi.titre + ' " a été ajoutée à la liste');
           }
         );
       });

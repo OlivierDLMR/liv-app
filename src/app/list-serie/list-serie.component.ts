@@ -93,15 +93,12 @@ export class ListSerieComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscriptionSerie.unsubscribe();
-    console.log(" ===> ngonDestroy unsubscription serie");
 
 
     this.subscriptionSearch.unsubscribe();
-    console.log(" ===> ngonDestroy unsubscription search");
 
 
     this.subscriptionUser.unsubscribe();
-    console.log(" ===> ngonDestroy unsubscription user");
   }
 
 } // Fin class ListComponent

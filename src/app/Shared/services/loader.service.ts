@@ -8,7 +8,7 @@ import {delay} from 'rxjs/operators';
 export class LoaderService {
 
   // 1/ On créer le Subject privé isLoading$
-  //    Seulement notre méthode 'setLoader' plus bas y a accès
+  //    Seule notre méthode 'setLoader' plus bas y a accès
   private isLoading$ = new BehaviorSubject<boolean>(false);
 
   // 2/ Puis on crée un Observable isLoadingObs à partir du subject isLoading$
