@@ -1,9 +1,9 @@
 <!-- <pre style="color: #fff">{{suivi | json}}</pre> -->
 <select #select (change)="changeStatut(select.value)"
-        [class.en_cours]="suivi.statut=='EN_COURS'"
-        [class.vu]="suivi.statut=='VU'"
-        [class.abandonne]="suivi.statut=='ABANDONNE'"
-        [class.a_voir]="suivi.statut=='A_VOIR'"
+        [class.en_cours]="statutSaved=='EN_COURS'"
+        [class.vu]="statutSaved=='VU'"
+        [class.abandonne]="statutSaved=='ABANDONNE'"
+        [class.a_voir]="statutSaved=='A_VOIR'"
         class="form-select form-select-sm statut" aria-label="select statut">
   <!--  <option>{{getStatut(suivi.statut)}}</option>-->
   <option [selected]="suivi.statut===choice.value" [value]="choice.value"
