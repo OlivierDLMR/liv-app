@@ -105,7 +105,7 @@ export class SuivisService {
           + utilisateurId + '/'
           + videoListId, suivi).subscribe(
           (data: ListeSuivis) => {
-            this.videolistService.mettreAjourListeSuiviBehavior(data);
+            // this.videolistService.mettreAjourListeSuiviBehavior(data);
           }
         );
       });
